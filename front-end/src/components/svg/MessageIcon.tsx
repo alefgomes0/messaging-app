@@ -9,7 +9,7 @@ export const MessageIcon = ({ width, height }: IconeProps) => {
     <li
       className={`rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer ${
         isHovered ? "bg-neutral-500" : ""
-      }`}
+      } transition-colors duration-100 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -17,11 +17,11 @@ export const MessageIcon = ({ width, height }: IconeProps) => {
         xmlns="http://www.w3.org/2000/svg"
         width={width}
         height={height}
-        viewBox="0 0 24 24"
+        viewBox="0 0 28 28"
       >
         <path
           fill="#e5e5e5"
-          d="M4 4h16v12H5.17L4 17.17V4m0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4zm2 10h12v2H6v-2zm0-3h12v2H6V9zm0-3h12v2H6V6z"
+          d="M2 14C2 7.373 7.373 2 14 2s12 5.373 12 12s-5.373 12-12 12a11.95 11.95 0 0 1-5.637-1.404l-4.77 1.357a1.25 1.25 0 0 1-1.544-1.544l1.356-4.77A11.95 11.95 0 0 1 2 14Zm7.5-2.25c0 .414.336.75.75.75h7.5a.75.75 0 0 0 0-1.5h-7.5a.75.75 0 0 0-.75.75Zm.75 3.75a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5Z"
         />
       </svg>
     </li>

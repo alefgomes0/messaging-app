@@ -9,7 +9,7 @@ export const StatusIcon = ({ width, height }: IconeProps) => {
     <li
       className={`rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer ${
         isHovered ? "bg-neutral-500" : ""
-      }`}
+      } transition-colors duration-100 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -19,17 +19,12 @@ export const StatusIcon = ({ width, height }: IconeProps) => {
         height={height}
         viewBox="0 0 24 24"
       >
-        <g
+        <path
           fill="#e5e5e5"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          stroke-width="2"
-        >
-          <path d="M15 3.512a9.025 9.025 0 0 1 5.5 5.523M11 3.055a9.001 9.001 0 0 0-6.605 13.76L3 21l4.185-1.395A9.001 9.001 0 0 0 20.945 13" />
-          <path d="M12 17a5 5 0 0 1-5-5m2-4a5 5 0 0 1 7 7" />
-          <circle cx="12" cy="12" r="1" />
-        </g>
+          fill-rule="evenodd"
+          d="M12 2C6.477 2 2 6.477 2 12a9.97 9.97 0 0 0 1.3 4.935l-1.249 3.749a1 1 0 0 0 1.265 1.265l3.749-1.25A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 6c-.902 0-1.731.297-2.4.8a1 1 0 1 1-1.2-1.6a6 6 0 0 1 8.4 8.4a1 1 0 0 1-1.598-1.2A4 4 0 0 0 12 8zm-5 3a1 1 0 0 1 1 1a4 4 0 0 0 4 4a1 1 0 1 1 0 2a6 6 0 0 1-6-6a1 1 0 0 1 1-1zm5-1a2 2 0 1 0 0 4a2 2 0 0 0 0-4z"
+          clip-rule="evenodd"
+        />
       </svg>
     </li>
   );

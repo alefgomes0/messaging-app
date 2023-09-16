@@ -9,7 +9,7 @@ export const StarIcon = ({ width, height }: IconeProps) => {
     <li
       className={`rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer ${
         isHovered ? "bg-neutral-500" : ""
-      } transition-colors duration-200 ease-in-out`}
+      } transition-colors duration-100 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

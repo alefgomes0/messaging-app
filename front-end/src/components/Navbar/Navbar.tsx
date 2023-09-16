@@ -1,3 +1,4 @@
+import { NavbarProfilePicture } from "../NavbarProfilePicture/NavbarProfilePicture";
 import { ArchiveIcon } from "../svg/ArchiveIcon";
 import { MessageIcon } from "../svg/MessageIcon";
 import { PhoneIcon } from "../svg/PhoneIcon";
@@ -31,7 +32,7 @@ export const Navbar = () => {
             <li>
               <SettingsIcon width={20} height={20} />
             </li>
-            <li className="w-[30px] h-[30px] rounded-full bg-sky-900"> </li>
+            <NavbarProfilePicture />
           </ul>
         </div>
       </nav>
