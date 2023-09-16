@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export const SettingsIcon = ({ width, height }: IconeProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <li

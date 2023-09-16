@@ -6,7 +6,7 @@ export const MessengerPage = () => {
     <main className="grid grid-rows-[48px_1fr] grid-cols-[48px_250px_1fr]">
       <MessengerHeader />
       <Navbar />
-      <div className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] bg-neutral-700 z-10"></div>
+      <div className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] bg-neutral-900 z-10"></div>
     </main>
   )
 }
