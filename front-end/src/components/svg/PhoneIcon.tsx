@@ -26,7 +26,6 @@ export const PhoneIcon = ({
             : "animate-[borderOut_1s_ease-in-out] opacity-0"
         }`}
       ></div>
-
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={width}

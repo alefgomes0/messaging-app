@@ -1,9 +1,13 @@
 import { IconeProps } from "../../types/IconeProps";
 import { useState } from "react";
 
-export const ArchiveIcon = ({ width, height }: IconeProps) => {
+export const ArchiveIcon = ({
+  width,
+  height,
+  selectIcon,
+  setSelectIcon,
+}: IconeProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <li
@@ -12,7 +16,15 @@ export const ArchiveIcon = ({ width, height }: IconeProps) => {
       } transition-colors duration-100 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setSelectIcon(4)}
     >
+      <div
+        className={`w-4 h-[20px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
+          selectIcon === 4
+            ? "animate-[borderIn_3s_ease-in-out]"
+            : "animate-[borderOut_1s_ease-in-out] opacity-0"
+        }`}
+      ></div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={width}
