@@ -19,7 +19,7 @@ export const SettingsIcon = ({
       onClick={() => setSelectIcon(5)}
     >
       <div
-        className={`w-4 h-[20px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
+        className={`w-4 h-4 rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
           selectIcon === 5
             ? "animate-[borderIn_3s_ease-in-out]"
             : "animate-[borderOut_1s_ease-in-out] opacity-0"

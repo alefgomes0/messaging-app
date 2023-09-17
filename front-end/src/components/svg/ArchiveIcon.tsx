@@ -19,7 +19,7 @@ export const ArchiveIcon = ({
       onClick={() => setSelectIcon(4)}
     >
       <div
-        className={`w-4 h-[20px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
+        className={`w-4 h-4 rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
           selectIcon === 4
             ? "animate-[borderIn_3s_ease-in-out]"
             : "animate-[borderOut_1s_ease-in-out] opacity-0"
@@ -34,9 +34,9 @@ export const ArchiveIcon = ({
         <g fill="#e5e5e5">
           <path d="M4 3a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4H4Z" />
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M3 8h14v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Zm5 3a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </g>
       </svg>

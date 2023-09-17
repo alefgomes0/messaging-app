@@ -19,7 +19,7 @@ export const StarIcon = ({
       onClick={() => setSelectIcon(3)}
     >
       <div
-        className={`w-4 h-[20px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
+        className={`w-4 h-[16px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
           selectIcon === 3
             ? "animate-[borderIn_3s_ease-in-out]"
             : "animate-[borderOut_1s_ease-in-out] opacity-0"
