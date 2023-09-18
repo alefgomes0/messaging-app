@@ -12,6 +12,8 @@ export const StatusIcon = ({
   return (
     <li
       className={`rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer ${
+        selectIcon === 2 ? "bg-neutral-700 opacity-70" : ""
+      } ${
         isHovered ? "bg-neutral-500" : ""
       } transition-colors duration-100 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}

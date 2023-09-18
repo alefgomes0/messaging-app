@@ -1,11 +1,13 @@
-const express = require("express")
-const router = express.Router()
-const userController = require("../controllers/userController")
-const messageController = require("../controllers/messageController")
+const express = require("express");
+const router = express.Router();
+const user = require("../controllers/userController");
+const message = require("../controllers/messageController");
+const contact = require("../controllers/contactController");
 
-router.post("/new/user", userController.post)
+router.put("/user", user.update);
+router.post("/new/user", user.post);
 
-router.post("/new/message", messageController.post)
-
+router.post("/new/message", message.post);
+router.get("/contacts/:userId", contact.get)
 
 module.exports = router;

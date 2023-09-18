@@ -6,8 +6,8 @@ const User = require("../models/user");
 exports.post = asyncHandler(async (req, res, next) => {
   const message = new Message({
     participants: {
-      sender: "6505e2b44f2497c800be3d76",
-      receiver: "6505e2b44f2497c800be3d77",
+      sender: "6508695537fe843f89aa8444",
+      receiver: "6508695537fe843f89aa8443",
     },
     message: "Oieeeeee",
     date: new Date()
@@ -15,8 +15,8 @@ exports.post = asyncHandler(async (req, res, next) => {
 
   const message2 = new Message({
     participants: {
-      sender: "6505e2b44f2497c800be3d77",
-      receiver: "6505e2b44f2497c800be3d76",
+      sender: "6508695537fe843f89aa8443",
+      receiver: "6508695537fe843f89aa8444",
     },
     message: "Mama fdp",
     date: new Date()
