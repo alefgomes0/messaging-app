@@ -7,13 +7,18 @@ exports.post = asyncHandler(async (req, res, next) => {
     email: "teste@email.com",
     password: 123,
     name: "Teste",
+    contacts: [],
+    friendRequests: [],
+    conversations: [],
   });
 
   const newUser2 = new User({
     email: "testando@email.com",
     password: 321,
     name: "Testando",
-    contacts: []
+    contacts: [],
+    friendRequests: [],
+    conversations: [],
   });
 
   await Promise.all([newUser.save(), newUser2.save()]);

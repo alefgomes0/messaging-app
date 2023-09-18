@@ -10,6 +10,7 @@ exports.post = asyncHandler(async (req, res, next) => {
       receiver: "6505e2b44f2497c800be3d77",
     },
     message: "Oieeeeee",
+    date: new Date()
   });
 
   const message2 = new Message({
@@ -18,6 +19,7 @@ exports.post = asyncHandler(async (req, res, next) => {
       receiver: "6505e2b44f2497c800be3d76",
     },
     message: "Mama fdp",
+    date: new Date()
   });
 
   try {
@@ -29,26 +31,3 @@ exports.post = asyncHandler(async (req, res, next) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-/* exports.post = asyncHandler(async (req, res, next) => {
-  const newMessage1 = new Message({
-    participants: ["6505e2b44f2497c800be3d76", "6505e2b44f2497c800be3d77"],
-    sender: "6505e2b44f2497c800be3d76",
-    message: "Oláaaaaaa",
-  });
-
-  const newMessage2 = new Message({
-    participants: ["6505e2b44f2497c800be3d76", "6505e2b44f2497c800be3d77"],
-    sender: "6505e2b44f2497c800be3d77",
-    message: "Mama filho da puta",
-  });
-
-  try {
-    await Promise.all([newMessage1.save(), newMessage2.save()]);
-    res.json("sent");
-  } catch (error) {
-    // Handle error here
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-}); */

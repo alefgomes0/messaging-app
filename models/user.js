@@ -7,8 +7,8 @@ const UserSchema = new Schema({
   name: { type: String, required: true },
   contacts: [{ type: Schema.Types.ObjectId }],
   friendRequests: [{ type: Schema.Types.ObjectId }],
-  conversations: { type: Schema.Types.ObjectId },
-  profilePicture: { type: Blob },
+  conversations: [{ type: Schema.Types.ObjectId }],
+  profilePicture: { type: Buffer },
 });
 
 module.exports = mongoose.model("User", UserSchema);

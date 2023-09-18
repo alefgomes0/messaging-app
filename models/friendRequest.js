@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const FriendRequestSchema = new Schema({
   fromUser: { type: Schema.Types.ObjectId, required: true },
   toUser: { type: Schema.Types.ObjectId, required: true },
-  state: { type: Boolean, required: true },
-  alreadyRefused: { type: Boolean },
+  state: { type: "Accepted" || "Rejected" || "Pending", required: true },
 });
 
 module.exports = mongoose.model("FriendRequest", FriendRequestSchema);
