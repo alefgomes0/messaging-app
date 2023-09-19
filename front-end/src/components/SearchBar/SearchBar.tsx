@@ -18,7 +18,7 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
 
     window.addEventListener("click", onFocusOut);
     return () => window.removeEventListener("click", onFocusOut);
-  });
+  }, []);
 
   return (
     <div ref={divRef} className="flex flex-col">
@@ -49,7 +49,7 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
         </button>
       </div>
       <div
-        className={`w-full h-0.5 ${
+        className={`rounded w-full h-[1.5px] ${
           inputOnFocus ? "bg-fuchsia-700" : "bg-zinc-500"
         }`}
       ></div>

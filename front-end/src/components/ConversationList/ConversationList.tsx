@@ -14,7 +14,7 @@ export const ConversationList = () => {
     };
 
     fetchContactsData();
-  });
+  }, []);
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_auto_1fr] bg-zinc-800 rounded-l-lg gap-4 pt-3 px-3">
