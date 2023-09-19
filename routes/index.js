@@ -8,6 +8,6 @@ router.put("/user", user.update);
 router.post("/new/user", user.post);
 
 router.post("/new/message", conversation.post);
-router.get("/contacts/:userId", conversation.get)
+router.get("/conversation/:userId", conversation.get)
 
 module.exports = router;

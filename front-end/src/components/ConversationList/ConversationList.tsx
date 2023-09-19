@@ -8,7 +8,7 @@ export const ConversationList = () => {
   useEffect(() => {
     const fetchContactsData = async () => {
       const response = await axios.get(
-        "http://localhost:3000/contacts/6508695537fe843f89aa8444"
+        "http://localhost:3000/conversation/6508695537fe843f89aa8444"
       );
       console.log(response);
     };
