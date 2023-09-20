@@ -15,8 +15,7 @@ exports.get = asyncHandler(async (req, res, next) => {
   .populate("participants", "name")
   .select({ participants: { $elemMatch: { $ne: req.params.userId }}, messages: 1})
   .exec();
-
-  console.log(contact);
+  
   res.json(contact);
 });
 

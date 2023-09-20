@@ -1,28 +1,13 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Loading } from "../Loading/Loading";
+import { ConversationListProps } from "../../types/ConversationListProps";
+import axios from "axios";
+import { List } from "../List/List";
 
 type ErrorMessage = {
   code: string | number;
   message: string;
-};
-
-type ConversationListProps = {
-  messages: [
-    {
-      date: string;
-      message: string;
-      _id: string;
-      time: string;
-    }
-  ];
-  participants: [
-    {
-      name: string;
-      _id: string;
-    }
-  ];
 };
 
 export const ConversationList = () => {
@@ -39,9 +24,10 @@ export const ConversationList = () => {
         const response = await axios.get(
           "http://localhost:3000/conversation/6508695537fe843f89aa8444"
         );
-        if (response.status >= 200 && response.status <= 305) {
+        if (response.status >= 200 && response.status < 300) {
           setConversationListInfo(response.data);
           setIsLoading(false);
+          console.log(response.data);
         }
       } catch (err) {
         setError(err as ErrorMessage);
@@ -74,27 +60,7 @@ export const ConversationList = () => {
                   handleOnChange={setSearchValue}
                   searchValue={searchValue}
                 />
-                <div>
-                  {conversationListInfo?.map((conversation) => {
-                    return (
-                      <div
-                        className="min-h-[90px] w-full grid grid-cols-[60px_1fr] grid-rows-2 items-center gap-x-4 gap-y-1 text-neutral-200 rounded-md hover:bg-neutral-600 transition-colors px-3"
-                        key={conversation.participants[0]._id}
-                      >
-                        <div className="w-[58px] h-[58px] rounded-full bg-blue-600 col-start-1 col-end-2 row-span-full self-center"></div>
-                        <div className="w-full self-end flex justify-between col-start-2 col-end-3 row-start-1 row-end-2">
-                          <h4 className="font-bold text-neutral-100">
-                            {conversation.participants[0].name}
-                          </h4>
-                          <h6 className="text-xs opacity-60">16:20</h6>
-                        </div>
-                        <p className="truncate text-sm self-start col-start-2 col-end-3 row-start-2 row-end-3 opacity-70">
-                          {conversation.messages[0].message}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
+                <List conversationListInfo={conversationListInfo}/>
               </>
             )}
           </>
