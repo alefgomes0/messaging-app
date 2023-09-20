@@ -21,18 +21,18 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
   }, []);
 
   return (
-    <div ref={divRef} className="flex flex-col">
+    <div ref={divRef} className="flex flex-col px-3">
       <div className="flex items-center bg-zinc-700 rounded">
         <input
           onFocus={() => setInputOnFocus(true)}
           type="search"
           name="search"
-          placeholder="Search a contact"
+          placeholder="Search a contact name"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleOnChange(e.target.value)
           }
           value={searchValue}
-          className={`w-full text-zinc-200 text-xs h-[27px] pl-1 border-none rounded outline-none placeholder:text-xs placeholder:text-zinc-200 bg-zinc-700 rounded`}
+          className={`w-full text-zinc-200 text-xs h-[27px] pl-1 border-none rounded outline-none placeholder:text-xs placeholder:text-zinc-200 placeholder:opacity-[75%] bg-zinc-700 rounded`}
         />
         <button
           className="flex items-center justify-center cursor-auto hover:bg-zinc-500 w-6 h-6 rounded my-0.5 mx-1"
