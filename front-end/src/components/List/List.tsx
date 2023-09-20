@@ -1,5 +1,5 @@
 import { ConversationListProps } from "../../types/ConversationListProps";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 type ListProps = {
   conversationListInfo: null | ConversationListProps[];
@@ -12,6 +12,7 @@ export const List = ({ conversationListInfo }: ListProps) => {
         return (
           <NavLink
             to={`${conversation.participants[0]._id}`}
+            state={{ contactName: conversation.participants[0].name }}
             className="min-h-[90px] w-full grid grid-cols-[60px_1fr] grid-rows-2 items-center gap-x-4 gap-y-1 text-neutral-200 rounded-md hover:bg-neutral-600 transition-colors px-3"
             key={conversation.participants[0]._id}
           >
