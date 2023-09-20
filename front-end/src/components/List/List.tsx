@@ -1,4 +1,5 @@
 import { ConversationListProps } from "../../types/ConversationListProps";
+import { NavLink } from "react-router-dom"
 
 type ListProps = {
   conversationListInfo: null | ConversationListProps[];
@@ -6,10 +7,11 @@ type ListProps = {
 
 export const List = ({ conversationListInfo }: ListProps) => {
   return (
-    <div>
+    <nav>
       {conversationListInfo?.map((conversation) => {
         return (
-          <div
+          <NavLink
+            to={`${conversation.participants[0]._id}`}
             className="min-h-[90px] w-full grid grid-cols-[60px_1fr] grid-rows-2 items-center gap-x-4 gap-y-1 text-neutral-200 rounded-md hover:bg-neutral-600 transition-colors px-3"
             key={conversation.participants[0]._id}
           >
@@ -25,9 +27,9 @@ export const List = ({ conversationListInfo }: ListProps) => {
             <p className="truncate text-sm self-start col-start-2 col-end-3 row-start-2 row-end-3 opacity-70">
               {conversation.messages[0].message}
             </p>
-          </div>
+          </NavLink>
         );
       })}
-    </div>
+    </nav>
   );
 };
