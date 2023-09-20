@@ -7,10 +7,17 @@ import { ErrorMessage } from "../../types/ErrorMessage";
 import { Loading } from "../Loading/Loading";
 import { MessageText } from "../MessageText/MessageText";
 
+type ConversationProps = {
+  date: string;
+  message: string;
+  time: string;
+  participants: { sender: string };
+};
+
 export const Conversation = () => {
-  const [allMessages, setAllMessages] = useState<
-    null | ConversationListProps[]
-  >(null);
+  const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
+    null
+  );
   const [error, setError] = useState<null | ErrorMessage>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,9 +33,9 @@ export const Conversation = () => {
         const response = await axios.get(
           `http://localhost:3000/${contactId}/messages`
         );
-        console.log(response);
+        console.log(response.data[0].messages);
         if (response.status >= 200 && response.status <= 305) {
-          setAllMessages(response.data);
+          setAllMessages(response.data[0].messages);
           setIsLoading(false);
         }
       } catch (err) {
@@ -62,7 +69,22 @@ export const Conversation = () => {
                   {contactName}
                 </h3>
               </div>
-              <div className="bg-neutral-800"></div>
+              <div className="bg-neutral-800">
+                {allMessages?.map((message) => {
+                  return (
+                    <span
+                      className={`grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] min-w-fit w-max h-max text-sm text-neutral-200 rounded-md mb-2 ${
+                        message.participants.sender === contactId ? "bg-neutral-700 justify-self-start" : "bg-fuchsia-900 ml-auto "
+                      }`}
+                    >
+                      <p className="text-neutral-200 pl-4 self-center">{message.message}</p>
+                      <span className="self-end ml-4 mt-4 mr-2 mb-2">
+                        <p className="text-[9px] opacity-70">{message.time}</p>
+                      </span>
+                    </span>
+                  );
+                })}
+              </div>
               <MessageText />
             </>
           )}

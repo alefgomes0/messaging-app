@@ -22,7 +22,7 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
 
   return (
     <div ref={divRef} className="flex flex-col px-3">
-      <div className="flex items-center bg-zinc-700 rounded">
+      <div className="flex items-center bg-[#333] rounded">
         <input
           onFocus={() => setInputOnFocus(true)}
           type="search"
@@ -32,10 +32,10 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
             handleOnChange(e.target.value)
           }
           value={searchValue}
-          className={`w-full text-zinc-200 text-xs h-[27px] pl-1 border-none rounded outline-none placeholder:text-xs placeholder:text-zinc-200 placeholder:opacity-[75%] bg-zinc-700 rounded`}
+          className={`w-full text-zinc-200 text-xs h-[27px] pl-1 border-none rounded outline-none placeholder:text-xs placeholder:text-zinc-200 placeholder:opacity-[75%] bg-[#333] rounded shadow-[0_2px_2px_0_rgba(0,0,0,0.3)_inset]`}
         />
         <button
-          className="flex items-center justify-center cursor-auto hover:bg-zinc-500 w-6 h-6 rounded my-0.5 mx-1"
+          className="flex items-center justify-center cursor-auto hover:bg-[#494949] w-6 h-6 rounded my-0.5 mx-1"
           onClick={() => {
             if (!searchValue) return;
             handleOnChange("");
@@ -50,7 +50,7 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
       </div>
       <div
         className={`rounded w-full h-[1.5px] ${
-          inputOnFocus ? "bg-fuchsia-700" : "bg-zinc-500"
+          inputOnFocus ? "bg-fuchsia-700" : "bg-neutral-600"
         }`}
       ></div>
     </div>

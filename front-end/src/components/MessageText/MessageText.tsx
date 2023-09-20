@@ -13,13 +13,13 @@ export const MessageText = () => {
         onChange={handleOnChange}
         value={message}
         placeholder="Message"
-        className="border-2 border-gray-700 w-full h-16 rounded px-3 bg-neutral-700 placeholder:text-neutral-200 placeholder:opacity-80 text-neutral-200 border-none outline-none"
+        className="text-sm w-full h-16 rounded p-3 bg-neutral-700 border-t-2 border-neutral-900 placeholder:text-neutral-200 placeholder:opacity-80 text-neutral-200 border-none outline-none shadow-[0_2px_2px_0_rgba(0,0,0,0.3)_inset]"
       />
       {message ? (
         <div className="flex items-center justify-center w-16 h-16 bg-neutral-700">
           <button
             type="submit"
-            className="w-[52px] h-[52px] text-neutral-100 hover:bg-neutral-600 rounded-md text-xl"
+            className="w-[56px] h-[56px] flex items-center justify-center text-neutral-100 hover:bg-neutral-600 rounded-md text-xl"
           >
             &#10148;
           </button>
