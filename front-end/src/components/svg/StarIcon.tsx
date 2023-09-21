@@ -1,5 +1,4 @@
 import { IconeProps } from "../../types/IconeProps";
-import { useState } from "react";
 
 export const StarIcon = ({
   width,
@@ -7,17 +6,11 @@ export const StarIcon = ({
   selectIcon,
   setSelectIcon,
 }: IconeProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <li
-      className={`rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer ${
-        selectIcon === 3 ? "bg-neutral-700 opacity-70" : ""
-      } ${
-        isHovered ? "bg-neutral-500" : ""
-      } transition-colors duration-100 ease-in-out`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    className={`relative rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer hover:bg-neutral-700 ${
+      selectIcon === 3 ? "bg-neutral-700 opacity-70" : "bg-neutral-800"
+    }  transition-colors duration-100 ease-in-out`}
       onClick={() => setSelectIcon(3)}
     >
       <div

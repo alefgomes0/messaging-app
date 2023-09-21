@@ -10,13 +10,13 @@ exports.get = asyncHandler(async (req, res, next) => {
   .populate({
     path: "messages",
     select: "message date time",
-    options: { sort: { date: -1 }, limit: 1 }
+    options: { sort: { date: -1 }, limit: 2 }
   })
   .populate("participants", "name")
   .select({ participants: { $elemMatch: { $ne: req.params.userId }}, messages: 1})
   .exec();
   
-  res.json([contact[0]]);
+  res.json(contact);
 });
 
 exports.post = asyncHandler(async (req, res, next) => {
