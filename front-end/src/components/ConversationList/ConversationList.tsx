@@ -1,37 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Loading } from "../Loading/Loading";
 import { ConversationListProps } from "../../types/ConversationListProps";
-import { ErrorMessage } from "../../types/ErrorMessage";
-import axios from "axios";
 import { List } from "../List/List";
 
-export const ConversationList = () => {
+export const ConversationList = ({
+  isLoading,
+  error,
+  conversationListInfo,
+}: ConversationListProps) => {
   const [searchValue, setSearchValue] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [conversationListInfo, setConversationListInfo] = useState<
-    null | ConversationListProps[]
-  >(null);
-  const [error, setError] = useState<null | ErrorMessage>(null);
-
-  useEffect(() => {
-    const fetchContactsData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/conversation/6508695537fe843f89aa8444"
-        );
-        if (response.status >= 200 && response.status <= 305) {
-          setConversationListInfo(response.data);
-          setIsLoading(false);
-        }
-      } catch (err) {
-        setError(err as ErrorMessage);
-        setIsLoading(false);
-      }
-    };
-
-    fetchContactsData();
-  }, []);
 
   return (
     <>
@@ -57,7 +35,10 @@ export const ConversationList = () => {
                   handleOnChange={setSearchValue}
                   searchValue={searchValue}
                 />
-                <List conversationListInfo={conversationListInfo} />
+                <List
+                  conversationListInfo={conversationListInfo}
+                  query={searchValue}
+                />
               </>
             )}
           </>

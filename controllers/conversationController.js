@@ -5,17 +5,18 @@ const Conversation = require("../models/conversations");
 
 exports.get = asyncHandler(async (req, res, next) => {
   const contact = await Conversation.find({
-    participants: { $elemMatch: { $eq: req.params.userId } }
+    participants: { $elemMatch: { $eq: req.params.userId } },
   })
-  .populate({
-    path: "messages",
-    select: "message date time",
-    options: { sort: { date: -1 }, limit: 2 }
-  })
-  .populate("participants", "name")
-  .select({ participants: { $elemMatch: { $ne: req.params.userId }}, messages: 1})
-  .exec();
-  
+    .populate({
+      path: "messages",
+      select: "message date time",
+      // Limite de 2 mensagens pra garantir que o Mongoose retorne pelo menos 2 por contato
+      options: { sort: { date: -1 }, limit: 2 },
+    })
+    .populate("participants", "name")
+    .select({ participants: { $elemMatch: { $ne: req.params.userId } } })
+    .exec();
+
   res.json(contact);
 });
 

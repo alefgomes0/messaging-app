@@ -1,18 +1,28 @@
-import { ConversationListProps } from "../../types/ConversationListProps";
+import { LastMessageWithContact } from "../../types/ConversationListProps";
 import { NavLink } from "react-router-dom";
 
 type ListProps = {
-  conversationListInfo: null | ConversationListProps[];
+  conversationListInfo: null | LastMessageWithContact[];
+  query: string;
 };
 
-export const List = ({ conversationListInfo }: ListProps) => {
-  console.log(conversationListInfo);
+export const List = ({ conversationListInfo, query }: ListProps) => {
+  const filteredContactConversation = conversationListInfo?.filter(
+    (conversation) =>
+      conversation.participants[0].name
+        .toLowerCase()
+        .includes(query.toLowerCase())
+  );
+
+  const conversationInfo = query
+    ? filteredContactConversation
+    : conversationListInfo;
 
   return (
     <nav>
       {conversationListInfo ? (
         <>
-          {conversationListInfo.map((conversation) => {
+          {conversationInfo?.map((conversation) => {
             return (
               <NavLink
                 to={`${conversation.participants[0]._id}`}
@@ -37,7 +47,9 @@ export const List = ({ conversationListInfo }: ListProps) => {
           })}
         </>
       ) : (
-        <h3>No conversations found</h3>
+        <h3 className="px-3 pt-3 text-neutral-200 text-2xl">
+          No conversations found
+        </h3>
       )}
     </nav>
   );

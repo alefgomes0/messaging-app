@@ -14,11 +14,10 @@ export const Conversation = () => {
   );
   const [error, setError] = useState<null | ErrorMessage>(null);
   const [isLoading, setIsLoading] = useState(true);
-
   const { contactId } = useParams();
-
   const { state } = useLocation();
   const { contactName } = state;
+
 
   useEffect(() => {
     const fetchConversationData = async () => {
