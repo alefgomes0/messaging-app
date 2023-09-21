@@ -13,7 +13,7 @@ export const MessageBody = ({
 }: MessageBodyProps) => {
   return (
     <>
-      <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 bg-[#1e1e1e] px-3">
+      <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 bg-[#1e1e1e] px-3 mb-8">
         <div className="w-[45px] h-[45px] rounded-full bg-blue-600 col-start-1 col-end-2 row-span-full self-center"></div>
         <h3 className="text-neutral-200 self-end font-bold">{contactName}</h3>
       </div>

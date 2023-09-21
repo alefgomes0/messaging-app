@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const user = require("../controllers/userController");
 const message = require("../controllers/messageController");
+const newMessage = require("../controllers/newMessageController")
 const conversation = require("../controllers/conversationController");
 
 router.put("/user", user.update);
@@ -12,5 +13,7 @@ router.get("/conversation/:userId", conversation.get);
 
 router.get("/:contactId/messages", message.get);
 router.post("/:contactId/messages", message.post, conversation.post);
+
+router.get("/:contactId/messages/new", newMessage.get)
 
 module.exports = router;

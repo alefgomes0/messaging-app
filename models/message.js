@@ -1,3 +1,4 @@
+const { DateTime } = require("luxon");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const opts = { toJSON: { virtuals: true } };
@@ -15,13 +16,8 @@ const MessageSchema = new Schema(
 );
 
 MessageSchema.virtual("time").get(function () {
-  const time = `${this.date.getHours()}:${this.date.getMinutes()}`;
-  if (time.length === 3) {
-    return `${this.date.getHours()}:${this.date.getMinutes()}00`;
-  } else if (time.length === 4) {
-    return `${this.date.getHours()}:${this.date.getMinutes()}0`;
-  }
-  return `${this.date.getHours()}:${this.date.getMinutes()}`;
+
+  return `${DateTime.fromJSDate(this.date).toLocaleString(DateTime.TIME_24_SIMPLE)}`;
 });
 
 module.exports = mongoose.model("Message", MessageSchema);

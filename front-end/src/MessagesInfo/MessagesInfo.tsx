@@ -20,7 +20,6 @@ export const MessagesInfo = () => {
         if (response.status >= 200 && response.status <= 305) {
           setConversationListInfo(response.data);
           setIsLoading(false);
-          console.log(response.data)
         }
       } catch (err) {
         setError(err as ErrorMessage);

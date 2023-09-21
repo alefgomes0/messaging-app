@@ -3,9 +3,10 @@ import { useState } from "react";
 
 type MessageTextProps = {
   contactId: string;
+  handleMessageSent: () => void
 };
 
-export const MessageText = ({ contactId }: MessageTextProps) => {
+export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) => {
   const [message, setMessage] = useState("");
   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
@@ -20,6 +21,7 @@ export const MessageText = ({ contactId }: MessageTextProps) => {
       message,
     });
     setMessage("");
+    handleMessageSent();
   };
 
   return (

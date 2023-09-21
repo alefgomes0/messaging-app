@@ -6,7 +6,7 @@ import { Loading } from "../Loading/Loading";
 import { MessageText } from "../MessageText/MessageText";
 import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
-import axios from "axios";
+import axios, { all } from "axios";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -14,10 +14,10 @@ export const Conversation = () => {
   );
   const [error, setError] = useState<null | ErrorMessage>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [newMessageSent, setNewMessageSent] = useState(false);
   const { contactId } = useParams();
   const { state } = useLocation();
   const { contactName } = state;
-
 
   useEffect(() => {
     const fetchConversationData = async () => {
@@ -25,10 +25,10 @@ export const Conversation = () => {
         const response = await axios.get(
           `http://localhost:3000/${contactId}/messages`
         );
-        console.log(response.data[0].messages);
         if (response.status >= 200 && response.status <= 305) {
           setAllMessages(response.data[0].messages);
           setIsLoading(false);
+          console.log(response.data[0].messages);
         }
       } catch (err) {
         setIsLoading(false);
@@ -39,8 +39,30 @@ export const Conversation = () => {
     fetchConversationData();
   }, [contactId]);
 
+  useEffect(() => {
+    const fetchNewMessage = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/${contactId}/messages/new`
+        );
+        console.log(response.data[0].messages[0]);
+        if (response.status >= 200 && response.status <= 305) {
+          setAllMessages((prevMessages) =>
+            (prevMessages ?? []).concat(response.data[0].messages[0])
+          );
+          setIsLoading(false);
+        }
+      } catch (err) {
+        setIsLoading(false);
+        setError(err as ErrorMessage);
+      }
+    };
+
+    newMessageSent ? fetchNewMessage() : "";
+  }, [newMessageSent]);
+
   return (
-    <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto]">
+    <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
       {isLoading ? (
         <div className="row-start-2 row-end-3 self-center justify-self-center">
           <Loading />
@@ -60,7 +82,10 @@ export const Conversation = () => {
                 contactId={contactId as string}
                 allMessages={allMessages}
               />
-              <MessageText contactId={contactId as string}/>
+              <MessageText
+                contactId={contactId as string}
+                handleMessageSent={() => setNewMessageSent(true)}
+              />
             </>
           )}
         </>
