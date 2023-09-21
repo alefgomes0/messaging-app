@@ -6,8 +6,6 @@ import { ErrorMessage } from "../../types/ErrorMessage";
 import axios from "axios";
 import { List } from "../List/List";
 
-
-
 export const ConversationList = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -59,7 +57,7 @@ export const ConversationList = () => {
                   handleOnChange={setSearchValue}
                   searchValue={searchValue}
                 />
-                <List conversationListInfo={conversationListInfo}/>
+                <List conversationListInfo={conversationListInfo} />
               </>
             )}
           </>

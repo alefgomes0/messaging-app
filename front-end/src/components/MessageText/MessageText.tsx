@@ -1,31 +1,47 @@
+import axios from "axios";
 import { useState } from "react";
 
-export const MessageText = () => {
+type MessageTextProps = {
+  contactId: string;
+};
+
+export const MessageText = ({ contactId }: MessageTextProps) => {
   const [message, setMessage] = useState("");
   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
 
+  const userId = "6508695537fe843f89aa8444";
+
+  const handleOnSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await axios.post(`http://localhost:3000/${contactId}/messages`, {
+      userId,
+      message,
+    });
+    setMessage("");
+  };
+
   return (
-    <form method="POST" action="" className="flex">
+    <form method="POST" action="" onSubmit={handleOnSubmit} className="flex">
       <textarea
         name="message"
         onChange={handleOnChange}
         value={message}
         placeholder="Message"
-        className="text-sm w-full h-16 rounded p-3 bg-neutral-700 border-t-2 border-neutral-900 placeholder:text-neutral-200 placeholder:opacity-80 text-neutral-200 border-none outline-none shadow-[0_2px_2px_0_rgba(0,0,0,0.3)_inset]"
+        className="text-sm w-full h-16 p-3 bg-[#333] placeholder:text-neutral-200 placeholder:opacity-80 text-neutral-200 border-transparent outline-none "
       />
       {message ? (
-        <div className="flex items-center justify-center w-16 h-16 bg-neutral-700">
+        <div className="flex items-center justify-center w-16 h-16 bg-[#333]">
           <button
             type="submit"
-            className="w-[56px] h-[56px] flex items-center justify-center text-neutral-100 hover:bg-neutral-600 rounded-md text-xl"
+            className="w-[56px] h-[56px] flex items-center justify-center text-neutral-100 hover:bg-neutral-700 rounded-md text-xl"
           >
             &#10148;
           </button>
         </div>
       ) : (
-        <div className="w-16 h-16 bg-neutral-700"></div>
+        <div className="w-16 h-16 bg-[#333]"></div>
       )}
     </form>
   );

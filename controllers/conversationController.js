@@ -16,13 +16,12 @@ exports.get = asyncHandler(async (req, res, next) => {
   .select({ participants: { $elemMatch: { $ne: req.params.userId }}, messages: 1})
   .exec();
   
-  res.json(contact);
+  res.json([contact[0]]);
 });
 
 exports.post = asyncHandler(async (req, res, next) => {
-  const firstUserId = "6508695537fe843f89aa8444";
-  const secondUserId = "6508695537fe843f89aa8443";
-  const firstMessageId = "650a03fc9bf46c622488bcac";
+  const firstUserId = req.body.userId;
+  const secondUserId = req.body.contactId;
 
   await Conversation.findOneAndUpdate(
     {
@@ -32,7 +31,7 @@ exports.post = asyncHandler(async (req, res, next) => {
       },
     },
     {
-      $addToSet: { messages: { $each: [firstMessageId] } },
+      $addToSet: { messages: { $each: [req.body.messageId] } },
       $setOnInsert: { participants: [secondUserId, firstUserId] },
     },
     {
