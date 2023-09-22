@@ -16,7 +16,6 @@ const MessageSchema = new Schema(
 );
 
 MessageSchema.virtual("time").get(function () {
-
   return `${DateTime.fromJSDate(this.date).toLocaleString(DateTime.TIME_24_SIMPLE)}`;
 });
 

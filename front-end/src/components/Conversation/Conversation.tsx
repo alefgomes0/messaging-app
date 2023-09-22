@@ -6,7 +6,7 @@ import { Loading } from "../Loading/Loading";
 import { MessageText } from "../MessageText/MessageText";
 import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
-import axios, { all } from "axios";
+import axios from "axios";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -28,7 +28,6 @@ export const Conversation = () => {
         if (response.status >= 200 && response.status <= 305) {
           setAllMessages(response.data[0].messages);
           setIsLoading(false);
-          console.log(response.data[0].messages);
         }
       } catch (err) {
         setIsLoading(false);
@@ -59,6 +58,7 @@ export const Conversation = () => {
     };
 
     newMessageSent ? fetchNewMessage() : "";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newMessageSent]);
 
   return (
