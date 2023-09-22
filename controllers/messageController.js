@@ -18,6 +18,8 @@ exports.get = asyncHandler(async (req, res, next) => {
       path: "messages",
       select: "message participants.sender date time",
     })
+    .populate("participants", "profilePicture")
+    .select({ participants: { $elemMatch: { $eq: req.params.contactId } } })
     .exec();
 
   res.json(allMessages);
@@ -27,22 +29,19 @@ exports.post = [
   body("message").escape(),
 
   asyncHandler(async (req, res, next) => {
-    console.log(req.body.message)
+    console.log(req.body.message);
     const message = new Message({
       participants: {
         sender: req.body.userId,
-        receiver: req.params.contactId
+        receiver: req.params.contactId,
       },
       message: req.body.message,
-      date: new Date()
-    })
-    await message.save()
-  
-    req.body.contactId = req.params.contactId
-    req.body.messageId = message._id
-    next()
+      date: new Date(),
+    });
+    await message.save();
+
+    req.body.contactId = req.params.contactId;
+    req.body.messageId = message._id;
+    next();
   }),
-
-
-
 ];

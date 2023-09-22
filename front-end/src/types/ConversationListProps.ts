@@ -11,8 +11,9 @@ export type LastMessageWithContact = {
   ];
   participants: [
     {
-      name: string;
       _id: string;
+      name: string;
+      profilePicture?: string;
     }
   ];
 };

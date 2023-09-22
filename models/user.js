@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   contacts: [{ type: Schema.Types.ObjectId, ref: "Contacts" }],
   friendRequests: [{ type: Schema.Types.ObjectId }],
   conversations: [{ type: Schema.Types.ObjectId }],
-  profilePicture: { type: Buffer },
+  profilePicture: { type: String },
 });
 
 module.exports = mongoose.model("User", UserSchema);

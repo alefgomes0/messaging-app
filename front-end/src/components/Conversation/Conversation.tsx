@@ -12,6 +12,8 @@ export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
     null
   );
+  //Limpar essa parte do código depois
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
   const [error, setError] = useState<null | ErrorMessage>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [newMessageSent, setNewMessageSent] = useState(false);
@@ -27,6 +29,7 @@ export const Conversation = () => {
         );
         if (response.status >= 200 && response.status <= 305) {
           setAllMessages(response.data[0].messages);
+          setProfilePicture(response.data[0].participants[0].profilePicture);
           setIsLoading(false);
         }
       } catch (err) {
@@ -81,6 +84,7 @@ export const Conversation = () => {
                 contactName={contactName}
                 contactId={contactId as string}
                 allMessages={allMessages}
+                profilePicture={profilePicture}
               />
               <MessageText
                 contactId={contactId as string}
