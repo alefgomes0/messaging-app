@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
-import { LastMessageWithContact } from "../types/ConversationListProps";
+import { useEffect } from "react";
 import { ErrorMessage } from "../types/ErrorMessage";
 import axios from "axios";
 import { ConversationList } from "../components/ConversationList/ConversationList";
+import { useUserContext } from "../context/useUserContext";
 
 export const MessagesInfo = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [conversationListInfo, setConversationListInfo] = useState<
-    null | LastMessageWithContact[]
-  >(null);
-  const [error, setError] = useState<null | ErrorMessage>(null);
+  const {
+    conversationListInfo,
+    setConversationListInfo,
+    error,
+    setError,
+    isLoading,
+    setIsLoading,
+  } = useUserContext();
 
   useEffect(() => {
     const fetchContactsData = async () => {

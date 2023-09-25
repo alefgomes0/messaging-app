@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { EditIcon } from "../svg/EditIcon";
 
-export const NavbarProfilePicture = () => {
+type NavbarProfilePictureProps = {
+  userProfilePicture: string | null;
+};
+
+export const NavbarProfilePicture = ({
+  userProfilePicture,
+}: NavbarProfilePictureProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [editName, setEditName] = useState(false);
   const [inputValue, setInputValue] = useState("Name");
@@ -42,7 +48,15 @@ export const NavbarProfilePicture = () => {
     >
       {showMenu ? (
         <div className="fixed left-0 bottom-0 z-10 grid grid-cols-1 auto-rows-min gap-y-6 w-96 h-[450px] bg-neutral-700 px-3 pt-12 rounded-md cursor-auto">
-          <div className="w-[75px] h-[75px] rounded-full bg-sky-900"></div>
+          {userProfilePicture ? (
+            <img
+              src={userProfilePicture}
+              alt="user profile picture"
+              className="w-[75px] h-[75px] rounded-full"
+            />
+          ) : (
+            <div className="w-[75px] h-[75px] rounded-full bg-sky-900"></div>
+          )}
           <div
             className="flex items-center justify-between text-neutral-200"
             ref={divRef}
@@ -59,7 +73,9 @@ export const NavbarProfilePicture = () => {
                   }
                   ref={inputRef}
                 />
-                <div className="w-min h-min px-[20px] py-.5 bg-fuchsia-700 text-fuchsia-50 text-sm justify-self-end rounded-lg">{inputValue.length}/25</div>
+                <div className="w-min h-min px-[20px] py-.5 bg-fuchsia-700 text-fuchsia-50 text-sm justify-self-end rounded-lg">
+                  {inputValue.length}/25
+                </div>
               </div>
             ) : (
               <h3 className="text-xl font-semibold">{inputValue}</h3>
@@ -82,7 +98,17 @@ export const NavbarProfilePicture = () => {
           </button>
         </div>
       ) : (
-        <div className="w-[25px] h-[25px] rounded-full bg-sky-900"></div>
+        <>
+          {userProfilePicture ? (
+            <img
+              src={userProfilePicture}
+              alt="user profile picture"
+              className="w-[25px] h-[25px] rounded-full"
+            />
+          ) : (
+            <div className="w-[25px] h-[25px] rounded-full bg-sky-900"></div>
+          )}
+        </>
       )}
     </li>
   );

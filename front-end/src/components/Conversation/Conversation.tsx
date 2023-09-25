@@ -7,6 +7,7 @@ import { MessageText } from "../MessageText/MessageText";
 import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
 import axios from "axios";
+import { useUserContext } from "../../context/useUserContext";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -14,12 +15,15 @@ export const Conversation = () => {
   );
   //Limpar essa parte do código depois
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
-  const [error, setError] = useState<null | ErrorMessage>(null);
-  const [isLoading, setIsLoading] = useState(true);
+
+  const { error, setError, isLoading, setIsLoading } = useUserContext();
+
   const [newMessageSent, setNewMessageSent] = useState(false);
   const { contactId } = useParams();
   const { state } = useLocation();
   const { contactName } = state;
+
+  console.log(allMessages)
 
   useEffect(() => {
     const fetchConversationData = async () => {

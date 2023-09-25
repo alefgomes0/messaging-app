@@ -17,6 +17,7 @@ router.post("/:contactId/messages", message.post, conversation.post);
 
 router.get("/:contactId/messages/new", newMessage.get);
 
+router.get("/profilepicture/:userId", profilePicture.get)
 router.post("/upload/:userId", profilePicture.post);
 
 module.exports = router;

@@ -13,6 +13,7 @@ export const MessageBody = ({
   allMessages,
   profilePicture
 }: MessageBodyProps) => {
+  
   return (
     <>
       <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 bg-[#1e1e1e] px-3 mb-8">

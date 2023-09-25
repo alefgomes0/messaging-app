@@ -19,7 +19,8 @@ export const AddPhoto = () => {
     }
   };
 
-  const handleFileUpload = async (e: any) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
     const base64 = await convertToBase64(e.target.files[0]);
     setImage(base64 as string);
   };
