@@ -1,14 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 
+
 export const AddPhoto = () => {
   const [image, setImage] = useState("");
+  const userId = "6508695537fe843f89aa8444";
 
   const postProfilePicture = async (newImage: string) => {
-    console.log(newImage);
     try {
       await axios.post(
-        "http://localhost:3000/upload/6509fcc98d5435f296b087b6",
+        `http://localhost:3000/upload/${userId}`,
         {
           newImage,
         }
@@ -28,21 +29,26 @@ export const AddPhoto = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     postProfilePicture(image);
-    console.log(image);
   };
 
   return (
-    <form className="mt-2" onSubmit={handleSubmit}>
-      <input
-        type="file"
-        name="myFile"
-        id="file-upload"
-        accept=".jpeg, .jpg, .png"
-        onChange={(e) => handleFileUpload(e)}
-      />
+    <form className="mt-2 flex flex-col gap-y-4" onSubmit={handleSubmit}>
+      <div>
+        <label className="text-neutral-200" htmlFor="file">
+          Change your photo
+        </label>
+        <input
+          type="file"
+          name="myFile"
+          id="file-upload"
+          accept=".jpeg, .jpg, .png"
+          onChange={(e) => handleFileUpload(e)}
+          className="placeholder:text-neutral-200 file:cursor-pointer mt-2 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-neutral-200 file:text-fuchsia-700 hover:file:bg-neutral-400"
+        />
+      </div>
       <button
         type="submit"
-        className="w-max h-min px-8 py-[3px] rounded-full bg-blue-500 text-blue-50"
+        className="w-max h-min px-8 py-[3px] rounded-full bg-blue-500 text-blue-50 shadow-[0_2px_2px_rgba(0,0,0,0.2)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.2)_inset]"
       >
         Add Photo
       </button>

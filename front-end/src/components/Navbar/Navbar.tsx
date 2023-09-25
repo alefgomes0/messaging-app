@@ -13,20 +13,27 @@ export const Navbar = () => {
   const [userProfilePicture, setUserProfilePicture] = useState<null | string>(
     null
   );
+  const [changeProfilePicture, setChangeProfilePicture] = useState(false);
   const userId = "6508695537fe843f89aa8444";
+
+    //LIDAR COM OS ERROS NESSE COMP E NO ADD PHOTO
 
   useEffect(() => {
     const fetchUserProfilePicture = async () => {
-      const response = await axios.get(
-        `http://localhost:3000/profilePicture/${userId}`
-      );
-      if (response.status >= 200 && response.status <= 305) {
-        setUserProfilePicture(response.data.profilePicture);
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/profilePicture/${userId}`
+        );
+        if (response.status >= 200 && response.status <= 305) {
+          setUserProfilePicture(response.data.profilePicture);
+        }
+      } catch (err) {
+        console.log(err)
       }
     };
 
     fetchUserProfilePicture();
-  }, []);
+  }, [changeProfilePicture]);
 
   return (
     <aside className="w-12 h-[calc(100dvh-48px)] grid grid-rows-2 grid-cols-1 bg-neutral-800 col-start-1 col-end-2 row-start-2 row-end-3">
@@ -73,7 +80,10 @@ export const Navbar = () => {
               selectIcon={selectIcon}
               setSelectIcon={setSelectIcon}
             />
-            <NavbarProfilePicture userProfilePicture={userProfilePicture} />
+            <NavbarProfilePicture
+              userProfilePicture={userProfilePicture}
+              setChangedProfilePicture={setChangeProfilePicture}
+            />
           </ul>
         </div>
       </nav>
