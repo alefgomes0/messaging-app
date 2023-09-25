@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
     <>
-      <UserContextProvider>
+{/*       <UserContextProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<MessengerPage />}>
@@ -16,7 +16,8 @@ const App = () => {
             </Route>
           </Routes>
         </BrowserRouter>
-      </UserContextProvider>
+      </UserContextProvider> */}
+      <AddPhoto />
     </>
   );
 };

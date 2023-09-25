@@ -98,7 +98,7 @@ export const NavbarProfilePicture = ({
           </button>
         </div>
       ) : (
-        <>
+        <div onClick={() => setShowMenu(true)}>
           {userProfilePicture ? (
             <img
               src={userProfilePicture}
@@ -106,9 +106,11 @@ export const NavbarProfilePicture = ({
               className="w-[25px] h-[25px] rounded-full"
             />
           ) : (
-            <div className="w-[25px] h-[25px] rounded-full bg-sky-900"></div>
+            <div
+              className="w-[25px] h-[25px] rounded-full bg-sky-900"
+            ></div>
           )}
-        </>
+        </div >
       )}
     </li>
   );
