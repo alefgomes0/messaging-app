@@ -19,7 +19,7 @@ export const List = ({ conversationListInfo, query }: ListProps) => {
     : conversationListInfo;
 
   return (
-    <nav>
+    <nav className="overflow-y-auto">
       {conversationListInfo ? (
         <>
           {conversationInfo?.map((conversation) => {

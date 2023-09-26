@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { ConversationProps } from "../../types/ConversationProps";
 
 type MessageBodyProps = {
@@ -5,15 +6,24 @@ type MessageBodyProps = {
   contactId: string;
   allMessages: ConversationProps[] | null;
   profilePicture: null | string;
+  newMessageSent: boolean;
 };
 
 export const MessageBody = ({
   contactName,
   contactId,
   allMessages,
-  profilePicture
+  profilePicture,
+  newMessageSent,
 }: MessageBodyProps) => {
-  
+  const messageRef = useRef<null | HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: "instant" });
+    }
+  }, [allMessages, newMessageSent]);
+
   return (
     <>
       <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 bg-[#1e1e1e] px-3 mb-8">
@@ -28,10 +38,11 @@ export const MessageBody = ({
         )}
         <h3 className="text-neutral-200 self-end font-bold">{contactName}</h3>
       </div>
-      <div className="bg-neutral-800">
+      <div className="overflow-y-auto bg-neutral-800">
         {allMessages?.map((message) => {
           return (
             <span
+              ref={messageRef}
               key={message._id}
               className={`grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-max max-w-[50%] h-max text-sm text-neutral-200 rounded-md mb-2 ${
                 message.participants.sender === contactId

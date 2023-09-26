@@ -6,8 +6,8 @@ import { Loading } from "../Loading/Loading";
 import { MessageText } from "../MessageText/MessageText";
 import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
-import axios from "axios";
 import { useUserContext } from "../../context/useUserContext";
+import axios from "axios";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -23,7 +23,7 @@ export const Conversation = () => {
   const { state } = useLocation();
   const { contactName } = state;
 
-  console.log(allMessages)
+  console.log("Conversation rendered");
 
   useEffect(() => {
     const fetchConversationData = async () => {
@@ -64,9 +64,16 @@ export const Conversation = () => {
       }
     };
 
-    newMessageSent ? fetchNewMessage() : "";
+
+    fetchNewMessage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newMessageSent]);
+
+/*   useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: "instant" });
+    }
+  }, [allMessages, newMessageSent]); */
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
@@ -89,6 +96,7 @@ export const Conversation = () => {
                 contactId={contactId as string}
                 allMessages={allMessages}
                 profilePicture={profilePicture}
+                newMessageSent={newMessageSent}
               />
               <MessageText
                 contactId={contactId as string}
