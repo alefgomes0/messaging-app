@@ -92,7 +92,7 @@ export const Conversation = () => {
               />
               <MessageText
                 contactId={contactId as string}
-                handleMessageSent={() => setNewMessageSent(true)}
+                handleMessageSent={() => setNewMessageSent(!newMessageSent)}
               />
             </>
           )}

@@ -16,7 +16,8 @@ export const Navbar = () => {
   const [changeProfilePicture, setChangeProfilePicture] = useState(false);
   const userId = "6508695537fe843f89aa8444";
 
-    //LIDAR COM OS ERROS NESSE COMP E NO ADD PHOTO
+
+  //LIDAR COM OS ERROS NESSE COMP E NO ADD PHOTO
 
   useEffect(() => {
     const fetchUserProfilePicture = async () => {
@@ -82,7 +83,8 @@ export const Navbar = () => {
             />
             <NavbarProfilePicture
               userProfilePicture={userProfilePicture}
-              setChangedProfilePicture={setChangeProfilePicture}
+              changeProfilePicture={changeProfilePicture}
+              setChangeProfilePicture={setChangeProfilePicture}
             />
           </ul>
         </div>

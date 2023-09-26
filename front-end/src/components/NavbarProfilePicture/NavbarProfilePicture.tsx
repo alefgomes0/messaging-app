@@ -4,12 +4,14 @@ import { AddPhoto } from "../AddPhoto/AddPhoto";
 
 type NavbarProfilePictureProps = {
   userProfilePicture: string | null;
-  setChangedProfilePicture: React.Dispatch<React.SetStateAction<boolean>>;
+  changeProfilePicture: boolean;
+  setChangeProfilePicture: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const NavbarProfilePicture = ({
   userProfilePicture,
-  setChangedProfilePicture
+  changeProfilePicture,
+  setChangeProfilePicture
 }: NavbarProfilePictureProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [editName, setEditName] = useState(false);
@@ -105,7 +107,7 @@ export const NavbarProfilePicture = ({
           <button
             className="w-max h-min bg-fuchsia-700 text-fuchsia-50 px-8 py-1.5 rounded-md shadow-[0_2px_2px_rgba(0,0,0,0.15)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.15)_inset]"
             ref={buttonRef}
-            onClick={() => setChangedProfilePicture(true)}
+            onClick={() => setChangeProfilePicture(!changeProfilePicture)}
           >
             Save Changes
           </button>

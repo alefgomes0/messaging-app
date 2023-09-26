@@ -34,16 +34,16 @@ export const AddPhoto = () => {
   return (
     <form className="mt-2 flex flex-col gap-y-4" onSubmit={handleSubmit}>
       <div>
-        <label className="text-neutral-200" htmlFor="file">
-          Change your photo
+        <label className="hidden text-neutral-200" htmlFor="file">
+          Select an image
         </label>
         <input
           type="file"
-          name="myFile"
-          id="file-upload"
+          name="file"
+          id="file"
           accept=".jpeg, .jpg, .png"
           onChange={(e) => handleFileUpload(e)}
-          className="placeholder:text-neutral-200 file:cursor-pointer mt-2 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-neutral-200 file:text-fuchsia-700 hover:file:bg-neutral-400"
+          className=" placeholder:text-neutral-200 file:cursor-pointer mt-2 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-neutral-200 file:text-fuchsia-700 hover:file:bg-neutral-400"
         />
       </div>
       <button
