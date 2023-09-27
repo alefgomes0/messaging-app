@@ -43,37 +43,29 @@ export const Conversation = () => {
     };
 
     fetchConversationData();
-  }, [contactId]);
+  }, [contactId, setIsLoading, setError]);
 
-  useEffect(() => {
-    const fetchNewMessage = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/${contactId}/messages/new`
+  const fetchNewMessage = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/${contactId}/messages/new`
+      );
+      if (response.status >= 200 && response.status <= 305) {
+        setAllMessages((prevMessages) =>
+          (prevMessages ?? []).concat(response.data[0].messages[0])
         );
-        console.log(response.data[0].messages[0]);
-        if (response.status >= 200 && response.status <= 305) {
-          setAllMessages((prevMessages) =>
-            (prevMessages ?? []).concat(response.data[0].messages[0])
-          );
-          setIsLoading(false);
-        }
-      } catch (err) {
         setIsLoading(false);
-        setError(err as ErrorMessage);
       }
-    };
-
-
-    fetchNewMessage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newMessageSent]);
-
-/*   useEffect(() => {
-    if (messageRef.current) {
-      messageRef.current.scrollIntoView({ behavior: "instant" });
+    } catch (err) {
+      setIsLoading(false);
+      setError(err as ErrorMessage);
     }
-  }, [allMessages, newMessageSent]); */
+  };
+
+  const handleNewMessageSent = async () => {
+    setNewMessageSent(true);
+    fetchNewMessage();
+  };
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
@@ -100,7 +92,7 @@ export const Conversation = () => {
               />
               <MessageText
                 contactId={contactId as string}
-                handleMessageSent={() => setNewMessageSent(!newMessageSent)}
+                handleMessageSent={() => handleNewMessageSent()}
               />
             </>
           )}

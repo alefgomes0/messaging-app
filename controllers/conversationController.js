@@ -10,8 +10,7 @@ exports.get = asyncHandler(async (req, res, next) => {
     .populate({
       path: "messages",
       select: "message date time",
-      // Limite de 2 mensagens pra garantir que o Mongoose retorne pelo menos 2 por contato
-      options: { sort: { date: -1 }},
+      options: { sort: { date: -1 }, limit: 30 }
     })
     .populate("participants", "name profilePicture")
     .select({ participants: { $elemMatch: { $ne: req.params.userId } } })

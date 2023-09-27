@@ -31,7 +31,7 @@ export const MessagesInfo = () => {
     };
 
     fetchContactsData();
-  }, []);
+  }, [setConversationListInfo, setError, setIsLoading]);
 
   return (
     <>

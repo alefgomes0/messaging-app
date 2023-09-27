@@ -18,6 +18,8 @@ export const List = ({ conversationListInfo, query }: ListProps) => {
     ? filteredContactConversation
     : conversationListInfo;
 
+  console.log(conversationListInfo);
+
   return (
     <nav className="overflow-y-auto">
       {conversationListInfo ? (
