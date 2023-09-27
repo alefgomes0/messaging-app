@@ -7,15 +7,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
     <>
-      <UserContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MessengerPage />}>
-              <Route path=":contactId" element={<Conversation />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <UserContextProvider>
+                <MessengerPage />
+              </UserContextProvider>
+            }
+          >
+            <Route path=":contactId" element={<Conversation />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
+type AddPhoto = {
+  handlePhotoUpload: () => void;
+}
 
 export const AddPhoto = () => {
   const [image, setImage] = useState("");
@@ -8,12 +11,9 @@ export const AddPhoto = () => {
 
   const postProfilePicture = async (newImage: string) => {
     try {
-      await axios.post(
-        `http://localhost:3000/upload/${userId}`,
-        {
-          newImage,
-        }
-      );
+      await axios.post(`http://localhost:3000/upload/${userId}`, {
+        newImage,
+      });
       console.log("uploaded");
     } catch (err) {
       console.log(err);

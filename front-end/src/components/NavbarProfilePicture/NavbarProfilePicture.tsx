@@ -6,17 +6,16 @@ type NavbarProfilePictureProps = {
   userProfilePicture: string | null;
   changeProfilePicture: boolean;
   setChangeProfilePicture: React.Dispatch<React.SetStateAction<boolean>>;
+  handlePhotoUpload: () => void;
 };
 
 export const NavbarProfilePicture = ({
   userProfilePicture,
-  changeProfilePicture,
-  setChangeProfilePicture
+  handlePhotoUpload,
 }: NavbarProfilePictureProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [editName, setEditName] = useState(false);
   const [inputValue, setInputValue] = useState("Name");
-
   const listRef = useRef<HTMLLIElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -107,7 +106,7 @@ export const NavbarProfilePicture = ({
           <button
             className="w-max h-min bg-fuchsia-700 text-fuchsia-50 px-8 py-1.5 rounded-md shadow-[0_2px_2px_rgba(0,0,0,0.15)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.15)_inset]"
             ref={buttonRef}
-            onClick={() => setChangeProfilePicture(!changeProfilePicture)}
+            onClick={handlePhotoUpload}
           >
             Save Changes
           </button>
