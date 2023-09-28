@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   email: { type: String, required: true },
-  password: { type: String, required: true },
+  hash: { type: String },
+  salt: { type: String },
   name: { type: String, required: true, },
   nickname: { type: String },
   contacts: [{ type: Schema.Types.ObjectId, ref: "Contacts" }],

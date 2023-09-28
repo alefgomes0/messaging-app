@@ -1,10 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport")
 const user = require("../controllers/userController");
 const message = require("../controllers/messageController");
 const newMessage = require("../controllers/newMessageController");
 const conversation = require("../controllers/conversationController");
 const profilePicture = require("../controllers/profilePictureController");
+const login = require("../controllers/logInController")
+const register = require("../controllers/registerController")
+
+router.post("/login", login.post)
+router.post("/register", register.post)
+router.get("/protected", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+  res.status(200).json({ success: true, message: "You are authorized" })
+})
 
 router.put("/user", user.update);
 router.post("/new/user", user.post);
