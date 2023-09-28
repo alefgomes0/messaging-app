@@ -18,7 +18,7 @@ exports.post = (req, res, next) => {
       );
       if (isValid) {
         const tokenObject = utils.issueJWT(user);
-        console.log(user )
+        console.log(user);
         res.status(200).json({
           success: true,
           user: user,
