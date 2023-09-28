@@ -1,8 +1,7 @@
 const utils = require("../lib/passwordUtils");
-const asyncHandler = require("express-async-handler");
 const User = require("../models/user");
 
-exports.post = asyncHandler(async (req, res, next) => {
+exports.post = async (req, res, next) => {
   const saltHash = utils.genPassword(req.body.password);
   const salt = saltHash.salt;
   const hash = saltHash.hash;
@@ -14,14 +13,13 @@ exports.post = asyncHandler(async (req, res, next) => {
     salt,
   });
 
-  const jwt = utils.issueJWT(newUser);
-  await newUser.save();
+  newUser.save()
+    .then((user) => {
+      const jwt = utils.issueJWT(user)
+      console.log("user registered")
+      res.json({ success: true, user: user, token: jwt.token, expiresIn: jwt.expires })
+    })
+    .catch(err => next(err))
 
-  console.log("user registered")
-  res.json({
-    success: true,
-    user: newUser,
-    token: jwt.token,
-    expiresIn: jwt.expires,
-  });
-});
+
+};

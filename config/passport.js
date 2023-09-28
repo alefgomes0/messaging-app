@@ -14,7 +14,7 @@ const options = {
 };
 
 const strategy = new JwtStrategy(options, (payload, done) => {
-  User.findOne({ _id: payload.sub })
+  User.findById({ _id: payload.sub })
     .then((user) => {
       if (user) {
         return done(null, user);
@@ -25,7 +25,6 @@ const strategy = new JwtStrategy(options, (payload, done) => {
     .catch((err) => done(err, null));
 });
 
-// TODO
 module.exports = (passport) => {
   passport.use(strategy);
 };

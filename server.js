@@ -4,7 +4,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const passport = require("passport");
-require("./config/passport")(passport);
 const indexRouter = require("./routes/index");
 
 const app = express();
@@ -17,9 +16,10 @@ async function main() {
 }
 main().catch((err) => console.log(err));
 
+require("./config/passport")(passport);
+app.use(passport.initialize());
 app.use(cors());
 app.use(logger("dev"));
-app.use(passport.initialize());
 app.use(express.urlencoded({ extended: false, limit: "2mb" }));
 app.use(cookieParser());
 app.use(express.json({ limit: "2mb" }));

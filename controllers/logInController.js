@@ -18,11 +18,12 @@ exports.post = (req, res, next) => {
       );
       if (isValid) {
         const tokenObject = utils.issueJWT(user);
+        console.log(user )
         res.status(200).json({
           success: true,
-          user,
+          user: user,
           token: tokenObject.token,
-          expires: tokenObject.expires,
+          expiresIn: tokenObject.expires,
         });
       } else {
         res
