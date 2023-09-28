@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavbarProfilePicture } from "../NavbarProfilePicture/NavbarProfilePicture";
+import { EditUserSettings } from "../EditUserSettings/EditUserSettings";
 import { ArchiveIcon } from "../svg/ArchiveIcon";
 import { MessageIcon } from "../svg/MessageIcon";
 import { PhoneIcon } from "../svg/PhoneIcon";
@@ -85,7 +85,7 @@ export const Navbar = () => {
               selectIcon={selectIcon}
               setSelectIcon={setSelectIcon}
             />
-            <NavbarProfilePicture
+            <EditUserSettings
               userProfilePicture={userProfilePicture}
               changeProfilePicture={changeProfilePicture}
               setChangeProfilePicture={setChangeProfilePicture}

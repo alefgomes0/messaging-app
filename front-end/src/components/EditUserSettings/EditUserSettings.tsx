@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { EditIcon } from "../svg/EditIcon";
 import { AddPhoto } from "../AddPhoto/AddPhoto";
 
-type NavbarProfilePictureProps = {
+type EditUserSettingsProps = {
   userProfilePicture: string | null;
   changeProfilePicture: boolean;
   setChangeProfilePicture: React.Dispatch<React.SetStateAction<boolean>>;
   handlePhotoUpload: () => void;
 };
 
-export const NavbarProfilePicture = ({
+export const EditUserSettings = ({
   userProfilePicture,
   handlePhotoUpload,
-}: NavbarProfilePictureProps) => {
+}: EditUserSettingsProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [editName, setEditName] = useState(false);
   const [inputValue, setInputValue] = useState("Name");
