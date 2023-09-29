@@ -39,3 +39,4 @@
 29 de setembro de 2023 às 20:04:17 BRT	c7b28af1-7d25-4671-94a6-efd34c61c8bf	GET	undefined	/protected
 29 de setembro de 2023 às 20:05:38 BRT	cd491033-060f-4ab6-9542-4b7bc8a2d4f2	POST	undefined	/login
 29 de setembro de 2023 às 20:05:47 BRT	535f8656-778d-41fb-9a54-e0b1ad27c8a5	GET	undefined	/protected
+29 de setembro de 2023 às 20:26:47 BRT	3d421490-ead3-424c-be6d-eaa4ec822935	POST	undefined	/login
