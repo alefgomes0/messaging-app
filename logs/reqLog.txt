@@ -1,0 +1,15 @@
+29 de setembro de 2023 às 14:42:04 BRT	b83d2b65-88d3-40e3-b588-3011571b5a8e	GET	undefined	/
+29 de setembro de 2023 às 14:47:04 BRT	fb204f70-d870-4d63-a4a8-c0f361d75307	GET	http://localhost:5173	/profilePicture/6508695537fe843f89aa8444
+29 de setembro de 2023 às 14:47:04 BRT	1ca60c39-72ab-4de1-a937-c51286a658d3	GET	http://localhost:5173	/conversation/6508695537fe843f89aa8444
+29 de setembro de 2023 às 14:47:04 BRT	4decbd06-d0d3-4966-858c-1fe7706fb015	GET	http://localhost:5173	/profilePicture/6508695537fe843f89aa8444
+29 de setembro de 2023 às 14:47:04 BRT	2de24d83-82e8-4087-b060-10497d8800e0	GET	http://localhost:5173	/conversation/6508695537fe843f89aa8444
+29 de setembro de 2023 às 14:47:08 BRT	a1154af0-5cba-46f4-b6a7-e9cf680c1f12	GET	http://localhost:5173	/650c5c7d05700671d68d4235/messages
+29 de setembro de 2023 às 14:47:08 BRT	5c0c59a9-4bad-443b-9ea3-20fe6b1a20b2	GET	http://localhost:5173	/650c5c7d05700671d68d4235/messages
+29 de setembro de 2023 às 14:52:44 BRT	58e02eb1-91d0-4fe5-b527-7929c73361a8	OPTIONS	https://www.google.com.br	/
+29 de setembro de 2023 às 14:52:44 BRT	aae46155-aa59-49e0-89d0-fa0c97577f91	GET	https://www.google.com.br	/
+29 de setembro de 2023 às 14:53:13 BRT	3742ddc9-eede-491d-a1b3-c0d510d087cc	OPTIONS	https://www.google.com.br	/
+29 de setembro de 2023 às 14:53:13 BRT	7a9aea9a-28ff-4fb2-89db-d9b534f43a9e	GET	https://www.google.com.br	/
+29 de setembro de 2023 às 14:53:21 BRT	8fb91274-f3be-4435-81ad-9df2ac2e74cc	OPTIONS	https://www.google.com.br	/
+29 de setembro de 2023 às 14:53:21 BRT	42ffe2e2-9041-49ff-99a0-31b2c25a1a64	GET	https://www.google.com.br	/
+29 de setembro de 2023 às 15:01:40 BRT	cdeda4e2-20a4-4b51-803b-48d21f8ab6bc	OPTIONS	https://www.google.com.br	/
+29 de setembro de 2023 às 15:01:40 BRT	84c026fe-7acb-4008-9bd1-9cfdf68fef15	GET	https://www.google.com.br	/
