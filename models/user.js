@@ -11,6 +11,7 @@ const UserSchema = new Schema({
   friendRequests: [{ type: Schema.Types.ObjectId }],
   conversations: [{ type: Schema.Types.ObjectId }],
   profilePicture: { type: String },
+  refreshToken: { type: String }
 });
 
 module.exports = mongoose.model("User", UserSchema);

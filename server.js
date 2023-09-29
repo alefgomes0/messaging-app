@@ -3,8 +3,9 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 //const logger = require("morgan");
-const { logger } = require("./middleware/logEvents")
-const errorHandler = require("./middleware/errorHandler")
+const { logger } = require("./middleware/logEvents");
+const errorHandler = require("./middleware/errorHandler");
+const corsOptions = require("./config/corsOptions");
 const passport = require("passport");
 const indexRouter = require("./routes/index");
 
@@ -19,17 +20,7 @@ async function main() {
 main().catch((err) => console.log(err));
 
 app.use(logger);
-const authorizedCors = ["http://127.0.0.1:5173", "http://127.0.0.1:3000"];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (authorizedCors.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  optionsSuccessStatus: 200
-}
+
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false, limit: "2mb" }));
 app.use(express.json({ limit: "2mb" }));
@@ -40,7 +31,7 @@ require("./config/passport")(passport);
 app.use(passport.initialize());
 app.use("/", indexRouter);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () =>
   console.log(`Server started at port ${process.env.PORT}`)
