@@ -43,10 +43,8 @@ export const LoginForm = () => {
         email: formValues.email,
         password: formValues.password,
       });
-      if (response.status >= 200 && response.status <= 305) {
+      if (response.status >= 200 && response.status <= 305)
         setSubmitting(false);
-        console.log(response);
-      }
     } catch (err) {
       setLoginErrorMessage((err as LoginError).response.data.message);
       setSubmitting(false);
