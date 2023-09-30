@@ -19,7 +19,7 @@ exports.post = async (req, res, next) => {
     );
     if (isValid) {
       //const tokenObject = utils.issueJWT(user);
-
+      // Cria o JWT
       const accessToken = jwt.sign(
         { id: user._id },
         process.env.ACCESS_TOKEN_SECRET,

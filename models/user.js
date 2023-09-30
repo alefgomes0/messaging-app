@@ -11,7 +11,8 @@ const UserSchema = new Schema({
   friendRequests: [{ type: Schema.Types.ObjectId }],
   conversations: [{ type: Schema.Types.ObjectId }],
   profilePicture: { type: String },
-  refreshToken: { type: String }
+  refreshToken: { type: String },
+  isAdmin: { type: Boolean }
 });
 
 module.exports = mongoose.model("User", UserSchema);

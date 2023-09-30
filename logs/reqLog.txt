@@ -135,3 +135,17 @@
 29 de setembro de 2023 às 22:37:56 BRT	d04cbfaf-e806-42f8-acae-30f1a913aba9	GET	undefined	/refresh
 29 de setembro de 2023 às 22:38:17 BRT	7436a4f1-2568-4434-83b8-b85f5635daa8	GET	undefined	/logout
 29 de setembro de 2023 às 22:38:26 BRT	f7914e0f-e9ff-46a9-950c-a0faf5e4ba97	GET	undefined	/refresh
+30 de setembro de 2023 às 10:24:52 BRT	c8df6ca9-d87b-4806-9032-514b457e9436	POST	undefined	/login
+30 de setembro de 2023 às 10:25:00 BRT	99728345-7e09-49d6-bee9-937a82a2cf7f	GET	undefined	/refresh
+30 de setembro de 2023 às 10:25:04 BRT	0b24709b-5e21-4b73-93c2-3999d3754f91	GET	undefined	/protected
+30 de setembro de 2023 às 10:25:08 BRT	6d10b951-57aa-4fec-a1c4-4e058124a437	GET	undefined	/logout
+30 de setembro de 2023 às 10:25:14 BRT	ea4aba30-72d9-476f-bb68-3fa55cbe0fe2	GET	undefined	/refresh
+30 de setembro de 2023 às 10:26:20 BRT	4e79692e-1300-4e76-a1c5-1dfe46bf694c	POST	undefined	/login
+30 de setembro de 2023 às 10:26:25 BRT	dab6f04b-6391-45db-b696-036a03f11446	GET	undefined	/protected
+30 de setembro de 2023 às 10:27:07 BRT	e397665a-e0f7-45f4-af7d-7939ea0622e6	GET	undefined	/protected
+30 de setembro de 2023 às 11:12:57 BRT	906b01b8-7f50-483b-b251-69e94ec7a0d0	POST	undefined	/login
+30 de setembro de 2023 às 11:13:02 BRT	b4a39052-2f71-452e-b093-b3fa3f4ada92	GET	undefined	/refresh
+30 de setembro de 2023 às 11:13:06 BRT	af5df55c-7b35-45a6-95fb-726458ad1124	GET	undefined	/protected
+30 de setembro de 2023 às 11:13:40 BRT	a12e95ae-9a54-4992-bc95-1396367519af	GET	undefined	/protected
+30 de setembro de 2023 às 11:14:01 BRT	1b6aa711-5d39-491a-b41d-0cfada343ba4	GET	undefined	/logout
+30 de setembro de 2023 às 11:14:05 BRT	be7ba182-bc8f-4409-9102-2f3f7f10407a	GET	undefined	/refresh
