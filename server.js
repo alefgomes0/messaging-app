@@ -8,6 +8,7 @@ const errorHandler = require("./middleware/errorHandler");
 const corsOptions = require("./config/corsOptions");
 const passport = require("passport");
 const indexRouter = require("./routes/index");
+const credentials = require("./config/credentials");
 
 const app = express();
 require("dotenv").config();
@@ -21,7 +22,7 @@ async function main() {
 main().catch((err) => console.log(err));
 
 app.use(logger);
-
+app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false, limit: "2mb" }));
 app.use(express.json({ limit: "2mb" }));
@@ -33,16 +34,16 @@ app.use(passport.initialize());
 
 app.use("/login", require("./routes/auth"));
 app.use("/register", require("./routes/register"));
+app.use("/logout", require("./routes/logout"));
 app.use("/refresh", require("./routes/refresh"));
 
-app.use(verifyJWT)
-
+app.use(verifyJWT);
 
 app.use("/user", require("./routes/user"));
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
-app.use("/profile-picture", require("./routes/profilePicture"))
+app.use("/profile-picture", require("./routes/profilePicture"));
 
 app.use("/", indexRouter);
 

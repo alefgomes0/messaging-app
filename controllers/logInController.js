@@ -30,17 +30,14 @@ exports.post = async (req, res, next) => {
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: "1d" }
       );
-      
+
       user.refreshToken = refreshToken;
-      await user.save()
-
-      /* await User.findByIdAndUpdate(user._id, {
-        $set: { refreshToken: refreshToken },
-      }); */
-
+      await user.save();
 
       res.cookie("jwt", refreshToken, {
         httpOnly: true,
+        sameSite: "None",
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000, //Inicialmente em milisegundos, convertendo pra 1 dia
       });
 
