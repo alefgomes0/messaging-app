@@ -158,3 +158,6 @@
 30 de setembro de 2023 às 11:35:51 BRT	bf4856e4-d486-4802-9f20-728a2cf06ed7	GET	undefined	/refresh
 30 de setembro de 2023 às 11:35:54 BRT	6fa8a352-0cee-4c44-bb3e-fd35c17ea61f	GET	undefined	/logout
 30 de setembro de 2023 às 11:35:56 BRT	bc1dc505-1422-4d7f-81d5-7d6db52cc61e	GET	undefined	/refresh
+30 de setembro de 2023 às 11:43:16 BRT	063d1daa-ffd9-48c1-8cab-523dd9d79680	POST	undefined	/register
+30 de setembro de 2023 às 11:43:23 BRT	e4f2525d-ee15-4c28-89dd-ab177c89d602	POST	undefined	/login
+30 de setembro de 2023 às 11:43:29 BRT	d231d110-bf5e-49dc-86e8-49610e4352e5	GET	undefined	/refresh

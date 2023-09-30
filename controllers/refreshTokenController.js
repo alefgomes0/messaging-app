@@ -1,4 +1,4 @@
-const getUserId = require("../utils/getUserId")
+const getUserId = require("../utils/getUserId");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -8,7 +8,7 @@ exports.get = async (req, res, next) => {
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
 
-    const foundUser = await User.find({ refreshToken: refreshToken });
+    const foundUser = await User.findOne({ refreshToken: refreshToken }).exec();
     if (foundUser.length === 0) return res.sendStatus(403);
 
     jwt.verify(

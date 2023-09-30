@@ -8,7 +8,7 @@ exports.post = [
 
   async (req, res, next) => {
     const userAlreadyRegistered =
-      (await User.find({ email: req.body.email })).length > 0;
+      (await User.findOne({ email: req.body.email })).length > 0;
 
     if (userAlreadyRegistered) {
       res.status(409).json({

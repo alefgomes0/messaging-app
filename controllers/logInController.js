@@ -3,7 +3,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 exports.post = async (req, res, next) => {
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ email: req.body.email }).exec();
 
   if (user.length === 0) {
     res.status(401).json({ success: false, message: "Could not find user" });

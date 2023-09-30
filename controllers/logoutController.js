@@ -7,7 +7,7 @@ exports.get = async (req, res, next) => {
     if (!cookies?.jwt) return res.sendStatus(204);
     const refreshToken = cookies.jwt;
 
-    const foundUser = await User.find({ refreshToken: refreshToken });
+    const foundUser = await User.findOne({ refreshToken: refreshToken }).exec();
     if (foundUser.length === 0) {
       res.clearCookie("jwt", {
         httpOnly: true,
@@ -22,7 +22,7 @@ exports.get = async (req, res, next) => {
       {
         $set: { refreshToken: "" },
       }
-    );
+    ).exec();
 
     res.clearCookie("jwt", {
       httpOnly: true,
