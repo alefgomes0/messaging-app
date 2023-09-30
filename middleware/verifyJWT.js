@@ -13,7 +13,6 @@ const verifyJWT = (req, res, next) => {
     (err, decoded) => {
       if (err) return res.sendStatus(403);
       req.user = decoded.id
-      console.log(req.user)
       next()
     }
   )

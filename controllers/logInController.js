@@ -23,15 +23,21 @@ exports.post = async (req, res, next) => {
       const accessToken = jwt.sign(
         { id: user._id },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "30s" }
+        { expiresIn: "900s" }
       );
       const refreshToken = jwt.sign(
         { id: user._id },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: "1d" }
       );
+      
+      user.refreshToken = refreshToken;
+      await user.save()
 
-      await User.findByIdAndUpdate(user._id, { refreshToken: refreshToken });
+      /* await User.findByIdAndUpdate(user._id, {
+        $set: { refreshToken: refreshToken },
+      }); */
+
 
       res.cookie("jwt", refreshToken, {
         httpOnly: true,

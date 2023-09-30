@@ -35,12 +35,14 @@ app.use("/login", require("./routes/auth"));
 app.use("/register", require("./routes/register"));
 app.use("/refresh", require("./routes/refresh"));
 
-app.use(verifyJWT);
+app.use(verifyJWT)
+
 
 app.use("/user", require("./routes/user"));
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
-app.use("/newmessage", require("./routes/newmessage"));
+app.use("/new-message", require("./routes/newMessage"));
+app.use("/profile-picture", require("./routes/profilePicture"))
 
 app.use("/", indexRouter);
 
