@@ -1,8 +1,6 @@
 const utils = require("../lib/passwordUtils");
-const asyncHandler = require("express-async-handler");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 exports.post = async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });

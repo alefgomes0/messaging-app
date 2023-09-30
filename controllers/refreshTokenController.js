@@ -1,7 +1,6 @@
 const getUserId = require("../utils/getUserId")
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 exports.get = async (req, res, next) => {
   try {

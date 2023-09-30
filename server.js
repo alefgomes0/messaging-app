@@ -1,24 +1,20 @@
+require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
+const app = express();
 const path = require("path");
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const cookieParser = require("cookie-parser");
-//const logger = require("morgan");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const corsOptions = require("./config/corsOptions");
 const credentials = require("./config/credentials");
 const verifyJWT = require("./middleware/verifyJWT");
 const verifyRoles = require("./middleware/verifyRoles");
-
-const app = express();
-require("dotenv").config();
-
+const connectDB = require("./config/dbConn");
+const PORT = process.env.PORT || 3500;
 const mongoose = require("mongoose");
-const mongoDB = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.tjw2g5c.mongodb.net/?retryWrites=true&w=majority`;
-async function main() {
-  await mongoose.connect(mongoDB);
-}
-main().catch((err) => console.log(err));
+
+connectDB();
 
 app.use(logger);
 app.use(credentials);
@@ -45,6 +41,9 @@ app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () =>
-  console.log(`Server started at port ${process.env.PORT}`)
-);
+mongoose.connection.once("open", () => {
+  console.log("Connected to MongoDB");
+  app.listen(PORT, () =>
+    console.log(`Server started at port ${PORT}`)
+  );
+});
