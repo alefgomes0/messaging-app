@@ -11,7 +11,7 @@ export const AddPhoto = () => {
 
   const postProfilePicture = async (newImage: string) => {
     try {
-      await axios.post(`http://localhost:3000/upload/${userId}`, {
+      await axios.post(`http://localhost:3000/profile-picture/${userId}`, {
         newImage,
       });
       console.log("uploaded");

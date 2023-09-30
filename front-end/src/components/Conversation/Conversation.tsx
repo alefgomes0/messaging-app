@@ -29,7 +29,7 @@ export const Conversation = () => {
     const fetchConversationData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/${contactId}/messages`
+          `http://localhost:3000/messages/${contactId}`
         );
         if (response.status >= 200 && response.status <= 305) {
           setAllMessages(response.data[0].messages);

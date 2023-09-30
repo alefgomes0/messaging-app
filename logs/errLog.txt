@@ -1,3 +1,23 @@
 29 de setembro de 2023 às 15:01:40 BRT	6d86851a-1870-4ba7-ac5b-ac9bc59746a5	Error: Not allowed by CORS
 29 de setembro de 2023 às 15:01:40 BRT	a68a9c7d-5f74-47ea-8ed5-bb136dfcbae2	Error: Not allowed by CORS
 29 de setembro de 2023 às 18:05:50 BRT	48c9017e-108e-44ca-ac53-9aa988c7614a	Error: Cannot set headers after they are sent to the client
+30 de setembro de 2023 às 20:31:23 BRT	5b2d8a95-cfa6-4e7c-abe2-5dee9d8abd0f	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:31:23 BRT	f586ce14-0cad-4ca8-8373-d6d594f6ccd6	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:31:23 BRT	a4db1cca-8c6b-43d6-8cf1-e09a6cf4b2e5	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:31:23 BRT	6b039960-1a83-4ddf-abdf-b1d9b4c41f98	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:33:16 BRT	a4c44823-2551-4e49-ab8f-5e4e5279029e	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:33:16 BRT	f800aec5-a84b-4b1c-8a10-4cadd6808c89	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:33:16 BRT	1f09bfab-e635-428f-929a-4265adc504a5	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:33:16 BRT	04192803-cf99-48c0-880f-d82c56ee1b04	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:37:38 BRT	0d5ba260-5aa1-48c1-9a22-81b18520c40d	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:37:38 BRT	ba9716af-8394-4fc2-94bb-90aa75dedd33	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:37:38 BRT	7b130662-c41e-4d11-b3c3-003b7b4ee5c1	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:37:38 BRT	c45f7518-17a9-4aa2-9cc0-42063a69faf8	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:33 BRT	055bd4a7-26d7-4f50-a39f-580833a2cf02	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:33 BRT	55e61478-27b6-46e3-a88f-8aebc4575dc8	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:33 BRT	96a977cf-69b6-4925-afce-6b3049e85c76	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:33 BRT	6db0b498-3463-4674-b69e-11c5a9e6cd83	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:50 BRT	25bf0b2a-394b-4ce9-bf5b-07f900263ddd	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:50 BRT	db56ff29-9ed3-4987-90b9-abf895a02b62	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:50 BRT	45f045f6-2cc9-4ba1-a526-e5346127162d	Error: Not allowed by CORS
+30 de setembro de 2023 às 20:38:50 BRT	de61063c-9185-4536-a79e-ae6f54ee1e11	Error: Not allowed by CORS

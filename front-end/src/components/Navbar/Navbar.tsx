@@ -21,7 +21,7 @@ export const Navbar = () => {
   const fetchUserProfilePicture = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/profilePicture/${userId}`
+        `http://localhost:3000/profile-picture/${userId}`
       );
       if (response.status >= 200 && response.status <= 305) {
         setUserProfilePicture(response.data.profilePicture);

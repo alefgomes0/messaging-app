@@ -16,7 +16,7 @@ export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) 
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await axios.post(`http://localhost:3000/${contactId}/messages`, {
+    await axios.post(`http://localhost:3000/message/${contactId}`, {
       userId,
       message,
     });

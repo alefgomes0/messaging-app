@@ -20,6 +20,7 @@ export const MessagesInfo = () => {
         const response = await axios.get(
           "http://localhost:3000/conversation/6508695537fe843f89aa8444"
         );
+        console.log(response)
         if (response.status >= 200 && response.status <= 305) {
           setConversationListInfo(response.data);
           setIsLoading(false);
