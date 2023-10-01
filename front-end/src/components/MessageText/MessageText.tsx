@@ -20,6 +20,7 @@ export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) 
       userId,
       message,
     });
+    console.log("vsf")    
     setMessage("");
     handleMessageSent();
   };

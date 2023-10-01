@@ -35,6 +35,10 @@ export default {
           "83.25%": { transform: "translateY(-15%)" },
         },
       },
+      fontFamily: {
+        Cormorant: "Cormorant",
+        Cormorant_Italic: "Cormorant_Italic",
+      },
     },
   },
   plugins: [],

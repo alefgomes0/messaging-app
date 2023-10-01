@@ -23,8 +23,6 @@ export const Conversation = () => {
   const { state } = useLocation();
   const { contactName } = state;
 
-  console.log("Conversation rendered");
-
   useEffect(() => {
     const fetchConversationData = async () => {
       try {
@@ -48,7 +46,7 @@ export const Conversation = () => {
   const fetchNewMessage = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/${contactId}/messages/new`
+        `http://localhost:3000/new-message/${contactId}`
       );
       if (response.status >= 200 && response.status <= 305) {
         setAllMessages((prevMessages) =>

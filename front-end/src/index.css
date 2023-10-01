@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Cormorant_Italic";
+  src: url("../public/fonts/cormorant-italic-variablefont_wght-webfont.woff2")
+      format("woff2"),
+    url("../public//fonts/cormorant-italic-variablefont_wght-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Cormorant";
+  src: url("../public/fonts/cormorant-variablefont_wght-webfont.woff2")
+      format("woff2"),
+    url("../public/fonts/cormorant-variablefont_wght-webfont.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-clear-button,
@@ -14,22 +33,18 @@ textarea {
   resize: none;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #c4c3c3; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #c4c3c3;
 }
 
-/* Handle on hover */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #737373; 
+  background: #737373;
 }
