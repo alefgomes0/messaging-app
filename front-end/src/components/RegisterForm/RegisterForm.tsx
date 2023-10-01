@@ -6,11 +6,12 @@ import { useState } from "react";
 import { ExclamationIcon } from "../svg/ExclamationIcon";
 
 type Values = {
+  name: string;
   email: string;
   password: string;
 };
 
-type LoginError = {
+type RegisterError = {
   response: {
     data: {
       message: string;
@@ -18,7 +19,11 @@ type LoginError = {
   };
 };
 
-const LoginSchema = Yup.object().shape({
+const RegisterSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(4, "Name must have at least 4 characters")
+    .max(25, "Name must have at most 25 characters")
+    .required("Required"),
   email: Yup.string()
     .min(4, "Email must have at least 4 characters")
     .max(50, "Email must have at most 50 characters")
@@ -31,7 +36,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 export const LoginForm = () => {
-  const [loginErrorMessage, setLoginErrorMessage] = useState("");
+  const [registerErrorMessage, setRegisterErrorMessage] = useState("");
 
   const handleOnSubmit = async (
     formValues: Values,
@@ -39,14 +44,15 @@ export const LoginForm = () => {
   ) => {
     setSubmitting(true);
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3000/register", {
+        name: formValues.name,
         email: formValues.email,
         password: formValues.password,
       });
       if (response.status >= 200 && response.status <= 305)
         setSubmitting(false);
     } catch (err) {
-      setLoginErrorMessage((err as LoginError).response.data.message);
+      setRegisterErrorMessage((err as RegisterError).response.data.message);
       setSubmitting(false);
     }
   };
@@ -54,16 +60,37 @@ export const LoginForm = () => {
   return (
     <Formik
       initialValues={{
+        name: "",
         email: "",
         password: "",
       }}
       onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
         handleOnSubmit(values, setSubmitting);
       }}
-      validationSchema={LoginSchema}
+      validationSchema={RegisterSchema}
     >
       {({ isSubmitting, errors, touched }) => (
         <Form className="flex flex-col w-72">
+          <label htmlFor="name" className="mb-1">
+            Name
+          </label>
+          <Field
+            type="text"
+            name="name"
+            placeholder="johndoe@email.com"
+            className={`mb-3 text-sm placeholder:text-sm pl-1 h-[26px] rounded-sm border-none outline-none focus:ring-2 ${
+              errors.email && touched.email
+                ? "focus:ring-red-400"
+                : "focus:ring-fuchsia-400"
+            }
+            }`}
+          />
+          <ErrorMessage
+            name="name"
+            component="div"
+            className="text-red-500 text-sm mt-[-9px] mb-[9px]"
+          />
+
           <label htmlFor="email" className="mb-1">
             Email
           </label>
@@ -103,10 +130,10 @@ export const LoginForm = () => {
             className="text-red-500 text-sm mt-[-9px]"
           />
 
-          {loginErrorMessage && (
+          {registerErrorMessage && (
             <div className="flex items-center w-72 text-red-400 ">
               <ExclamationIcon width={18} height={18} />
-              <p className="pl-3">{loginErrorMessage}</p>
+              <p className="pl-3">{registerErrorMessage}</p>
             </div>
           )}
 
@@ -123,7 +150,7 @@ export const LoginForm = () => {
                 <LoadingSpinner width={15} height={15} />
               </>
             ) : (
-              "Login"
+              "Register"
             )}
           </button>
         </Form>

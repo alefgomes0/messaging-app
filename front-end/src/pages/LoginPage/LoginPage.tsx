@@ -1,6 +1,9 @@
+import { useState } from "react"
 import { LoginForm } from "../../components/LoginForm/LoginForm";
 
 export const LoginPage = () => {
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+
   return (
     <div className="grid justify-items-center h-[100dvh] bg-[#190f1a] pb-[92px] font-[Cormonant]">
       <header className="flex justify-center w-full h-[222px] bg-fuchsia-900 px-[36px] pb-[92px]">
