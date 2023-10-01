@@ -332,3 +332,10 @@
 1 de outubro de 2023 às 13:47:03 BRT	2bc920cb-9abf-4b7e-b6ff-6de76f3b6a34	POST	http://localhost:5173	/login
 1 de outubro de 2023 às 13:47:12 BRT	8673adab-2475-4d88-bf2c-8bccfecd2008	OPTIONS	http://localhost:5173	/login
 1 de outubro de 2023 às 13:47:12 BRT	60f3838a-1d52-4a3f-8a62-9ef12f4ee0ee	POST	http://localhost:5173	/login
+1 de outubro de 2023 às 13:51:57 BRT	db895ede-90e0-40ca-91b5-b4fb9a37d5ec	OPTIONS	http://localhost:5173	/login
+1 de outubro de 2023 às 13:51:57 BRT	a1a5e10c-1b9e-480b-88df-6f801f9b09da	POST	http://localhost:5173	/login
+1 de outubro de 2023 às 13:52:00 BRT	e594ee4c-ebd2-4e3a-ba26-492d570f09b2	POST	http://localhost:5173	/login
+1 de outubro de 2023 às 13:52:03 BRT	2590275b-4525-4a10-b50c-3314a1c2ef90	OPTIONS	http://localhost:5173	/login
+1 de outubro de 2023 às 13:52:03 BRT	fdfb0441-a84d-46e0-981f-d78235da707e	POST	http://localhost:5173	/login
+1 de outubro de 2023 às 13:52:09 BRT	44d26f57-bcd3-4af1-8631-ead1452cce4f	OPTIONS	http://localhost:5173	/register
+1 de outubro de 2023 às 13:52:09 BRT	ecca418f-c05f-4237-bee3-03083b4f5d85	POST	http://localhost:5173	/register
