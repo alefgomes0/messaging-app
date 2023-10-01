@@ -46,6 +46,7 @@ export const LoginForm = () => {
       if (response.status >= 200 && response.status <= 305)
         setSubmitting(false);
     } catch (err) {
+
       setLoginErrorMessage((err as LoginError).response.data.message);
       setSubmitting(false);
     }

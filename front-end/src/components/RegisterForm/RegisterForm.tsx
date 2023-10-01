@@ -49,6 +49,7 @@ export const RegisterForm = () => {
         email: formValues.email,
         password: formValues.password,
       });
+      console.log(response)
       if (response.status >= 200 && response.status <= 305)
         setSubmitting(false);
     } catch (err) {
@@ -77,7 +78,7 @@ export const RegisterForm = () => {
           <Field
             type="text"
             name="name"
-            placeholder="johndoe@email.com"
+            placeholder="John Doe"
             className={`mb-3 text-sm placeholder:text-sm pl-1 h-[26px] rounded-sm border-none outline-none focus:ring-2 ${
               errors.email && touched.email
                 ? "focus:ring-red-400"
