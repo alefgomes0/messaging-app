@@ -35,7 +35,7 @@ const RegisterSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
 
   const handleOnSubmit = async (
