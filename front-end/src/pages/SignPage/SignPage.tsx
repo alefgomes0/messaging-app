@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LoginForm } from "../../components/LoginForm/LoginForm";
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
 
-export const LoginPage = () => {
+export const SignPage = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   return (
@@ -17,19 +17,20 @@ export const LoginPage = () => {
           <h2 className="text-2xl text-neutral-800 font-semibold opacity-70 mb-6">
             Use The Odin Zap on your computer
           </h2>
-          <p
-            className="opacity-80 pb-3 cursor-pointer underline underline-offset-4 decoration-blue-400"
-            onClick={() => setShowRegisterForm(true)}
-          >
-            Don't have an account? Click here to register
-          </p>
-          <p
-            className="opacity-80 pb-3 cursor-pointer underline underline-offset-4 decoration-blue-400"
-            onClick={() => setShowRegisterForm(false)}
-          >
-            Already have an account? Click here to login
+          <p className="opacity-80 pb-4">
+            {showRegisterForm
+              ? "Fill the form bellow to register"
+              : "Already have an account? Login bellow"}
           </p>
           {showRegisterForm ? <RegisterForm /> : <LoginForm />}
+          <p
+            className="opacity-80 pt-6 cursor-pointer underline underline-offset-4 decoration-blue-400"
+            onClick={() => setShowRegisterForm(!showRegisterForm)}
+          >
+            {showRegisterForm
+              ? "Already have an account? Click here to login"
+              : "Don't have an account? Click here to register"}
+          </p>
         </section>
       </main>
     </div>

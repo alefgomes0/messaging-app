@@ -1,7 +1,7 @@
 import "./App.css";
 import { Conversation } from "./components/Conversation/Conversation";
 import { UserContextProvider } from "./context/userContext";
-import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { SignPage } from "./pages/SignPage/SignPage";
 import { MessengerPage } from "./pages/MessengerPage/MessengerPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/sign" element={<LoginPage />} />
+          <Route path="/sign" element={<SignPage />} />
           <Route
             path="/"
             element={
