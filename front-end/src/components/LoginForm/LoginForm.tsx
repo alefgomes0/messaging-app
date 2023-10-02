@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { LoadingSpinner } from "../svg/LoadingSpinner";
@@ -30,8 +30,13 @@ const LoginSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export const LoginForm = () => {
+type LoginFormProps = {
+  setAuth: React.Dispatch<React.SetStateAction<object>>;
+};
+
+export const LoginForm = ({ setAuth }: LoginFormProps) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
+  const LOGIN_URL = "/sign";
 
   const handleOnSubmit = async (
     formValues: Values,
@@ -39,15 +44,29 @@ export const LoginForm = () => {
   ) => {
     setSubmitting(true);
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email: formValues.email,
-        password: formValues.password,
-      });
-      if (response.status >= 200 && response.status <= 305)
+      const response = await axios.post(
+        LOGIN_URL,
+        {
+          email: formValues.email,
+          password: formValues.password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (response.data.success) {
+        const accessToken = response.data.accessToken;
+        const id = response.data.id;
+        setAuth({ accessToken, id });
         setSubmitting(false);
+      }
     } catch (err) {
-
-      setLoginErrorMessage((err as LoginError).response.data.message);
+      if ((err as LoginError).response) {
+        setLoginErrorMessage((err as LoginError).response.data.message);
+      } else {
+        setLoginErrorMessage("No server response");
+      }
       setSubmitting(false);
     }
   };
@@ -114,9 +133,8 @@ export const LoginForm = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-72 h-min py-1 mt-4 rounded-sm bg-fuchsia-800 hover:bg-fuchsia-700 transition-colors text-fuchsia-50 border-none ${
-              isSubmitting ? "flex items-center justify-center" : ""
-            }shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.25)_inset]`}
+            className="w-72 h-min flex items-center justify-center py-1 mt-4 rounded-sm bg-fuchsia-800 hover:bg-fuchsia-700 transition-colors text-fuchsia-50 border-none  
+            shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.25)_inset]"
           >
             {isSubmitting ? (
               <>

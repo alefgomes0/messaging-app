@@ -35,8 +35,13 @@ const RegisterSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export const RegisterForm = () => {
+type RegisterFormProps = {
+  setAuth: React.Dispatch<React.SetStateAction<object>>;
+};
+
+export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
+  const LOGIN_URL = "/sign";
 
   const handleOnSubmit = async (
     formValues: Values,
@@ -44,16 +49,29 @@ export const RegisterForm = () => {
   ) => {
     setSubmitting(true);
     try {
-      const response = await axios.post("http://localhost:3000/register", {
-        name: formValues.name,
-        email: formValues.email,
-        password: formValues.password,
-      });
-      console.log(response)
-      if (response.status >= 200 && response.status <= 305)
+      const response = await axios.post(
+        LOGIN_URL,
+        {
+          email: formValues.email,
+          password: formValues.password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (response.data.success) {
+        const accessToken = response.data.accessToken;
+        const id = response.data.id;
+        setAuth({ accessToken, id });
         setSubmitting(false);
+      }
     } catch (err) {
-      setRegisterErrorMessage((err as RegisterError).response.data.message);
+      if ((err as RegisterError).response) {
+        setRegisterErrorMessage((err as RegisterError).response.data.message);
+      } else {
+        setRegisterErrorMessage("No server response");
+      }
       setSubmitting(false);
     }
   };
@@ -141,9 +159,8 @@ export const RegisterForm = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-72 h-min py-1 mt-4 rounded-sm bg-fuchsia-800 hover:bg-fuchsia-700 transition-colors text-fuchsia-50 border-none ${
-              isSubmitting ? "flex items-center justify-center" : ""
-            }shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.25)_inset]`}
+            className="w-72 h-min flex items-center justify-center py-1 mt-4 rounded-sm bg-fuchsia-800 hover:bg-fuchsia-700 transition-colors text-fuchsia-50 border-none  
+            shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.25)_inset]"
           >
             {isSubmitting ? (
               <>

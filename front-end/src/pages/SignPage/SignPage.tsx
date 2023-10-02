@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { LoginForm } from "../../components/LoginForm/LoginForm";
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
+import { useAuthContext } from "../../context/useAuthContext";
 
 export const SignPage = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const { setAuth } = useAuthContext();
 
   return (
     <div className="grid justify-items-center h-[100dvh] bg-[#190f1a] pb-[92px] font-[Cormonant]">
@@ -22,7 +24,11 @@ export const SignPage = () => {
               ? "Fill the form bellow to register"
               : "Already have an account? Login bellow"}
           </p>
-          {showRegisterForm ? <RegisterForm /> : <LoginForm />}
+          {showRegisterForm ? (
+            <RegisterForm setAuth={setAuth} />
+          ) : (
+            <LoginForm setAuth={setAuth} />
+          )}
           <p
             className="opacity-80 pt-6 cursor-pointer underline underline-offset-4 decoration-blue-400"
             onClick={() => setShowRegisterForm(!showRegisterForm)}
