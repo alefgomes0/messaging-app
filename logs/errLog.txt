@@ -80,3 +80,32 @@
 2 de outubro de 2023 às 17:49:07 BRT	9651c023-781d-42d8-a551-ca2729d1d5db	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
 2 de outubro de 2023 às 17:49:07 BRT	f671823d-6fc6-4b85-a415-7f1c6931e7da	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
 2 de outubro de 2023 às 17:49:07 BRT	d1f13195-f2fd-467f-9812-5078a2f0005c	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 19:10:49 BRT	fce6ee6e-da7f-48f4-b859-2eb48c9c4213	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:13:41 BRT	e33e38a2-14c2-44c5-8bc2-cc763651d437	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:28:51 BRT	0b261efd-a62d-4759-9f86-ed1c2e004c4a	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:31:31 BRT	cb1369d3-68e9-40ae-8440-a6ea4feb745d	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:32:35 BRT	dfd158e6-6b6a-4f82-9c4e-b7f3fb853ab9	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:33:09 BRT	9652b850-084f-49ab-ac64-612639a2a111	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:33:31 BRT	8e6a2b8f-4824-4157-9cb5-293fc1c0290c	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:33:51 BRT	e29ca8c7-83a0-40e2-aade-0b1b4ec0e964	ValidationError: Message validation failed: participants.sender: Path `participants.sender` is required., message: Path `message` is required.
+2 de outubro de 2023 às 19:35:23 BRT	5df6ace9-c956-49ec-986d-f645f1358dc3	TypeError: contacts.populate is not a function
+2 de outubro de 2023 às 19:35:23 BRT	6a61465f-0322-4f8a-a62d-d791f19d5e3e	TypeError: contacts.populate is not a function
+2 de outubro de 2023 às 19:38:14 BRT	5679009c-d97f-4322-b459-af71801e32a7	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:38:14 BRT	01d1b747-1c79-4848-a02d-7a38225fe922	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 19:38:14 BRT	48ebcc76-879d-4be2-9a9f-981d31f35345	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:38:15 BRT	8ebfdcda-49b9-4d79-85e9-367776e8456f	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 19:38:48 BRT	a51cd405-7f16-4fd3-9806-c1489f211eac	TypeError: contacts.populate is not a function
+2 de outubro de 2023 às 19:38:49 BRT	fa949c8c-c145-4c9c-8c99-d169874b230b	TypeError: contacts.populate is not a function
+2 de outubro de 2023 às 19:55:57 BRT	ecf0be19-3827-421d-8585-4cca911fff06	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:55:57 BRT	5f304158-89cf-4802-9fcd-8951594c1b90	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 19:55:57 BRT	efef356a-352f-4e8f-ace5-a0e0d204dabb	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:55:57 BRT	3bfaea74-643d-4ae9-b147-7ce05e9bf301	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 19:56:08 BRT	5ba61379-d82b-4f99-a054-341d2fd442f8	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:59:48 BRT	6692be50-8ec1-4462-92e3-84c3be7e7ce3	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:59:48 BRT	5c249793-97c6-4001-9bf4-87cd90996f3b	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 19:59:48 BRT	eae2a1f1-005c-418e-a518-752fbcfe6310	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 19:59:48 BRT	9bb463eb-24c0-45fb-b797-2dd1ae49f818	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 20:04:16 BRT	6cbd2a57-d1b3-4325-87ba-18569410ec16	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+2 de outubro de 2023 às 20:04:16 BRT	e57e6d35-a038-496c-b4f5-969110b4fb78	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 20:04:16 BRT	af85b895-2a8e-4195-b9b5-a329ce48e129	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 20:04:16 BRT	0ebbe482-e139-49a8-a264-b6e828ce6407	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"

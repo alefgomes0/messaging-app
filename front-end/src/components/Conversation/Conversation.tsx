@@ -21,18 +21,16 @@ export const Conversation = () => {
   const [newMessageSent, setNewMessageSent] = useState(false);
   const { contactId } = useParams();
   const { state } = useLocation();
-  const { contactName } = state || "oi"
+  const { contactName } = state || "oi";
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     const fetchConversationData = async () => {
       try {
-        const response = await axiosPrivate.get(
-          `/messages/${contactId}`, {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true
-          }
-        );
+        const response = await axiosPrivate.get(`/messages/${contactId}`, {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        });
         if (response.status >= 200 && response.status <= 305) {
           setAllMessages(response.data[0].messages);
           setProfilePicture(response.data[0].participants[0].profilePicture);
@@ -45,12 +43,16 @@ export const Conversation = () => {
     };
 
     fetchConversationData();
-  }, [userId, setIsLoading, setError]);
+  }, [contactId, axiosPrivate, setIsLoading, setError]);
 
   const fetchNewMessage = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/new-message/${contactId}`
+      const response = await axiosPrivate.get(
+        `http://localhost:3000/new-message/${contactId}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
       );
       if (response.status >= 200 && response.status <= 305) {
         setAllMessages((prevMessages) =>

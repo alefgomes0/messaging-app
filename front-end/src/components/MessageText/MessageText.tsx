@@ -1,5 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
+import { useAuthContext } from "../../context/useAuthContext";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 type MessageTextProps = {
   contactId: string;
@@ -12,15 +13,19 @@ export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) 
     setMessage(e.target.value);
   };
 
-  const userId = "6508695537fe843f89aa8444";
+  const { auth } = useAuthContext();
+  const userId = auth.id;
+  const axiosPrivate = useAxiosPrivate();
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await axios.post(`http://localhost:3000/message/${contactId}`, {
+    await axiosPrivate.post(`/messages/${contactId}`, {
       userId,
       message,
+    }, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true
     });
-    console.log("vsf")    
     setMessage("");
     handleMessageSent();
   };

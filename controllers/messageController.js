@@ -1,17 +1,16 @@
 const asyncHandler = require("express-async-handler");
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const Message = require("../models/message");
-const User = require("../models/user");
 const Conversation = require("../models/conversations");
-const message = require("../models/message");
 
 exports.get = asyncHandler(async (req, res, next) => {
-  const userId = req.params.contactId;
+  const userId = req.body.userId;
+  const contactId = req.params.contactId
 
   const allMessages = await Conversation.find({
     participants: {
       $elemMatch: { $eq: userId },
-      $elemMatch: { $eq: req.params.contactId },
+      $elemMatch: { $eq:contactId },
     },
   })
     .populate({
@@ -19,7 +18,7 @@ exports.get = asyncHandler(async (req, res, next) => {
       select: "message participants.sender date time",
     })
     .populate("participants", "profilePicture")
-    .select({ participants: { $elemMatch: { $eq: req.params.contactId } } })
+    .select({ participants: { $elemMatch: { $eq: contactId } } })
     .exec();
 
   res.json(allMessages);
@@ -29,11 +28,13 @@ exports.post = [
   body("message").escape(),
 
   asyncHandler(async (req, res, next) => {
-    console.log(req.body.message);
+    const userId = req.body.userId;
+    const contactId = req.params.contactId
+
     const message = new Message({
       participants: {
-        sender: req.body.userId,
-        receiver: req.params.contactId,
+        sender: userId,
+        receiver: contactId,
       },
       message: req.body.message,
       date: new Date(),
