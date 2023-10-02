@@ -21,7 +21,7 @@ const App = () => {
                 </UserContextProvider>
               }
             >
-              <Route path=":contactId" element={<Conversation />} />
+              <Route path=":userId" element={<Conversation />} />
             </Route>
           </Routes>
         </AuthProvider>

@@ -21,3 +21,9 @@
 30 de setembro de 2023 às 20:38:50 BRT	db56ff29-9ed3-4987-90b9-abf895a02b62	Error: Not allowed by CORS
 30 de setembro de 2023 às 20:38:50 BRT	45f045f6-2cc9-4ba1-a526-e5346127162d	Error: Not allowed by CORS
 30 de setembro de 2023 às 20:38:50 BRT	de61063c-9185-4536-a79e-ae6f54ee1e11	Error: Not allowed by CORS
+2 de outubro de 2023 às 13:48:40 BRT	4ca7a853-bd8c-4eac-a191-a9db17ce8a7e	CastError: Cast to ObjectId failed for value "pica" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 13:48:40 BRT	5a42c58e-b6b8-48ce-a715-7cc7f8abb9f6	CastError: Cast to ObjectId failed for value "pica" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 13:48:55 BRT	71fb0f4f-fe02-4f6d-9079-f233beec9691	CastError: Cast to ObjectId failed for value ""6519a22bbe69f88f7b0cb0fd"" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 13:48:55 BRT	c6e0d176-8c02-4ad6-8d22-b6e7b57fe968	CastError: Cast to ObjectId failed for value ""6519a22bbe69f88f7b0cb0fd"" (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 13:49:42 BRT	87cb55fe-bbef-4a29-8041-53b4e0932f62	CastError: Cast to ObjectId failed for value ",6519a22bbe69f88f7b0cb0fd," (type string) at path "participants" for model "Conversations"
+2 de outubro de 2023 às 13:49:42 BRT	fa5be0d3-990f-4f00-af26-dc93912e9051	CastError: Cast to ObjectId failed for value ",6519a22bbe69f88f7b0cb0fd," (type string) at path "participants" for model "Conversations"

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ExclamationIcon } from "../svg/ExclamationIcon";
 import { AuthProps } from "../../types/AuthProps";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useNavigate } from "react-router-dom";
 
 type Values = {
   email: string;
@@ -38,8 +39,9 @@ type LoginFormProps = {
 
 export const LoginForm = ({ setAuth }: LoginFormProps) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
-  const axiosPrivate = useAxiosPrivate()
+  const axiosPrivate = useAxiosPrivate();
   const LOGIN_URL = "/login";
+  const navigate = useNavigate();
 
   const handleOnSubmit = async (
     formValues: Values,
@@ -47,7 +49,7 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
   ) => {
     setSubmitting(true);
     try {
-      const response = await axios.post(
+      const response = await axiosPrivate.post(
         LOGIN_URL,
         {
           email: formValues.email,
@@ -59,12 +61,11 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
         }
       );
       if (response.data.success) {
-        const accessToken = JSON.stringify(response.data.accessToken)
+        const accessToken = JSON.stringify(response.data.accessToken);
         const id = JSON.stringify(response.data.id);
         setAuth({ success: true, accessToken, id });
         setSubmitting(false);
-        console.log(response.data)
-        console.log(id, accessToken);
+        return navigate(`/${id.split('"')[1]}`);
       }
     } catch (err) {
       if ((err as LoginError).response) {
