@@ -5,6 +5,7 @@ import { useAuthContext } from "../../context/useAuthContext";
 
 export const SignPage = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [newAccountCreated, setNewAccountCreated] = useState(false);
   const { setAuth } = useAuthContext();
 
   return (
@@ -25,9 +26,15 @@ export const SignPage = () => {
               : "Already have an account? Login bellow"}
           </p>
           {showRegisterForm ? (
-            <RegisterForm setAuth={setAuth} />
+            <RegisterForm
+              setNewAccountCreated={setNewAccountCreated}
+              setShowRegisterForm={setShowRegisterForm}
+            />
           ) : (
             <LoginForm setAuth={setAuth} />
+          )}
+          {newAccountCreated && (
+            <p className="opacity-90 text-green-600 pt-4">New account created successfully! Enter the same credentials to login</p>
           )}
           <p
             className="opacity-80 pt-6 cursor-pointer underline underline-offset-4 decoration-blue-400"

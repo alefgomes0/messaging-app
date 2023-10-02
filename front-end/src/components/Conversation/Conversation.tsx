@@ -28,7 +28,7 @@ export const Conversation = () => {
     const fetchConversationData = async () => {
       try {
         const response = await axiosPrivate.get(
-          `http://localhost:3000/messages/${contactId}`, {
+          `/messages/${contactId}`, {
             headers: { "Content-Type": "application/json" },
             withCredentials: true
           }

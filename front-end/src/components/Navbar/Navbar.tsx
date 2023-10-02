@@ -25,7 +25,7 @@ export const Navbar = ({ id }: NavbarProps) => {
   const fetchUserProfilePicture = async () => {
     try {
       const response = await axiosPrivate.get(
-        `http://localhost:3000/profile-picture/${id}`, {
+        `/profile-picture/${id}`, {
           headers: { "Content-Type": "application/json" },
           withCredentials: true
         }

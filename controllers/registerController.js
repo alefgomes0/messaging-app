@@ -20,7 +20,7 @@ exports.post = [
     } else {
       try {
         const encryptedPwd = await bcrypt.hash(req.body.password, 10);
-        await User.create({
+        const user = await User.create({
           email: req.body.email,
           name: req.body.name,
           password: encryptedPwd,
@@ -28,6 +28,7 @@ exports.post = [
         res.status(201).json({
           success: true,
           message: "New user created",
+          id: user._id
         });
       } catch (err) {
         res.status(500).json({

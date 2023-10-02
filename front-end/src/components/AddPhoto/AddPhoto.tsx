@@ -1,20 +1,28 @@
 import { useState } from "react";
-import axios from "axios";
+import { useAuthContext } from "../../context/useAuthContext";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 type AddPhoto = {
   handlePhotoUpload: () => void;
-}
+};
 
 export const AddPhoto = () => {
   const [image, setImage] = useState("");
-  const userId = "6508695537fe843f89aa8444";
+  const { auth } = useAuthContext();
+  const axiosPrivate = useAxiosPrivate();
 
   const postProfilePicture = async (newImage: string) => {
     try {
-      await axios.post(`http://localhost:3000/profile-picture/${userId}`, {
-        newImage,
-      });
-      console.log("uploaded");
+      await axiosPrivate.post(
+        `/profile-picture/${auth.id}`,
+        {
+          newImage,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
     } catch (err) {
       console.log(err);
     }

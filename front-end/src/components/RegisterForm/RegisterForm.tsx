@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import { LoadingSpinner } from "../svg/LoadingSpinner";
 import { useState } from "react";
 import { ExclamationIcon } from "../svg/ExclamationIcon";
-import { AuthProps } from "../../types/AuthProps";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 type Values = {
@@ -37,13 +36,17 @@ const RegisterSchema = Yup.object().shape({
 });
 
 type RegisterFormProps = {
-  setAuth: React.Dispatch<React.SetStateAction<AuthProps>>;
+  setNewAccountCreated: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowRegisterForm: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
+export const RegisterForm = ({
+  setNewAccountCreated,
+  setShowRegisterForm,
+}: RegisterFormProps) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
-  const axiosPrivate = useAxiosPrivate()
-  const LOGIN_URL = "/sign";
+  const axiosPrivate = useAxiosPrivate();
+  const LOGIN_URL = "/register";
 
   const handleOnSubmit = async (
     formValues: Values,
@@ -54,6 +57,7 @@ export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
       const response = await axiosPrivate.post(
         LOGIN_URL,
         {
+          name: formValues.name,
           email: formValues.email,
           password: formValues.password,
         },
@@ -63,10 +67,9 @@ export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
         }
       );
       if (response.data.success) {
-        const accessToken = response.data.accessToken;
-        const id = response.data.id;
-        setAuth({ success: true, accessToken, id });
         setSubmitting(false);
+        setNewAccountCreated(true);
+        setShowRegisterForm(false);
       }
     } catch (err) {
       if ((err as RegisterError).response) {

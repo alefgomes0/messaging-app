@@ -24,7 +24,7 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
     const fetchContactsData = async () => {
       try {
         const response = await axiosPrivate.get(
-          `http://localhost:3000/conversation/${id}`
+          `/conversation/${id}`
         );
         if (response.status === 204) {
           setConversationListInfo(null)

@@ -41,9 +41,9 @@ export const ConversationList = ({
                     query={searchValue}
                   />
                 ) : (
-                  <p>
+                  <p className="text-center text-neutral-200 opacity-80">
                     You don't have any active conversation. Click here to add
-                    contacts and start conversations
+                    contacts and start a conversation.
                   </p>
                 )}
               </>
