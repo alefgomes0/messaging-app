@@ -9,7 +9,7 @@ export const LogoutButton = () => {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      return navigate("/sign");
+      return navigate("/");
     } catch (err) {
       console.log(err);
     }

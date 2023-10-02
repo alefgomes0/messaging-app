@@ -19,7 +19,7 @@ export const Conversation = () => {
   const { error, setError, isLoading, setIsLoading } = useUserContext();
 
   const [newMessageSent, setNewMessageSent] = useState(false);
-  const { userId } = useParams();
+  const { contactId } = useParams();
   const { state } = useLocation();
   const { contactName } = state || "oi"
   const axiosPrivate = useAxiosPrivate();
@@ -28,7 +28,10 @@ export const Conversation = () => {
     const fetchConversationData = async () => {
       try {
         const response = await axiosPrivate.get(
-          `http://localhost:3000/messages/${userId}`
+          `http://localhost:3000/messages/${contactId}`, {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true
+          }
         );
         if (response.status >= 200 && response.status <= 305) {
           setAllMessages(response.data[0].messages);

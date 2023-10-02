@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import { ErrorMessage } from "../../types/ErrorMessage";
 import { ConversationList } from "../ConversationList/ConversationList";
 import { useUserContext } from "../../context/useUserContext";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
-export const MessagesInfo = () => {
+type MessagesInfoProps = {
+ id: string
+}
+
+export const MessagesInfo = ({ id }: MessagesInfoProps) => {
   const {
     conversationListInfo,
     setConversationListInfo,
@@ -20,13 +24,15 @@ export const MessagesInfo = () => {
     const fetchContactsData = async () => {
       try {
         const response = await axiosPrivate.get(
-          "http://localhost:3000/conversation/6508695537fe843f89aa8444"
+          `http://localhost:3000/conversation/${id}`
         );
-        console.log(response);
-        if (response.status >= 200 && response.status <= 305) {
-          setConversationListInfo(response.data);
-          setIsLoading(false);
+        if (response.status === 204) {
+          setConversationListInfo(null)
         }
+        else if (response.status >= 200 && response.status <= 305) {
+          setConversationListInfo(response.data);
+        }
+        setIsLoading(false);
       } catch (err) {
         setError(err as ErrorMessage);
         setIsLoading(false);
@@ -34,7 +40,7 @@ export const MessagesInfo = () => {
     };
 
     fetchContactsData();
-  }, [setConversationListInfo, setError, setIsLoading]);
+  }, [setConversationListInfo, setError, setIsLoading, axiosPrivate, id]);
 
   return (
     <>

@@ -30,8 +30,6 @@ app.use("/logout", require("./routes/logout"));
 app.use("/refresh", require("./routes/refresh"));
 
 app.use(verifyJWT);
-
-
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
@@ -44,7 +42,5 @@ app.use(errorHandler);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
-  app.listen(PORT, () =>
-    console.log(`Server started at port ${PORT}`)
-  );
+  app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
 });

@@ -6,22 +6,29 @@ import { PhoneIcon } from "../svg/PhoneIcon";
 import { SettingsIcon } from "../svg/SettingsIcon";
 import { StarIcon } from "../svg/StarIcon";
 import { StatusIcon } from "../svg/StatusIcon";
-import axios from "axios";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
-export const Navbar = () => {
+type NavbarProps = {
+  id: string;
+}
+
+export const Navbar = ({ id }: NavbarProps) => {
   const [selectIcon, setSelectIcon] = useState(0);
   const [userProfilePicture, setUserProfilePicture] = useState<null | string>(
     null
   );
   const [changeProfilePicture, setChangeProfilePicture] = useState(false);
-  const userId = "6508695537fe843f89aa8444";
+  const axiosPrivate = useAxiosPrivate();
 
   //LIDAR COM OS ERROS NESSE COMP E NO ADD PHOTO
 
   const fetchUserProfilePicture = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/profile-picture/${userId}`
+      const response = await axiosPrivate.get(
+        `http://localhost:3000/profile-picture/${id}`, {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true
+        }
       );
       if (response.status >= 200 && response.status <= 305) {
         setUserProfilePicture(response.data.profilePicture);

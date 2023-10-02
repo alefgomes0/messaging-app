@@ -12,16 +12,16 @@ const App = () => {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <Route path="/sign" element={<SignPage />} />
+            <Route path="/" element={<SignPage />} />
             <Route
-              path="/"
+              path=":userId"
               element={
                 <UserContextProvider>
                   <MessengerPage />
                 </UserContextProvider>
               }
             >
-              <Route path=":userId" element={<Conversation />} />
+              <Route path="conversation/:contactId" element={<Conversation />} />
             </Route>
           </Routes>
         </AuthProvider>

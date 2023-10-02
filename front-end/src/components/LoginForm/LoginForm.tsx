@@ -1,4 +1,3 @@
-import axios from "../../api/axios";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { LoadingSpinner } from "../svg/LoadingSpinner";
@@ -61,11 +60,11 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
         }
       );
       if (response.data.success) {
-        const accessToken = JSON.stringify(response.data.accessToken);
-        const id = JSON.stringify(response.data.id);
+        const accessToken = response.data.accessToken
+        const id = response.data.id
         setAuth({ success: true, accessToken, id });
         setSubmitting(false);
-        return navigate(`/${id.split('"')[1]}`);
+        return navigate(`/${id}`);
       }
     } catch (err) {
       if ((err as LoginError).response) {

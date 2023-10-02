@@ -35,10 +35,17 @@ export const ConversationList = ({
                   handleOnChange={setSearchValue}
                   searchValue={searchValue}
                 />
-                <List
-                  conversationListInfo={conversationListInfo}
-                  query={searchValue}
-                />
+                {conversationListInfo ? (
+                  <List
+                    conversationListInfo={conversationListInfo}
+                    query={searchValue}
+                  />
+                ) : (
+                  <p>
+                    You don't have any active conversation. Click here to add
+                    contacts and start conversations
+                  </p>
+                )}
               </>
             )}
           </>
