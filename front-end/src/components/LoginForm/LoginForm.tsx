@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { LoadingSpinner } from "../svg/LoadingSpinner";
 import { useState } from "react";
 import { ExclamationIcon } from "../svg/ExclamationIcon";
+import { AuthProps } from "../../types/AuthProps";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 type Values = {
   email: string;
@@ -31,12 +33,13 @@ const LoginSchema = Yup.object().shape({
 });
 
 type LoginFormProps = {
-  setAuth: React.Dispatch<React.SetStateAction<object>>;
+  setAuth: React.Dispatch<React.SetStateAction<AuthProps>>;
 };
 
 export const LoginForm = ({ setAuth }: LoginFormProps) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
-  const LOGIN_URL = "/sign";
+  const axiosPrivate = useAxiosPrivate()
+  const LOGIN_URL = "/login";
 
   const handleOnSubmit = async (
     formValues: Values,
@@ -56,10 +59,12 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
         }
       );
       if (response.data.success) {
-        const accessToken = response.data.accessToken;
-        const id = response.data.id;
-        setAuth({ accessToken, id });
+        const accessToken = JSON.stringify(response.data.accessToken)
+        const id = JSON.stringify(response.data.id);
+        setAuth({ success: true, accessToken, id });
         setSubmitting(false);
+        console.log(response.data)
+        console.log(id, accessToken);
       }
     } catch (err) {
       if ((err as LoginError).response) {

@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { LoadingSpinner } from "../svg/LoadingSpinner";
 import { useState } from "react";
 import { ExclamationIcon } from "../svg/ExclamationIcon";
+import { AuthProps } from "../../types/AuthProps";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 type Values = {
   name: string;
@@ -36,11 +38,12 @@ const RegisterSchema = Yup.object().shape({
 });
 
 type RegisterFormProps = {
-  setAuth: React.Dispatch<React.SetStateAction<object>>;
+  setAuth: React.Dispatch<React.SetStateAction<AuthProps>>;
 };
 
 export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
+  const axiosPrivate = useAxiosPrivate()
   const LOGIN_URL = "/sign";
 
   const handleOnSubmit = async (
@@ -49,7 +52,7 @@ export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
   ) => {
     setSubmitting(true);
     try {
-      const response = await axios.post(
+      const response = await axiosPrivate.post(
         LOGIN_URL,
         {
           email: formValues.email,
@@ -63,7 +66,7 @@ export const RegisterForm = ({ setAuth }: RegisterFormProps) => {
       if (response.data.success) {
         const accessToken = response.data.accessToken;
         const id = response.data.id;
-        setAuth({ accessToken, id });
+        setAuth({ success: true, accessToken, id });
         setSubmitting(false);
       }
     } catch (err) {

@@ -6,7 +6,7 @@ const Conversation = require("../models/conversations");
 const message = require("../models/message");
 
 exports.get = asyncHandler(async (req, res, next) => {
-  const userId = "6508695537fe843f89aa8444";
+  const userId = req.params.contactId;
 
   const allMessages = await Conversation.find({
     participants: {

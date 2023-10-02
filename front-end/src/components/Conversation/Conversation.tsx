@@ -7,7 +7,7 @@ import { MessageText } from "../MessageText/MessageText";
 import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
 import { useUserContext } from "../../context/useUserContext";
-import axios from "axios";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -21,12 +21,13 @@ export const Conversation = () => {
   const [newMessageSent, setNewMessageSent] = useState(false);
   const { contactId } = useParams();
   const { state } = useLocation();
-  const { contactName } = state;
+  const { contactName } = state || "oi"
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     const fetchConversationData = async () => {
       try {
-        const response = await axios.get(
+        const response = await axiosPrivate.get(
           `http://localhost:3000/messages/${contactId}`
         );
         if (response.status >= 200 && response.status <= 305) {

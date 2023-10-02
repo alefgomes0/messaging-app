@@ -4,24 +4,27 @@ import { UserContextProvider } from "./context/userContext";
 import { SignPage } from "./pages/SignPage/SignPage";
 import { MessengerPage } from "./pages/MessengerPage/MessengerPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthProvider";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/sign" element={<SignPage />} />
-          <Route
-            path="/"
-            element={
-              <UserContextProvider>
-                <MessengerPage />
-              </UserContextProvider>
-            }
-          >
-            <Route path=":contactId" element={<Conversation />} />
-          </Route>
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/sign" element={<SignPage />} />
+            <Route
+              path="/"
+              element={
+                <UserContextProvider>
+                  <MessengerPage />
+                </UserContextProvider>
+              }
+            >
+              <Route path=":contactId" element={<Conversation />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );

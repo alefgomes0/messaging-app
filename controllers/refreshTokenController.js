@@ -15,7 +15,7 @@ exports.get = async (req, res, next) => {
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET,
       (err, decoded) => {
-        if (err || getUserId(foundUser[0]._id) !== decoded.id) {
+        if (err || getUserId(foundUser._id) !== decoded.id) {
           return res.sendStatus(403);
         }
         const accessToken = jwt.sign(
@@ -27,6 +27,6 @@ exports.get = async (req, res, next) => {
       }
     );
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ success: false, message: err.message });
   }
 };
