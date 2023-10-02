@@ -3,6 +3,7 @@ exports.get = async (req, res, next) => {
   // On client, also delete the accessToken
 
   try {
+    console.log(req.cookies)
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204);
     const refreshToken = cookies.jwt;
