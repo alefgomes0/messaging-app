@@ -14,6 +14,8 @@ const connectDB = require("./config/dbConn");
 const PORT = process.env.PORT || 3500;
 const mongoose = require("mongoose");
 
+const io = require("socket.io")(5000);
+
 connectDB();
 
 app.use(logger);
@@ -29,8 +31,27 @@ app.use("/register", require("./routes/register"));
 app.use("/logout", require("./routes/logout"));
 app.use("/refresh", require("./routes/refresh"));
 
+io.on("connection", (socket) => {
+  const id = socket.handshake.query.id;
+  socket.join(id);
+
+  socket.on("send-message", ({ recipients, message }) => {
+    recipients.forEach((recipient) => {
+      const newRecipients = recipient.filter((r) => r !== recipient);
+      newRecipients.push(id);
+      socket.broadcast.to(recipient).emit("receive-message", {
+        recipients: newRecipients,
+        sender: id,
+        message,
+      });
+    });
+  });
+});
+
 app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
+app.use("/chat", require("./routes/chat"))
+app.use("/search-user", require("./routes/searchUser"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
 app.use("/profile-picture", require("./routes/profilePicture"));

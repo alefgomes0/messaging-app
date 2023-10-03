@@ -5,6 +5,7 @@ import { SignPage } from "./pages/SignPage/SignPage";
 import { MessengerPage } from "./pages/MessengerPage/MessengerPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
+import { SocketProvider } from "./context/SocketProvider";
 import { PersistLogin } from "./components/PersistLogin/PersistLogin";
 
 const App = () => {
@@ -18,9 +19,11 @@ const App = () => {
               <Route
                 path=":userId"
                 element={
-                  <UserContextProvider>
-                    <MessengerPage />
-                  </UserContextProvider>
+                  <SocketProvider>
+                    <UserContextProvider>
+                      <MessengerPage />
+                    </UserContextProvider>
+                  </SocketProvider>
                 }
               >
                 <Route

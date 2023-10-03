@@ -10,6 +10,7 @@ const MessageSchema = new Schema(
       receiver: { type: Schema.Types.ObjectId, required: true },
     },
     message: { type: String, required: true },
+    chat: { type: mongoose.Schema.Types.ObjectId, ref: "Chat" },
     date: { type: Date, required: true },
   },
   opts
