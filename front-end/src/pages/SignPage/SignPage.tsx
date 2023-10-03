@@ -6,7 +6,7 @@ import { useAuthContext } from "../../context/useAuthContext";
 export const SignPage = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [newAccountCreated, setNewAccountCreated] = useState(false);
-  const { setAuth } = useAuthContext();
+  const { setAuth, persist, setPersist } = useAuthContext();
 
   return (
     <div className="grid justify-items-center h-[100dvh] bg-[#190f1a] pb-[92px] font-[Cormonant]">
@@ -31,10 +31,17 @@ export const SignPage = () => {
               setShowRegisterForm={setShowRegisterForm}
             />
           ) : (
-            <LoginForm setAuth={setAuth} />
+            <LoginForm
+              setAuth={setAuth}
+              persist={persist}
+              setPersist={setPersist}
+            />
           )}
           {newAccountCreated && (
-            <p className="opacity-90 text-green-600 pt-4">New account created successfully! Enter the same credentials to login</p>
+            <p className="opacity-90 text-green-600 pt-4">
+              New account created successfully! Enter the same credentials to
+              login
+            </p>
           )}
           <p
             className="opacity-80 pt-6 cursor-pointer underline underline-offset-4 decoration-blue-400"

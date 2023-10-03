@@ -35,12 +35,12 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
       } catch (err) {
         setError(err as ErrorMessage);
         setIsLoading(false);
-        // navigate("/", { state: { from: location }, replace: true });
+        navigate("/", { state: { from: location }, replace: true });
       }
     };
 
     fetchContactsData();
-  }, [setConversationListInfo, setError, setIsLoading, axiosPrivate, id]);
+  }, [setConversationListInfo, setError, setIsLoading, id]);
 
   return (
     <>

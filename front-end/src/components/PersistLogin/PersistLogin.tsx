@@ -7,29 +7,37 @@ import { LoadingSpinner } from "../svg/LoadingSpinner";
 export const PersistLogin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const refresh = useRefreshToken();
-  const { auth } = useAuthContext();
+  const { auth, persist } = useAuthContext();
 
   useEffect(() => {
+    let isMounted = true;
+
     const verifyRefreshToken = async () => {
       try {
         await refresh();
       } catch (err) {
         console.error(err);
       } finally {
-        setIsLoading(false);
+        isMounted && setIsLoading(false);
       }
     };
 
-    !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
+    !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  useEffect(() => {
-    console.log(`isLoading: ${isLoading}`);
-    console.log(`Access Token: ${JSON.stringify(auth?.accessToken)}`);
-    console.log(`id: ${auth.id}`);
-  }, [isLoading]);
-
   return (
-    <>{isLoading ? <LoadingSpinner width={18} height={18} /> : <Outlet />}</>
+    <>
+      {!persist ? (
+        <Outlet />
+      ) : (
+        <>
+          {isLoading ? <LoadingSpinner width={18} height={18} /> : <Outlet />}
+        </>
+      )}
+    </>
   );
 };

@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { LoadingSpinner } from "../svg/LoadingSpinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ExclamationIcon } from "../svg/ExclamationIcon";
 import { AuthProps } from "../../types/AuthProps";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
@@ -34,9 +34,11 @@ const LoginSchema = Yup.object().shape({
 
 type LoginFormProps = {
   setAuth: React.Dispatch<React.SetStateAction<AuthProps>>;
+  persist: boolean | string;
+  setPersist: React.Dispatch<React.SetStateAction<boolean | string>>;
 };
 
-export const LoginForm = ({ setAuth }: LoginFormProps) => {
+export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const axiosPrivate = useAxiosPrivate();
   const LOGIN_URL = "/login";
@@ -60,8 +62,8 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
         }
       );
       if (response.data.success) {
-        const accessToken = response.data.accessToken
-        const id = response.data.id
+        const accessToken = response.data.accessToken;
+        const id = response.data.id;
         setAuth({ success: true, accessToken, id });
         setSubmitting(false);
         return navigate(`/${id}`);
@@ -75,6 +77,14 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
       setSubmitting(false);
     }
   };
+
+  const togglePersist = () => {
+    setPersist((prev) => !prev);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist ? "true" : "false");
+  }, [persist]);
 
   return (
     <Formik
@@ -150,6 +160,16 @@ export const LoginForm = ({ setAuth }: LoginFormProps) => {
               "Login"
             )}
           </button>
+          <div className="flex items-center mt-4 gap-1">
+            <input
+              type="checkbox"
+              id="persist"
+              onChange={togglePersist}
+              checked={persist ? true : false}
+              className="w-3 h-3"
+            />
+            <label htmlFor="persist">Keep me logged in</label>
+          </div>
         </Form>
       )}
     </Formik>
