@@ -20,7 +20,7 @@ app.use(logger);
 app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false, limit: "2mb" }));
-app.use(express.json({ limit: "2mb" }));
+app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 

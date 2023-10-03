@@ -3,10 +3,11 @@ import { ErrorMessage } from "../../types/ErrorMessage";
 import { ConversationList } from "../ConversationList/ConversationList";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useNavigate, useLocation } from "react-router-dom";
 
 type MessagesInfoProps = {
- id: string
-}
+  id: string;
+};
 
 export const MessagesInfo = ({ id }: MessagesInfoProps) => {
   const {
@@ -17,25 +18,24 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
     isLoading,
     setIsLoading,
   } = useUserContext();
-
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchContactsData = async () => {
       try {
-        const response = await axiosPrivate.get(
-          `/conversation/${id}`
-        );
+        const response = await axiosPrivate.get(`/conversation/${id}`);
         if (response.status === 204) {
-          setConversationListInfo(null)
-        }
-        else if (response.status >= 200 && response.status <= 305) {
+          setConversationListInfo(null);
+        } else if (response.status >= 200 && response.status <= 305) {
           setConversationListInfo(response.data);
         }
         setIsLoading(false);
       } catch (err) {
         setError(err as ErrorMessage);
         setIsLoading(false);
+        // navigate("/", { state: { from: location }, replace: true });
       }
     };
 

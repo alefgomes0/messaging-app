@@ -1,10 +1,17 @@
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/useAuthContext";
 
 export const LogoutButton = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuthContext();
+
   const logoutUser = async () => {
     try {
+      setAuth({
+        id: "",
+        accessToken: "",
+      });
       await axios.get("/logout", {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
