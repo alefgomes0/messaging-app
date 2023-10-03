@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ErrorMessage } from "../../types/ErrorMessage";
@@ -8,6 +8,7 @@ import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { io, Socket } from "socket.io-client";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -15,14 +16,18 @@ export const Conversation = () => {
   );
   //Limpar essa parte do código depois
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
-
   const { error, setError, isLoading, setIsLoading } = useUserContext();
-
   const [newMessageSent, setNewMessageSent] = useState(false);
   const { contactId } = useParams();
+  const { userId } = useParams();
   const { state } = useLocation();
-  const { contactName } = state || "oi";
+  const { contactName } = state;
   const axiosPrivate = useAxiosPrivate();
+  const [socketConnected, setSocketConnected] = useState(false)
+  let socket: Socket, selectedChatCompare;
+
+  const endpointRef = useRef("");
+  endpointRef.current = "http://localhost:3000";
 
   useEffect(() => {
     const fetchConversationData = async () => {
@@ -70,6 +75,16 @@ export const Conversation = () => {
     setNewMessageSent(true);
     fetchNewMessage();
   };
+
+  useEffect(() => {
+    socket = io(endpointRef.current);
+    socket.emit("setup", userId);
+    socket.on("connection", () => setSocketConnected(true))
+
+    return () => {
+      socket.disconnect()
+    }
+  }, []);
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">

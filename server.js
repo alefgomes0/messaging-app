@@ -40,7 +40,25 @@ app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);
 
-mongoose.connection.once("open", () => {
+/* const server = mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
   app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
-});
+}); */
+
+const server =  app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:5173"
+  }
+})
+
+io.on("connection", (socket) => {
+  console.log("connected to socket.io")
+  socket.on("setup", (userData) => {
+    socket.join(userData)
+    console.log(userData)
+    socket.emit("connected")
+  })
+})
