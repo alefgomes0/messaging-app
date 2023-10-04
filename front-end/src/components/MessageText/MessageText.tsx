@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { io, Socket } from "socket.io-client"
 
 type MessageTextProps = {
   contactId: string;
@@ -16,18 +17,21 @@ export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) 
   const { auth } = useAuthContext();
   const userId = auth.id;
   const axiosPrivate = useAxiosPrivate();
+  const socket = io("http://localhost:3000")
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await axiosPrivate.post(`/messages/${contactId}`, {
+    const { data } = await axiosPrivate.post(`/messages/${contactId}`, {
       userId,
       message,
     }, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true
     });
+    console.log(data)
     setMessage("");
     handleMessageSent();
+    //socket.emit("new message", data)
   };
 
   return (

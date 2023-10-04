@@ -3,33 +3,43 @@ const { body } = require("express-validator");
 const Message = require("../models/message");
 const Conversation = require("../models/conversations");
 
-exports.get = asyncHandler(async (req, res, next) => {
+exports.get = async (req, res, next) => {
   const userId = req.body.userId;
-  const contactId = req.params.contactId
+  const contactId = req.params.contactId;
 
-  const allMessages = await Conversation.find({
-    participants: {
-      $elemMatch: { $eq: userId },
-      $elemMatch: { $eq:contactId },
-    },
-  })
-    .populate({
-      path: "messages",
-      select: "message participants.sender date time",
+  try {
+    const allMessages = await Conversation.find({
+      participants: {
+        $elemMatch: { $eq: userId },
+        $elemMatch: { $eq: contactId },
+      },
     })
-    .populate("participants", "profilePicture")
-    .select({ participants: { $elemMatch: { $eq: contactId } } })
-    .exec();
+      .populate({
+        path: "messages",
+        select: "message participants.sender date time",
+      })
+      .populate("participants", "profilePicture")
+      .select({ participants: { $elemMatch: { $eq: contactId } } })
+      .exec();
 
-  res.json(allMessages);
-});
+    res.status(200).json({
+      success: true,
+      allMessages,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
 exports.post = [
   body("message").escape(),
 
   asyncHandler(async (req, res, next) => {
     const userId = req.body.userId;
-    const contactId = req.params.contactId
+    const contactId = req.params.contactId;
 
     const message = new Message({
       participants: {

@@ -45,20 +45,37 @@ app.use(errorHandler);
   app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
 }); */
 
-const server =  app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Server started at port ${PORT}`)
+);
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173"
-  }
-})
+    origin: "http://localhost:5173",
+  },
+});
 
 io.on("connection", (socket) => {
-  console.log("connected to socket.io")
+  console.log("connected to socket.io");
   socket.on("setup", (userData) => {
-    socket.join(userData)
-    console.log(userData)
-    socket.emit("connected")
-  })
-})
+    socket.join(userData);
+    console.log(userData);
+    socket.emit("connected");
+  });
+
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log(`User joined room: ${room}`);
+  });
+
+/*   socket.on("new message", (newMessageReceived) => {
+    const chat = newMessageReceived.chat;
+    if (!chat.user) return console.log("chat.users not defined");
+
+    chat.users.forEach((user) => {
+      if (user.id == newMessageReceived.sender.id) return;
+      socket.in(user.id).emit("message received", newMessageReceived);
+    });
+  }); */
+});

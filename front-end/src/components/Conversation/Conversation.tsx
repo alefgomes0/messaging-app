@@ -23,11 +23,22 @@ export const Conversation = () => {
   const { state } = useLocation();
   const { contactName } = state;
   const axiosPrivate = useAxiosPrivate();
-  const [socketConnected, setSocketConnected] = useState(false)
-  let socket: Socket, selectedChatCompare;
+  const [socketConnected, setSocketConnected] = useState(false);
+  let conversationId: string;
+  const socket: Socket = io("http://localhost:3000");
+  let selectedChatCompare;
 
-  const endpointRef = useRef("");
-  endpointRef.current = "http://localhost:3000";
+
+
+  useEffect(() => {
+    const socket: Socket = io("http://localhost:3000");
+    socket.emit("setup", userId);
+    socket.on("connection", () => setSocketConnected(true));
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [userId]);
 
   useEffect(() => {
     const fetchConversationData = async () => {
@@ -36,10 +47,15 @@ export const Conversation = () => {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         });
-        if (response.status >= 200 && response.status <= 305) {
-          setAllMessages(response.data[0].messages);
-          setProfilePicture(response.data[0].participants[0].profilePicture);
+        console.log(response.data);
+        if (response.data.success) {
+          setAllMessages(response.data.allMessages[0].messages);
+          setProfilePicture(
+            response.data.allMessages[0].participants[0].profilePicture
+          );
           setIsLoading(false);
+          conversationId = response.data.allMessages[0]._id;
+          socket.emit("join chat", conversationId);
         }
       } catch (err) {
         setIsLoading(false);
@@ -76,15 +92,20 @@ export const Conversation = () => {
     fetchNewMessage();
   };
 
+
   useEffect(() => {
-    socket = io(endpointRef.current);
-    socket.emit("setup", userId);
-    socket.on("connection", () => setSocketConnected(true))
+    socket.on("message received", (newMessageReceived) => {
+      if (!conversationId || contactId !== newMessageReceived.chat_id) {
+        //give notification
+      } else {
+        setAllMessages((prev) => [...prev, newMessageReceived]);
+      }
+    });
 
     return () => {
-      socket.disconnect()
-    }
-  }, []);
+      socket.disconnect();
+    };
+  });
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
