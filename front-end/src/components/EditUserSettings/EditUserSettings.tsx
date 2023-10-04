@@ -1,3 +1,4 @@
+import { axiosPrivate } from "../../api/axios";
 import { useEffect, useRef, useState } from "react";
 import { EditIcon } from "../svg/EditIcon";
 import { AddPhoto } from "../AddPhoto/AddPhoto";
@@ -15,14 +16,16 @@ export const EditUserSettings = ({
   userProfilePicture,
   handlePhotoUpload,
 }: EditUserSettingsProps) => {
+  const { auth, setAuth } = useAuthContext();
   const [showMenu, setShowMenu] = useState(false);
   const [editName, setEditName] = useState(false);
-  const [inputValue, setInputValue] = useState("Name");
+  const [inputValue, setInputValue] = useState(auth.name);
   const listRef = useRef<HTMLLIElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const { auth } = useAuthContext();
+
+  console.log(auth)
 
   useEffect(() => {
     const displayMenu = (e: MouseEvent) => {
@@ -52,6 +55,36 @@ export const EditUserSettings = ({
     if (editName) inputRef.current?.focus();
   }, [editName]);
 
+  const handleNameChange = async () => {
+    if (inputValue === auth.name) return;
+
+    try {
+      const response = await axiosPrivate.put(
+        "/user",
+        {
+          userId: auth.id,
+          newName: inputValue,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (response.data.success) {
+        setAuth((prev) => ({
+          ...prev,
+          name: inputValue,
+        }));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    await Promise.all([handleNameChange(), handlePhotoUpload()]);
+  };
+
   return (
     <li
       ref={listRef}
@@ -79,6 +112,7 @@ export const EditUserSettings = ({
                 inputRef={inputRef}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
+                username={auth.name}
               />
             ) : (
               <h3 className="text-xl font-semibold">{inputValue}</h3>
@@ -99,7 +133,7 @@ export const EditUserSettings = ({
           <button
             className="w-max h-min bg-fuchsia-700 text-fuchsia-50 px-8 py-1.5 rounded-md shadow-[0_2px_2px_rgba(0,0,0,0.15)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.15)_inset]"
             ref={buttonRef}
-            onClick={handlePhotoUpload}
+            onClick={handleSaveChanges}
           >
             Save Changes
           </button>

@@ -36,6 +36,7 @@ exports.post = async (req, res, next) => {
         success: true,
         id: user._id,
         email: user.email,
+        name: user.name,
         accessToken: accessToken,
       });
     } else {

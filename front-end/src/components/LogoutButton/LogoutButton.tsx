@@ -12,6 +12,7 @@ export const LogoutButton = () => {
         id: "",
         accessToken: "",
         email: "",
+        name: "",
       });
       await axios.get("/logout", {
         headers: { "Content-Type": "application/json" },

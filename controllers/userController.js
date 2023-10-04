@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const User = require("../models/user");
 
 exports.post = asyncHandler(async (req, res, next) => {
@@ -12,15 +12,33 @@ exports.post = asyncHandler(async (req, res, next) => {
     conversations: [],
   });
 
-  await newUser.save()
+  await newUser.save();
   res.json("saved");
 });
 
-exports.update = asyncHandler(async (req, res, next) => {
-  await User.findOneAndUpdate(
-    { _id: "6508695537fe843f89aa8444" },
-    { $addToSet: { conversations: { $each: ["6509f893fd862da958dd067e"] } }, }
-  ).exec();
+exports.update = [
+  body("userId").trim().escape(),
+  body("newName").trim().escape(),
 
-  res.json("updated");
-});
+  async (req, res, next) => {
+    console.log(req.body.userId, req.body.newId)
+    try {
+      const user = await User.findByIdAndUpdate(req.body.userId, {
+        $set: {
+          name: req.body.newName,
+        },
+      }).exec();
+
+      console.log(user);
+      return res.status(200).json({
+        success: true,
+        message: "User name updated",
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  }
+]

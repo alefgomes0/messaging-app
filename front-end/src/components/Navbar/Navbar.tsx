@@ -6,7 +6,7 @@ import { PhoneIcon } from "../svg/PhoneIcon";
 import { SettingsIcon } from "../svg/SettingsIcon";
 import { StarIcon } from "../svg/StarIcon";
 import { StatusIcon } from "../svg/StatusIcon";
-import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { axiosPrivate } from "../../api/axios";
 
 type NavbarProps = {
   id: string;
@@ -18,7 +18,6 @@ export const Navbar = ({ id }: NavbarProps) => {
     null
   );
   const [changeProfilePicture, setChangeProfilePicture] = useState(false);
-  const axiosPrivate = useAxiosPrivate();
 
   //LIDAR COM OS ERROS NESSE COMP E NO ADD PHOTO
 

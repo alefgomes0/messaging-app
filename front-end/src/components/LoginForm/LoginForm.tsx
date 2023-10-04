@@ -67,6 +67,7 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
           accessToken: response.data.accessToken,
           id: response.data.id,
           email: response.data.email,
+          name: response.data.name
         });
         setSubmitting(false);
         return navigate(`/${response.data.id}`);

@@ -34,8 +34,6 @@ app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
 app.use("/profile-picture", require("./routes/profilePicture"));
-
-app.use(verifyRoles);
 app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);

@@ -23,7 +23,13 @@ exports.get = async (req, res, next) => {
           process.env.ACCESS_TOKEN_SECRET,
           { expiresIn: "900s" }
         );
-        res.json({ success: true, accessToken, id: decoded.id });
+        res.json({
+          success: true,
+          accessToken,
+          id: decoded.id,
+          email: foundUser.email,
+          name: foundUser.name,
+        });
       }
     );
   } catch (err) {

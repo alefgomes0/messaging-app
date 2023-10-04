@@ -2,12 +2,14 @@ type EditUsernameProps = {
   inputRef: React.MutableRefObject<HTMLInputElement | null>;
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  username: string;
 };
 
 export const EditUsername = ({
   inputRef,
   inputValue,
   setInputValue,
+  username,
 }: EditUsernameProps) => {
   return (
     <div className="grid grid-cols-1 auto-rows-min gap-y-1">
@@ -23,7 +25,7 @@ export const EditUsername = ({
         ref={inputRef}
       />
       <div className="w-min h-min px-[20px] py-.5 bg-fuchsia-700 text-fuchsia-50 text-sm justify-self-end rounded-lg">
-        {inputValue.length}/25
+        {(inputValue || username).length}/25
       </div>
     </div>
   );

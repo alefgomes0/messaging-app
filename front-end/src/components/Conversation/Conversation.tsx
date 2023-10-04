@@ -10,6 +10,7 @@ import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useSocket } from "../../context/useSocket";
 
+
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
     null
@@ -25,6 +26,8 @@ export const Conversation = () => {
   const { contactName, conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
   const { socket } = useSocket();
+
+
 
   const fetchConversationData = async () => {
     try {
