@@ -2,14 +2,21 @@ import { useState } from "react";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { ConversationProps } from "../../types/ConversationProps";
+import { ErrorMessage } from "../../types/ErrorMessage";
 
 type MessageTextProps = {
   contactId: string;
-  handleMessageSent: () => void
-  newMessageSent: null | ConversationProps
+  handleMessageSent: () => void;
+  newMessageSent: null | ConversationProps;
+  setError: React.Dispatch<React.SetStateAction<null | ErrorMessage>>;
 };
 
-export const MessageText = ({ contactId, handleMessageSent, newMessageSent }: MessageTextProps) => {
+export const MessageText = ({
+  contactId,
+  handleMessageSent,
+  newMessageSent,
+  setError,
+}: MessageTextProps) => {
   const [message, setMessage] = useState("");
   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
@@ -21,16 +28,24 @@ export const MessageText = ({ contactId, handleMessageSent, newMessageSent }: Me
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data } = await axiosPrivate.post(`/messages/${contactId}`, {
-      userId,
-      message,
-    }, {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true
-    });
-    console.log(newMessageSent)
-    setMessage("");
-    handleMessageSent();
+    try {
+      await axiosPrivate.post(
+        `/messages/${contactId}`,
+        {
+          userId,
+          message,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(newMessageSent);
+      setMessage("");
+      handleMessageSent();
+    } catch (err) {
+      setError(err as ErrorMessage);
+    }
   };
 
   return (

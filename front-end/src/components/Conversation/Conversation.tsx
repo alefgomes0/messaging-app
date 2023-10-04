@@ -116,6 +116,7 @@ export const Conversation = () => {
                 contactId={contactId as string}
                 handleMessageSent={() => handleNewMessageSent()}
                 newMessageSent={newMessageSent}
+                setError={setError}
               />
             </>
           )}

@@ -12,7 +12,7 @@ type UserContextValues = {
     SetStateAction<LastMessageWithContact[] | null>
   >;
   error: null | ErrorMessage;
-  setError: React.Dispatch<SetStateAction<null | ErrorMessage>>;
+  setError: React.Dispatch<React.SetStateAction<null | ErrorMessage>>;
   isLoading: boolean;
   setIsLoading: React.Dispatch<SetStateAction<boolean>>;
 };
