@@ -16,6 +16,7 @@ export type LastMessageWithContact = {
       profilePicture?: string;
     }
   ];
+  _id: string;
 };
 
 export type ConversationListProps = {

@@ -28,7 +28,7 @@ export const List = ({ conversationListInfo, query }: ListProps) => {
             return (
               <NavLink
                 to={`conversation/${conversation.participants[0]._id}`}
-                state={{ contactName: conversation.participants[0].name }}
+                state={{ contactName: conversation.participants[0].name, conversationId: conversation._id }}
                 className={({ isActive }) =>
                   `min-h-[90px] w-full grid grid-cols-[60px_1fr] grid-rows-2 items-center gap-x-4 gap-y-1 text-neutral-200 rounded-md ${
                     isActive ? "bg-[#333]" : ""

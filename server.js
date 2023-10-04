@@ -11,7 +11,7 @@ const credentials = require("./config/credentials");
 const verifyJWT = require("./middleware/verifyJWT");
 const verifyRoles = require("./middleware/verifyRoles");
 const connectDB = require("./config/dbConn");
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 
 connectDB();
@@ -40,7 +40,46 @@ app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);
 
-mongoose.connection.once("open", () => {
+/* const server = mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
   app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+}); */
+
+const server = app.listen(PORT, () =>
+  console.log(`Server started at port ${PORT}`)
+);
+
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:5173",
+    withCredentials: true,
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("connected to socket.io");
+  socket.on("setup", (userData) => {
+    socket.join(userData);
+    console.log(userData);
+    socket.emit("connected");
+  });
+
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log(`A user joined room: ${room}`);
+    console.log(room, "pica grande");
+  });
+
+  socket.on("new message", (newMessageSent, userId) => {
+    console.log(newMessageSent.participants.receiver);
+    socket
+      .in(newMessageSent.participants.receiver)
+      .emit("message received", newMessageSent);
+  });
+
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData);
+  });
 });

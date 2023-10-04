@@ -8,6 +8,7 @@ import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useSocket } from "../../context/useSocket";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -15,35 +16,50 @@ export const Conversation = () => {
   );
   //Limpar essa parte do código depois
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
-
   const { error, setError, isLoading, setIsLoading } = useUserContext();
-
-  const [newMessageSent, setNewMessageSent] = useState(false);
+  const [newMessageSent, setNewMessageSent] =
+    useState<null | ConversationProps>(null);
   const { contactId } = useParams();
+  const { userId } = useParams();
   const { state } = useLocation();
-  const { contactName } = state || "oi";
+  const { contactName, conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
+  const { socket } = useSocket();
+
+  const fetchConversationData = async () => {
+    try {
+      const response = await axiosPrivate.get(`/messages/${contactId}`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      if (response.data.success) {
+        setAllMessages(response.data.allMessages[0].messages);
+        setProfilePicture(
+          response.data.allMessages[0].participants[0].profilePicture
+        );
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setIsLoading(false);
+      setError(err as ErrorMessage);
+    }
+  };
 
   useEffect(() => {
-    const fetchConversationData = async () => {
-      try {
-        const response = await axiosPrivate.get(`/messages/${contactId}`, {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        });
-        if (response.status >= 200 && response.status <= 305) {
-          setAllMessages(response.data[0].messages);
-          setProfilePicture(response.data[0].participants[0].profilePicture);
-          setIsLoading(false);
-        }
-      } catch (err) {
-        setIsLoading(false);
-        setError(err as ErrorMessage);
-      }
-    };
-
     fetchConversationData();
-  }, [contactId, axiosPrivate, setIsLoading, setError]);
+    if (!socket) return;
+    socket.emit("setup", userId);
+    socket.emit("join chat", conversationId);
+    socket.on("message received", (newMessageReceived: ConversationProps) => {
+      setAllMessages((prevMessages) =>
+        (prevMessages ?? []).concat(newMessageReceived)
+      );
+    });
+
+    return () => {
+      socket.off("message received");
+    };
+  }, []);
 
   const fetchNewMessage = async () => {
     try {
@@ -59,6 +75,9 @@ export const Conversation = () => {
           (prevMessages ?? []).concat(response.data[0].messages[0])
         );
         setIsLoading(false);
+        console.log(response.data[0].messages[0]);
+        setNewMessageSent(response.data[0].messages[0]);
+        socket?.emit("new message", response.data[0].messages[0], userId);
       }
     } catch (err) {
       setIsLoading(false);
@@ -67,7 +86,6 @@ export const Conversation = () => {
   };
 
   const handleNewMessageSent = async () => {
-    setNewMessageSent(true);
     fetchNewMessage();
   };
 
@@ -97,6 +115,7 @@ export const Conversation = () => {
               <MessageText
                 contactId={contactId as string}
                 handleMessageSent={() => handleNewMessageSent()}
+                setError={setError}
               />
             </>
           )}

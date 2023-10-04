@@ -6,7 +6,7 @@ type MessageBodyProps = {
   contactId: string;
   allMessages: ConversationProps[] | null;
   profilePicture: null | string;
-  newMessageSent: boolean;
+  newMessageSent: null | ConversationProps
 };
 
 export const MessageBody = ({
