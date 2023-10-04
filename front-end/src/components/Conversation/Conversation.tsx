@@ -47,14 +47,18 @@ export const Conversation = () => {
 
   useEffect(() => {
     fetchConversationData();
-    socket?.emit("setup", userId);
-    socket?.emit("join chat", conversationId);
-    socket?.on("message received", (newMessageReceived: ConversationProps) => {
+    if (!socket) return;
+    socket.emit("setup", userId);
+    socket.emit("join chat", conversationId);
+    socket.on("message received", (newMessageReceived: ConversationProps) => {
       setAllMessages((prevMessages) =>
-      (prevMessages ?? []).concat(newMessageReceived)
+        (prevMessages ?? []).concat(newMessageReceived)
       );
     });
 
+    return () => {
+      socket.off("message received");
+    };
   }, []);
 
   const fetchNewMessage = async () => {
