@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
-import { useAuthContext } from "./useAuthContext";
 
 type SocketProviderProps = {
   children: React.ReactNode;
@@ -14,7 +13,6 @@ type SocketContextValues = {
 export const SocketContext = createContext({} as SocketContextValues)
 
 export const SocketProvider = ({ children }: SocketProviderProps) => {
-  const { auth } = useAuthContext();
   const [socket, setSocket] = useState<Socket | null>(null)
   
   useEffect(() => {
@@ -24,6 +22,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
     return () => {
       socket?.close()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

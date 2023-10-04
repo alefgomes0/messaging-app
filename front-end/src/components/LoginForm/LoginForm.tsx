@@ -166,7 +166,7 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               id="persist"
               onChange={togglePersist}
               checked={persist ? true : false}
-              className="w-3 h-3"
+              className="w[14px] h-[14px] rounded-lg"
             />
             <label htmlFor="persist">Keep me logged in</label>
           </div>
