@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
-import { io, Socket } from "socket.io-client"
+import { ConversationProps } from "../../types/ConversationProps";
 
 type MessageTextProps = {
   contactId: string;
   handleMessageSent: () => void
+  newMessageSent: null | ConversationProps
 };
 
-export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) => {
+export const MessageText = ({ contactId, handleMessageSent, newMessageSent }: MessageTextProps) => {
   const [message, setMessage] = useState("");
   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
@@ -17,7 +18,6 @@ export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) 
   const { auth } = useAuthContext();
   const userId = auth.id;
   const axiosPrivate = useAxiosPrivate();
-  const socket = io("http://localhost:3000")
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,10 +28,9 @@ export const MessageText = ({ contactId, handleMessageSent }: MessageTextProps) 
       headers: { "Content-Type": "application/json" },
       withCredentials: true
     });
-    console.log(data)
+    console.log(newMessageSent)
     setMessage("");
     handleMessageSent();
-    //socket.emit("new message", data)
   };
 
   return (

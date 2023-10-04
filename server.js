@@ -11,7 +11,7 @@ const credentials = require("./config/credentials");
 const verifyJWT = require("./middleware/verifyJWT");
 const verifyRoles = require("./middleware/verifyRoles");
 const connectDB = require("./config/dbConn");
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 
 connectDB();
@@ -53,6 +53,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
     origin: "http://localhost:5173",
+    withCredentials: true,
   },
 });
 
@@ -66,16 +67,19 @@ io.on("connection", (socket) => {
 
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log(`User joined room: ${room}`);
+    console.log(`A user joined room: ${room}`);
+    console.log(room, "pica grande");
   });
 
-/*   socket.on("new message", (newMessageReceived) => {
-    const chat = newMessageReceived.chat;
-    if (!chat.user) return console.log("chat.users not defined");
+  socket.on("new message", (newMessageSent, userId) => {
+    console.log(newMessageSent.participants.receiver);
+    socket
+      .in(newMessageSent.participants.receiver)
+      .emit("message received", newMessageSent);
+  });
 
-    chat.users.forEach((user) => {
-      if (user.id == newMessageReceived.sender.id) return;
-      socket.in(user.id).emit("message received", newMessageReceived);
-    });
-  }); */
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData);
+  });
 });

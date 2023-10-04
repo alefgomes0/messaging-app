@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ErrorMessage } from "../../types/ErrorMessage";
@@ -8,7 +8,7 @@ import { MessageBody } from "../MessageBody/MessageBody";
 import { ConversationProps } from "../../types/ConversationProps";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
-import { io, Socket } from "socket.io-client";
+import { useSocket } from "../../context/useSocket";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -17,54 +17,45 @@ export const Conversation = () => {
   //Limpar essa parte do código depois
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
   const { error, setError, isLoading, setIsLoading } = useUserContext();
-  const [newMessageSent, setNewMessageSent] = useState(false);
+  const [newMessageSent, setNewMessageSent] =
+    useState<null | ConversationProps>(null);
   const { contactId } = useParams();
   const { userId } = useParams();
   const { state } = useLocation();
-  const { contactName } = state;
+  const { contactName, conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
-  const [socketConnected, setSocketConnected] = useState(false);
-  let conversationId: string;
-  const socket: Socket = io("http://localhost:3000");
-  let selectedChatCompare;
+  const { socket } = useSocket();
 
-
-
-  useEffect(() => {
-    const socket: Socket = io("http://localhost:3000");
-    socket.emit("setup", userId);
-    socket.on("connection", () => setSocketConnected(true));
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [userId]);
-
-  useEffect(() => {
-    const fetchConversationData = async () => {
-      try {
-        const response = await axiosPrivate.get(`/messages/${contactId}`, {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        });
-        console.log(response.data);
-        if (response.data.success) {
-          setAllMessages(response.data.allMessages[0].messages);
-          setProfilePicture(
-            response.data.allMessages[0].participants[0].profilePicture
-          );
-          setIsLoading(false);
-          conversationId = response.data.allMessages[0]._id;
-          socket.emit("join chat", conversationId);
-        }
-      } catch (err) {
+  const fetchConversationData = async () => {
+    try {
+      const response = await axiosPrivate.get(`/messages/${contactId}`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      if (response.data.success) {
+        setAllMessages(response.data.allMessages[0].messages);
+        setProfilePicture(
+          response.data.allMessages[0].participants[0].profilePicture
+        );
         setIsLoading(false);
-        setError(err as ErrorMessage);
       }
-    };
+    } catch (err) {
+      setIsLoading(false);
+      setError(err as ErrorMessage);
+    }
+  };
 
+  useEffect(() => {
     fetchConversationData();
-  }, [contactId, axiosPrivate, setIsLoading, setError]);
+    socket?.emit("setup", userId);
+    socket?.emit("join chat", conversationId);
+    socket?.on("message received", (newMessageReceived: ConversationProps) => {
+      setAllMessages((prevMessages) =>
+      (prevMessages ?? []).concat(newMessageReceived)
+      );
+    });
+
+  }, []);
 
   const fetchNewMessage = async () => {
     try {
@@ -80,6 +71,9 @@ export const Conversation = () => {
           (prevMessages ?? []).concat(response.data[0].messages[0])
         );
         setIsLoading(false);
+        console.log(response.data[0].messages[0]);
+        setNewMessageSent(response.data[0].messages[0]);
+        socket?.emit("new message", response.data[0].messages[0], userId);
       }
     } catch (err) {
       setIsLoading(false);
@@ -88,24 +82,8 @@ export const Conversation = () => {
   };
 
   const handleNewMessageSent = async () => {
-    setNewMessageSent(true);
     fetchNewMessage();
   };
-
-
-  useEffect(() => {
-    socket.on("message received", (newMessageReceived) => {
-      if (!conversationId || contactId !== newMessageReceived.chat_id) {
-        //give notification
-      } else {
-        setAllMessages((prev) => [...prev, newMessageReceived]);
-      }
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  });
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
@@ -133,6 +111,7 @@ export const Conversation = () => {
               <MessageText
                 contactId={contactId as string}
                 handleMessageSent={() => handleNewMessageSent()}
+                newMessageSent={newMessageSent}
               />
             </>
           )}

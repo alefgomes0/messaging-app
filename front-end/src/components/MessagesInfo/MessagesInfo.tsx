@@ -40,7 +40,7 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
     };
 
     fetchContactsData();
-  }, [setConversationListInfo, setError, setIsLoading, id]);
+  }, []);
 
   return (
     <>

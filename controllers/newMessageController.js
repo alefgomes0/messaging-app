@@ -13,7 +13,7 @@ exports.get = asyncHandler(async (req, res, next) => {
     .populate({
       path: "messages",
       options: { sort: { date: -1 }, limit: 1 },
-      select: "message participants.sender date time",
+      select: "message participants date time",
     })
     .exec();
 
