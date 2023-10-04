@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { EditIcon } from "../svg/EditIcon";
 import { AddPhoto } from "../AddPhoto/AddPhoto";
 import { EditUsername } from "../EditUsername/EditUsername";
+import { useAuthContext } from "../../context/useAuthContext";
 
 type EditUserSettingsProps = {
   userProfilePicture: string | null;
@@ -21,6 +22,7 @@ export const EditUserSettings = ({
   const divRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const { auth } = useAuthContext();
 
   useEffect(() => {
     const displayMenu = (e: MouseEvent) => {
@@ -92,7 +94,7 @@ export const EditUserSettings = ({
           </div>
           <div className="flex flex-col justify-between text-neutral-200">
             <p className="text-sm opacity-70">User email</p>
-            <p className="font-semibold">someemail@.com</p>
+            <p className="font-semibold opacity-90">{auth.email}</p>
           </div>
           <button
             className="w-max h-min bg-fuchsia-700 text-fuchsia-50 px-8 py-1.5 rounded-md shadow-[0_2px_2px_rgba(0,0,0,0.15)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.15)_inset]"

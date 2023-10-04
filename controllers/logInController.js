@@ -35,6 +35,7 @@ exports.post = async (req, res, next) => {
       res.status(200).json({
         success: true,
         id: user._id,
+        email: user.email,
         accessToken: accessToken,
       });
     } else {

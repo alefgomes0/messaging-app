@@ -59,19 +59,18 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
-  socket.on("setup", (userData) => {
-    socket.join(userData);
-    console.log(userData);
-    socket.emit("connected");
+  socket.on("setup", (userId) => {
+    socket.join(userId);
+    console.log(userId);
+    socket.emit("connected", userId);
   });
 
   socket.on("join chat", (room) => {
     socket.join(room);
     console.log(`A user joined room: ${room}`);
-    console.log(room, "pica grande");
   });
 
-  socket.on("new message", (newMessageSent, userId) => {
+  socket.on("new message", (newMessageSent) => {
     console.log(newMessageSent.participants.receiver);
     socket
       .in(newMessageSent.participants.receiver)
@@ -80,6 +79,6 @@ io.on("connection", (socket) => {
 
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");
-    socket.leave(userData);
+    socket.leave(userId);
   });
 });

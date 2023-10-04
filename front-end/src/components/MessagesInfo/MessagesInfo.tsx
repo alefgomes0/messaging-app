@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import axios from "../../api/axios";
 import { ErrorMessage } from "../../types/ErrorMessage";
 import { ConversationList } from "../ConversationList/ConversationList";
 import { useUserContext } from "../../context/useUserContext";

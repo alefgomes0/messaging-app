@@ -62,11 +62,14 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
         }
       );
       if (response.data.success) {
-        const accessToken = response.data.accessToken;
-        const id = response.data.id;
-        setAuth({ success: true, accessToken, id });
+        setAuth({
+          success: true,
+          accessToken: response.data.accessToken,
+          id: response.data.id,
+          email: response.data.email,
+        });
         setSubmitting(false);
-        return navigate(`/${id}`);
+        return navigate(`/${response.data.id}`);
       }
     } catch (err) {
       if ((err as LoginError).response) {

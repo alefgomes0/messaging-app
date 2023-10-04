@@ -11,6 +11,7 @@ export const LogoutButton = () => {
       setAuth({
         id: "",
         accessToken: "",
+        email: "",
       });
       await axios.get("/logout", {
         headers: { "Content-Type": "application/json" },

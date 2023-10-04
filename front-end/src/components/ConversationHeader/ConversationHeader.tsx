@@ -15,7 +15,8 @@ export const ConversationHeader = ({
 
   useEffect(() => {
     if (!socket) return;
-    socket.on("connected", () => {
+    socket.on("connected", (userId) => {
+      console.log(userId)
       setIsOnline(true);
     });
 
