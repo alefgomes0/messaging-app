@@ -1,4 +1,4 @@
-import axios from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/useAuthContext";
 
@@ -14,10 +14,7 @@ export const LogoutButton = () => {
         email: "",
         name: "",
       });
-      await axios.get("/logout", {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      await axiosPrivate.get("/logout");
       return navigate("/");
     } catch (err) {
       console.log(err);

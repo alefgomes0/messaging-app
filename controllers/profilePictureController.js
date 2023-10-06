@@ -9,6 +9,7 @@ exports.get = asyncHandler(async (req, res, next) => {
   res.json(userProfilePicture);
 });
 
+
 exports.post = asyncHandler(async (req, res, next) => {
   await User.findByIdAndUpdate(req.params.userId, {
     $set: { profilePicture: req.body.newImage },

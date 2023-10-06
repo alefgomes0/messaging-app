@@ -10,7 +10,7 @@ import { axiosPrivate } from "../../api/axios";
 
 type NavbarProps = {
   id: string;
-}
+};
 
 export const Navbar = ({ id }: NavbarProps) => {
   const [selectIcon, setSelectIcon] = useState(0);
@@ -23,12 +23,7 @@ export const Navbar = ({ id }: NavbarProps) => {
 
   const fetchUserProfilePicture = async () => {
     try {
-      const response = await axiosPrivate.get(
-        `/profile-picture/${id}`, {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true
-        }
-      );
+      const response = await axiosPrivate.get(`/profile-picture/${id}`);
       if (response.status >= 200 && response.status <= 305) {
         setUserProfilePicture(response.data.profilePicture);
       }

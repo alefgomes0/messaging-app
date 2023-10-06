@@ -28,12 +28,12 @@ app.use("/login", require("./routes/auth"));
 app.use("/register", require("./routes/register"));
 app.use("/logout", require("./routes/logout"));
 app.use("/refresh", require("./routes/refresh"));
+app.use("/profile-picture", require("./routes/profilePicture"));
 
 app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
-app.use("/profile-picture", require("./routes/profilePicture"));
 app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);
@@ -77,6 +77,6 @@ io.on("connection", (socket) => {
 
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");
-    socket.leave(userId);
+    socket.disconnect(true);
   });
 });

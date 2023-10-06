@@ -10,7 +10,6 @@ import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useSocket } from "../../context/useSocket";
 
-
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
     null
@@ -27,14 +26,9 @@ export const Conversation = () => {
   const axiosPrivate = useAxiosPrivate();
   const { socket } = useSocket();
 
-
-
   const fetchConversationData = async () => {
     try {
-      const response = await axiosPrivate.get(`/messages/${contactId}`, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      const response = await axiosPrivate.get(`/messages/${contactId}`);
       if (response.data.success) {
         setAllMessages(response.data.allMessages[0].messages);
         setProfilePicture(
@@ -67,11 +61,7 @@ export const Conversation = () => {
   const fetchNewMessage = async () => {
     try {
       const response = await axiosPrivate.get(
-        `http://localhost:3000/new-message/${contactId}`,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
+        `http://localhost:3000/new-message/${contactId}`
       );
       if (response.status >= 200 && response.status <= 305) {
         setAllMessages((prevMessages) =>

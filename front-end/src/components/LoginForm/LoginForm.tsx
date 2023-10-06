@@ -50,24 +50,17 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
   ) => {
     setSubmitting(true);
     try {
-      const response = await axiosPrivate.post(
-        LOGIN_URL,
-        {
-          email: formValues.email,
-          password: formValues.password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await axiosPrivate.post(LOGIN_URL, {
+        email: formValues.email,
+        password: formValues.password,
+      });
       if (response.data.success) {
         setAuth({
           success: true,
           accessToken: response.data.accessToken,
           id: response.data.id,
           email: response.data.email,
-          name: response.data.name
+          name: response.data.name,
         });
         setSubmitting(false);
         return navigate(`/${response.data.id}`);

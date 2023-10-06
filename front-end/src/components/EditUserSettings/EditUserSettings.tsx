@@ -25,8 +25,6 @@ export const EditUserSettings = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-  console.log(auth)
-
   useEffect(() => {
     const displayMenu = (e: MouseEvent) => {
       if (e.target === buttonRef.current) {
@@ -65,10 +63,6 @@ export const EditUserSettings = ({
           userId: auth.id,
           newName: inputValue,
         },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
       );
       if (response.data.success) {
         setAuth((prev) => ({

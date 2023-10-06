@@ -211,3 +211,7 @@
 4 de outubro de 2023 às 18:21:45 BRT	5f7b2654-62f0-4583-87e2-234b7471c04c	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
 4 de outubro de 2023 às 19:00:15 BRT	c807ccb6-52ed-4813-b56a-dc1fcf42971a	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
 4 de outubro de 2023 às 19:00:15 BRT	0ff85d8f-0597-4b9c-812c-0c0f1062f0ca	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+4 de outubro de 2023 às 19:43:29 BRT	102d0268-3ca2-4bac-a8a0-65305e264760	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+6 de outubro de 2023 às 14:10:04 BRT	69896aa2-9b10-4dd4-b3f5-1f39df31bdba	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+6 de outubro de 2023 às 14:10:04 BRT	4a53f3fb-cd12-4601-b473-0832293b4fa1	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+6 de outubro de 2023 às 14:10:05 BRT	d48d71f8-bbe6-475d-91de-ae0a748dadff	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
