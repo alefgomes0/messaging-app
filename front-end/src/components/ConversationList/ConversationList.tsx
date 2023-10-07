@@ -34,6 +34,7 @@ export const ConversationList = ({
                 <SearchBar
                   handleOnChange={setSearchValue}
                   searchValue={searchValue}
+                  inputPlaceholder="Search a contact name"
                 />
                 {conversationListInfo ? (
                   <List

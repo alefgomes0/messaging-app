@@ -5,13 +5,19 @@ export const MessageIcon = ({
   height,
   selectIcon,
   setSelectIcon,
+  setSearchUser,
 }: IconeProps) => {
   return (
     <li
       className={`relative rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer hover:bg-neutral-700 ${
         selectIcon === 0 ? "bg-neutral-700 opacity-70" : "bg-neutral-800"
       }  transition-colors duration-100 ease-in-out`}
-      onClick={() => setSelectIcon(0)}
+      onClick={() => {
+        if (setSearchUser && setSelectIcon) {
+          setSearchUser(false);
+          setSelectIcon(0);
+        }
+      }}
     >
       <div
         className={`w-4 h-[16px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${

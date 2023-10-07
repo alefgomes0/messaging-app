@@ -70,7 +70,7 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("online-users", connectedUsers);
     console.log(connectedUsers);
   });
-
+  
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
     socket.broadcast.emit("users-online", connectedUsers)

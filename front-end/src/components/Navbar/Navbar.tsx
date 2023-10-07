@@ -2,17 +2,18 @@ import { useState, useEffect } from "react";
 import { EditUserSettings } from "../EditUserSettings/EditUserSettings";
 import { ArchiveIcon } from "../svg/ArchiveIcon";
 import { MessageIcon } from "../svg/MessageIcon";
-import { PhoneIcon } from "../svg/PhoneIcon";
 import { SettingsIcon } from "../svg/SettingsIcon";
 import { StarIcon } from "../svg/StarIcon";
 import { StatusIcon } from "../svg/StatusIcon";
 import { axiosPrivate } from "../../api/axios";
+import { AddUserIcon } from "../svg/AddUserIcon";
 
 type NavbarProps = {
   id: string;
+  setSearchUser: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Navbar = ({ id }: NavbarProps) => {
+export const Navbar = ({ id, setSearchUser }: NavbarProps) => {
   const [selectIcon, setSelectIcon] = useState(0);
   const [userProfilePicture, setUserProfilePicture] = useState<null | string>(
     null
@@ -51,12 +52,14 @@ export const Navbar = ({ id }: NavbarProps) => {
               height={20}
               selectIcon={selectIcon}
               setSelectIcon={setSelectIcon}
+              setSearchUser={setSearchUser}
             />
-            <PhoneIcon
+            <AddUserIcon
               width={20}
               height={20}
               selectIcon={selectIcon}
               setSelectIcon={setSelectIcon}
+              setSearchUser={setSearchUser}
             />
             <StatusIcon
               width={20}

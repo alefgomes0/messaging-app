@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from "react";
 type SearchBarProps = {
   handleOnChange: React.Dispatch<React.SetStateAction<string>>;
   searchValue: string;
+  inputPlaceholder: string;
 };
 
-export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
+export const SearchBar = ({ handleOnChange, searchValue, inputPlaceholder }: SearchBarProps) => {
   const [inputOnFocus, setInputOnFocus] = useState(false);
   const divRef = useRef<null | HTMLInputElement>(null);
 
@@ -27,7 +28,7 @@ export const SearchBar = ({ handleOnChange, searchValue }: SearchBarProps) => {
           onFocus={() => setInputOnFocus(true)}
           type="search"
           name="search"
-          placeholder="Search a contact name"
+          placeholder={inputPlaceholder}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleOnChange(e.target.value)
           }
