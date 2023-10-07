@@ -30,6 +30,7 @@ export const MessageBody = ({
       <ConversationHeader
         profilePicture={profilePicture}
         contactName={contactName}
+        contactId={contactId}
       />
       <div className="overflow-y-auto bg-neutral-800">
         {allMessages?.map((message) => {

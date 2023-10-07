@@ -55,12 +55,25 @@ const io = require("socket.io")(server, {
   },
 });
 
+let connectedUsers = [];
+io.use((socket, next) => {
+  next();
+});
+
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
   socket.on("setup", (userId) => {
     socket.join(userId);
-    console.log(userId);
-    socket.emit("connected", userId);
+    if (!connectedUsers.includes(userId)) {
+      connectedUsers.push(userId);
+    }
+    socket.broadcast.emit("online-users", connectedUsers);
+    console.log(connectedUsers);
+  });
+
+  socket.on("user-disconnect", (userId) => {
+    connectedUsers = connectedUsers.filter((id) => id !== userId);
+    socket.broadcast.emit("users-online", connectedUsers)
   });
 
   socket.on("join chat", (room) => {

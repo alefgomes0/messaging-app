@@ -45,7 +45,6 @@ export const Conversation = () => {
   useEffect(() => {
     fetchConversationData();
     if (!socket) return;
-    socket.emit("setup", userId);
     socket.emit("join chat", conversationId);
     socket.on("message received", (newMessageReceived: ConversationProps) => {
       setAllMessages((prevMessages) =>
@@ -55,6 +54,7 @@ export const Conversation = () => {
 
     return () => {
       socket.off("message received");
+      socket.off("join chat");
     };
   }, []);
 
@@ -68,7 +68,6 @@ export const Conversation = () => {
           (prevMessages ?? []).concat(response.data[0].messages[0])
         );
         setIsLoading(false);
-        console.log(response.data[0].messages[0]);
         setNewMessageSent(response.data[0].messages[0]);
         socket?.emit("new message", response.data[0].messages[0], userId);
       }

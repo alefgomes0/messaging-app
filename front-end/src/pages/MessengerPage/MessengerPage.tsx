@@ -5,14 +5,22 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../context/useAuthContext";
 import { MessagesInfo } from "../../components/MessagesInfo/MessagesInfo";
+import { useSocket } from "../../context/useSocket";
 
 export const MessengerPage = () => {
   const { auth, setAuth } = useAuthContext();
+  const { socket } = useSocket();
   const navigate = useNavigate();
   const { userId } = useParams();
   const [suspiciousActivity, setSuspiciousActivity] = useState(false);
 
   useEffect(() => {
+    if (!socket) return;
+    socket.emit("setup", userId);
+    socket.on("users", (user) => {
+      console.log(user)
+    });
+
     const logoutSuspiciousUser = async () => {
       if (auth.id !== userId) {
         try {
@@ -34,7 +42,12 @@ export const MessengerPage = () => {
     };
 
     logoutSuspiciousUser();
-  }, [auth.id, userId]);
+
+    return () => {
+      socket.off("setup");
+      socket.emit("user-disconnect", userId)
+    };
+  }, [socket, userId]);
 
   return (
     <>

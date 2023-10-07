@@ -10,7 +10,6 @@ exports.post = async (req, res, next) => {
   } else {
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
-      // Cria o JWT
       const accessToken = jwt.sign(
         { id: user._id },
         process.env.ACCESS_TOKEN_SECRET,
