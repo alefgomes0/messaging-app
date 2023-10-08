@@ -2,6 +2,6 @@ const express = require("express");
 const router = express.Router();
 const searchUser = require("../controllers/searchUserController")
 
-router.post("/?", searchUser.post);
+router.get("/:userId/?", searchUser.get);
 
 module.exports = router;

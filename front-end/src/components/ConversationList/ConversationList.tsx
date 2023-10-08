@@ -3,6 +3,7 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import { Loading } from "../Loading/Loading";
 import { ConversationListProps } from "../../types/ConversationListProps";
 import { List } from "../List/List";
+import { AddUserIcon } from "../svg/AddUserIcon";
 
 export const ConversationList = ({
   isLoading,
@@ -42,10 +43,14 @@ export const ConversationList = ({
                     query={searchValue}
                   />
                 ) : (
-                  <p className="text-center text-neutral-200 opacity-80">
-                    You don't have any active conversation. Click here to add
-                    contacts and start a conversation.
-                  </p>
+                  <div className="flex flex-col items-center text-center text-neutral-200 opacity-80">
+                    <p>You don't have any active conversation.</p>
+                    <p>Click on this icon </p>
+                    <span className="pointer-events-none">
+                      <AddUserIcon width={12} height={12} />
+                    </span>
+                    <p>To add users and start a conversation</p>
+                  </div>
                 )}
               </>
             )}

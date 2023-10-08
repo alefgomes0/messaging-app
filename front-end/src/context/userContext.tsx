@@ -14,7 +14,7 @@ type UserContextValues = {
   error: null | ErrorMessage;
   setError: React.Dispatch<React.SetStateAction<null | ErrorMessage>>;
   isLoading: boolean;
-  setIsLoading: React.Dispatch<SetStateAction<boolean>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const UserContext = createContext({} as UserContextValues);

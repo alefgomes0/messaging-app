@@ -1,7 +1,7 @@
 const { query } = require("express-validator");
 const User = require("../models/user");
 
-exports.post = [
+exports.get = [
   query("q").escape().trim(),
 
   async (req, res, next) => {
@@ -20,7 +20,7 @@ exports.post = [
           ],
         },
         "name email profilePicture"
-      ).find({ _id: { $ne: req.body.userId } });
+      ).find({ _id: { $ne: req.params.userId } });
 
       return res.status(200).json({
         success: true,

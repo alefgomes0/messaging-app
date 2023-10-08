@@ -26,7 +26,7 @@ export const ContactCard = ({
       to={`conversation/${contactId}`}
       state={{ contactName: contactName, conversationId: conversationId }}
       className={({ isActive }) =>
-        `min-h-[90px] w-full grid grid-cols-[60px_1fr] grid-rows-2 items-center gap-x-4 gap-y-1 text-neutral-200 rounded-md ${
+        `min-h-[90px] w-full grid grid-cols-[60px_1fr] grid-rows-2 items-center gap-x-4 gap-y-1 cursor-pointer text-neutral-200 rounded-md ${
           isActive ? "bg-[#333]" : ""
         } hover:bg-neutral-700 transition-colors cursor-auto  px-3 `
       }

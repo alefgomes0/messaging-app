@@ -27,11 +27,8 @@ export const SearchUser = () => {
     setIsLoading(true);
     const fetchSearchedUser = async () => {
       try {
-        const response = await axiosPrivate.post(
-          `/search-user/?q=${searchValue}`,
-          {
-            userId,
-          }
+        const response = await axiosPrivate.get(
+          `/search-user/${userId}/?q=${searchValue}`
         );
         if (response.data.success) {
           setIsLoading(false);
@@ -46,6 +43,8 @@ export const SearchUser = () => {
 
     fetchSearchedUser();
   }, [searchValue, userId, axiosPrivate]);
+
+  const noUsersFound = searchedUsersInfo?.length === 0;
 
   return (
     <section className="grid grid-cols-1 auto-rows-min bg-[#1e1e1e] border-r-2 border-neutral-900 rounded-l-lg gap-4 pt-3">
@@ -68,17 +67,23 @@ export const SearchUser = () => {
             </div>
           ) : (
             <>
-              {searchedUsersInfo?.map((user) => {
-                return (
-                  <ContactCard
-                    contactId={user._id}
-                    contactName={user.name}
-                    profilePicture={user.profilePicture}
-                    searchedUser={true}
-                    email={user.email}
-                  />
-                );
-              })}
+              {noUsersFound ? (
+                <p className="opacity-80 text-sm text-neutral-200 pl-3">No user found</p>
+              ) : (
+                <>
+                  {searchedUsersInfo?.map((user) => {
+                    return (
+                      <ContactCard
+                        contactId={user._id}
+                        contactName={user.name}
+                        profilePicture={user.profilePicture}
+                        searchedUser={true}
+                        email={user.email}
+                      />
+                    );
+                  })}
+                </>
+              )}
             </>
           )}
         </>
