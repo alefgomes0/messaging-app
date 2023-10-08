@@ -34,6 +34,7 @@ app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
+app.use("/search-user", require("./routes/searchUser"));
 app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);
@@ -70,10 +71,10 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("online-users", connectedUsers);
     console.log(connectedUsers);
   });
-  
+
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
-    socket.broadcast.emit("users-online", connectedUsers)
+    socket.broadcast.emit("users-online", connectedUsers);
   });
 
   socket.on("join chat", (room) => {
