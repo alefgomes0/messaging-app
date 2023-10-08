@@ -1,11 +1,10 @@
 const { query } = require("express-validator");
 const User = require("../models/user");
 
-exports.get = [
+exports.post = [
   query("q").escape().trim(),
 
   async (req, res, next) => {
-    console.log(req.query.q);
     if (!req.query.q)
       return res.status(204).json({
         success: true,
