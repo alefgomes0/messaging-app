@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 type ContactCardProps = {
   contactId: string;
   contactName: string;
-  conversationId?: string;
+  conversationId: string 
   profilePicture: string | undefined;
   searchedUser: boolean;
   time?: string;

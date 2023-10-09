@@ -19,8 +19,6 @@ exports.get = async (req, res, next) => {
       .select({ participants: { $elemMatch: { $eq: contactId } } })
       .exec();
     
-    console.log(allMessages.length === 0)
-
     if (allMessages.length === 0) {
       return res.status(204).json({
         success: true,

@@ -1,4 +1,3 @@
-import axios from "../../api/axios";
 import { AppHeader } from "../../components/AppHeader/AppHeader";
 import { useState, useEffect } from "react";
 import { Navbar } from "../../components/Navbar/Navbar";
@@ -7,6 +6,7 @@ import { useAuthContext } from "../../context/useAuthContext";
 import { MessagesInfo } from "../../components/MessagesInfo/MessagesInfo";
 import { useSocket } from "../../context/useSocket";
 import { SearchUser } from "../../components/SearchUser/SearchUser";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 export const MessengerPage = () => {
   const { auth, setAuth } = useAuthContext();
@@ -15,6 +15,7 @@ export const MessengerPage = () => {
   const { userId } = useParams();
   const [suspiciousActivity, setSuspiciousActivity] = useState(false);
   const [searchUser, setSearchUser] = useState(false);
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     if (!socket) return;
@@ -32,10 +33,7 @@ export const MessengerPage = () => {
             email: "",
             name: "",
           });
-          await axios.get("/logout", {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          });
+          await axiosPrivate.get("/logout");
           return navigate("/");
         } catch (err) {
           setSuspiciousActivity(true);

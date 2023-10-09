@@ -25,6 +25,7 @@ export const List = ({ conversationListInfo, query }: ListProps) => {
       {conversationListInfo ? (
         <>
           {conversationInfo?.map((conversation) => {
+            if (conversation.messages.length === 0) return;
             return (
               <ContactCard
                 key={conversation.participants[0]._id}
@@ -47,4 +48,3 @@ export const List = ({ conversationListInfo, query }: ListProps) => {
     </nav>
   );
 };
-

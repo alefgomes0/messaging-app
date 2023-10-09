@@ -40,7 +40,6 @@ export const Conversation = () => {
           response.data.allMessages[0].participants[0].profilePicture
         );
       }
-      console.log(response.data);
       setIsLoading(false);
       setError(null)
     } catch (err) {

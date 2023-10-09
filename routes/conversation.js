@@ -3,6 +3,7 @@ const router = express.Router();
 const conversation = require("../controllers/conversationController");
 
 router.get("/:userId", conversation.get);
-router.post("/new/message", conversation.post);
+router.post("/", conversation.post)
+router.put("/new/message", conversation.put);
 
 module.exports = router;

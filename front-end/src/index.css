@@ -22,6 +22,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'abril-fatface';
+  src: url('../public/fonts/abrilfatface-regular-webfont.woff2') format('woff2'),
+       url('../public/fonts/abrilfatface-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-clear-button,
 input[type="search"]::-webkit-search-cancel-button,

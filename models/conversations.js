@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ConversationsSchema = new Schema({
   participants: [{ type: Schema.Types.ObjectId, ref: "User", required: true }],
-  messages: [{ type: Schema.Types.ObjectId, required: true, ref: "Message" }],
+  messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
 });
 
 module.exports = mongoose.model("Conversations", ConversationsSchema);

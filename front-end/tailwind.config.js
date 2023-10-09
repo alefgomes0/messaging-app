@@ -38,6 +38,7 @@ export default {
       fontFamily: {
         Cormorant: "Cormorant",
         Cormorant_Italic: "Cormorant_Italic",
+        Abril: "abril-fatface"
       },
     },
   },
