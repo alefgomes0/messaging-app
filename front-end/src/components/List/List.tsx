@@ -32,7 +32,6 @@ export const List = ({ conversationListInfo, query }: ListProps) => {
                 contactId={conversation.participants[0]._id}
                 conversationId={conversation.participants[0]._id}
                 profilePicture={conversation.participants[0].profilePicture}
-                name={conversation.participants[0].name}
                 searchedUser={false}
                 time={conversation.messages[0].time}
                 message={conversation.messages[0].message}

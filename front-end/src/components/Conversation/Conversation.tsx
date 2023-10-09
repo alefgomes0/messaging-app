@@ -19,8 +19,8 @@ export const Conversation = () => {
   const { error, setError, isLoading, setIsLoading } = useUserContext();
   const [newMessageSent, setNewMessageSent] =
     useState<null | ConversationProps>(null);
-  const { contactId } = useParams();
   const { userId } = useParams();
+  const { contactId } = useParams();
   const { state } = useLocation();
   const { contactName, conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
@@ -28,15 +28,23 @@ export const Conversation = () => {
 
   const fetchConversationData = async () => {
     try {
-      const response = await axiosPrivate.get(`/messages/${contactId}`);
-      if (response.data.success) {
+      const response = await axiosPrivate.get(
+        `/messages/${userId}/${contactId}`
+      );
+      if (response.status === 204) {
+        setAllMessages(null);
+        setProfilePicture(null);
+      } else if (response.status === 200) {
         setAllMessages(response.data.allMessages[0].messages);
         setProfilePicture(
           response.data.allMessages[0].participants[0].profilePicture
         );
-        setIsLoading(false);
       }
+      console.log(response.data);
+      setIsLoading(false);
+      setError(null)
     } catch (err) {
+      setAllMessages(null);
       setIsLoading(false);
       setError(err as ErrorMessage);
     }
@@ -56,7 +64,7 @@ export const Conversation = () => {
       socket.off("message received");
       socket.off("join chat");
     };
-  }, []);
+  }, [contactId, conversationId, socket]);
 
   const fetchNewMessage = async () => {
     try {
@@ -77,9 +85,6 @@ export const Conversation = () => {
     }
   };
 
-  const handleNewMessageSent = async () => {
-    fetchNewMessage();
-  };
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
@@ -106,7 +111,7 @@ export const Conversation = () => {
               />
               <MessageText
                 contactId={contactId as string}
-                handleMessageSent={() => handleNewMessageSent()}
+                handleMessageSent={() => fetchNewMessage()}
                 setError={setError}
               />
             </>

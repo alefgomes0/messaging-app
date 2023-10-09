@@ -4,6 +4,7 @@ const Message = require("../models/message");
 const Conversation = require("../models/conversations");
 
 exports.get = asyncHandler(async (req, res, next) => {
+  console.log("iodsjfiodsjfiodsfdsfs")
   const [contacts, populatedContacts] = await Promise.all([
     Conversation.find({
       participants: { $elemMatch: { $eq: req.params.userId } },

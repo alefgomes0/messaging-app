@@ -27,8 +27,10 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
       try {
         const response = await axiosPrivate.get(`/conversation/${id}`);
         if (response.status === 204) {
+          console.log(response.data)
           setConversationListInfo(null);
         } else if (response.status >= 200 && response.status <= 305) {
+          console.log(response.data)
           setConversationListInfo(response.data);
         }
         setIsLoading(false);

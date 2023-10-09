@@ -33,7 +33,6 @@ export const SearchUser = () => {
         if (response.data.success) {
           setIsLoading(false);
           setSearchedUsersInfo(response.data.users);
-          console.log(response.data);
         }
       } catch (err) {
         setIsLoading(false);
@@ -68,12 +67,15 @@ export const SearchUser = () => {
           ) : (
             <>
               {noUsersFound ? (
-                <p className="opacity-80 text-sm text-neutral-200 pl-3">No user found</p>
+                <p className="opacity-80 text-sm text-neutral-200 pl-3">
+                  No user found
+                </p>
               ) : (
                 <>
                   {searchedUsersInfo?.map((user) => {
                     return (
                       <ContactCard
+                        key={user._id}
                         contactId={user._id}
                         contactName={user.name}
                         profilePicture={user.profilePicture}

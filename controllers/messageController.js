@@ -4,15 +4,12 @@ const Message = require("../models/message");
 const Conversation = require("../models/conversations");
 
 exports.get = async (req, res, next) => {
-  const userId = req.body.userId;
+  const userId = req.params.userId;
   const contactId = req.params.contactId;
 
   try {
     const allMessages = await Conversation.find({
-      participants: {
-        $elemMatch: { $eq: userId },
-        $elemMatch: { $eq: contactId },
-      },
+      $and: [{ participants: userId }, { participants: contactId }],
     })
       .populate({
         path: "messages",
@@ -21,8 +18,17 @@ exports.get = async (req, res, next) => {
       .populate("participants", "profilePicture")
       .select({ participants: { $elemMatch: { $eq: contactId } } })
       .exec();
+    
+    console.log(allMessages.length === 0)
 
-    res.status(200).json({
+    if (allMessages.length === 0) {
+      return res.status(204).json({
+        success: true,
+        allMessages
+      });
+    }  
+
+    return res.status(200).json({
       success: true,
       allMessages,
     });
