@@ -17,6 +17,7 @@ export const MessengerPage = () => {
   const [searchUser, setSearchUser] = useState(false);
   const axiosPrivate = useAxiosPrivate();
 
+
   useEffect(() => {
     if (!socket) return;
     socket.emit("setup", userId);

@@ -13,26 +13,28 @@ export const ConversationHeader = ({
   contactId,
 }: ConversationHeaderProps) => {
   const { socket } = useSocket();
-  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
+  const [isUserOnline, setIsUserOnline] = useState(false);
 
   useEffect(() => {
+    const checkIfUserOnline = (onlineUsers: string[]) => {
+      onlineUsers.includes(contactId)
+        ? setIsUserOnline(true)
+        : setIsUserOnline(false);
+    };
+
     if (!socket) return;
+    socket.emit("get-online-users", "wake");
 
-    socket.on("online-users", (listOfUsers) => {
-      setOnlineUsers(listOfUsers);
-      console.log(onlineUsers)
-    });
-
-    socket.on("users-online", (listOfUsers) => {
-      setOnlineUsers(listOfUsers);
+    socket.on("set-online-users", (listOfOnlineUsers) => {
+      checkIfUserOnline(listOfOnlineUsers);
+      console.log(listOfOnlineUsers);
     });
 
     return () => {
-      socket.off("online-users");
-      socket.off("users-online");
+      socket.off("get-online-users");
+      socket.off("set-online-users");
     };
-  }, [socket]);
-
+  }, [socket, contactId]);
 
   return (
     <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 gap-x-2 gap-y-1 bg-[#1e1e1e] px-3 mb-8">
@@ -47,7 +49,7 @@ export const ConversationHeader = ({
       )}
       <h3 className="text-neutral-200 self-end font-bold">{contactName}</h3>
       <p className="text-sm text-neutral-200 opacity-80">
-        {onlineUsers.includes(contactId) ? "Online" : "Offline"}
+        {isUserOnline ? "Online" : "Offline"}
       </p>
     </div>
   );

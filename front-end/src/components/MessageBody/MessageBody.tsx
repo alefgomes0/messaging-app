@@ -19,6 +19,7 @@ export const MessageBody = ({
 }: MessageBodyProps) => {
   const messageRef = useRef<null | HTMLSpanElement>(null);
 
+
   useEffect(() => {
     if (messageRef.current) {
       messageRef.current.scrollIntoView({ behavior: "instant" });
@@ -31,6 +32,7 @@ export const MessageBody = ({
         profilePicture={profilePicture}
         contactName={contactName}
         contactId={contactId}
+        key={contactId}
       />
       <div className="overflow-y-auto bg-neutral-800">
         {allMessages ? (

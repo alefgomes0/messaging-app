@@ -63,14 +63,22 @@ io.use((socket, next) => {
 
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
+  console.log(socket.id)
   socket.on("setup", (userId) => {
     socket.join(userId);
     if (!connectedUsers.includes(userId)) {
       connectedUsers.push(userId);
     }
-    socket.broadcast.emit("online-users", connectedUsers);
-    console.log(connectedUsers);
+    socket.emit("gozada", (connectedUsers))
   });
+
+  socket.emit("online-users", connectedUsers)
+
+  socket.on("get-online-users", (data) => {
+    console.log(data);
+    console.log(connectedUsers)
+    socket.emit("set-online-users", (connectedUsers))
+  })
 
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
