@@ -17,7 +17,7 @@ export const EditUsername = ({
         type="text"
         name="name"
         value={inputValue}
-        className="border-none outline-none bg-neutral-800 w-64 h-8 pl-1 rounded"
+        className="text-neutral-700 dark:text-zinc-200 border-none outline-none bg-zinc-200 dark:bg-neutral-800 w-64 h-8 pl-1 rounded"
         maxLength={25}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.target.value)

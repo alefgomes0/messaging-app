@@ -57,13 +57,10 @@ export const EditUserSettings = ({
     if (inputValue === auth.name) return;
 
     try {
-      const response = await axiosPrivate.put(
-        "/user",
-        {
-          userId: auth.id,
-          newName: inputValue,
-        },
-      );
+      const response = await axiosPrivate.put("/user", {
+        userId: auth.id,
+        newName: inputValue,
+      });
       if (response.data.success) {
         setAuth((prev) => ({
           ...prev,
@@ -82,11 +79,11 @@ export const EditUserSettings = ({
   return (
     <li
       ref={listRef}
-      className={`w-[40px] h-[40px] rounded-full rounded-lg  flex items-center justify-center cursor-pointer hover:bg-neutral-700 } transition-colors duration-100 ease-in-out`}
+      className={`w-[40px] h-[40px] rounded-full rounded-lg  flex items-center justify-center cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors duration-100 ease-in-out`}
       onClick={() => setShowMenu(true)}
     >
       {showMenu ? (
-        <div className="fixed left-0 bottom-0 z-10 grid grid-cols-1 auto-rows-min gap-y-6 w-96 h-[450px] bg-neutral-700 px-3 pt-4 rounded-md cursor-auto">
+        <div className="fixed left-0 bottom-0 z-10 grid grid-cols-1 auto-rows-min gap-y-6 w-96 h-[450px] bg-zinc-400 dark:bg-neutral-700 px-3 pt-4 rounded-md cursor-auto">
           {userProfilePicture ? (
             <img
               src={userProfilePicture}
@@ -109,10 +106,12 @@ export const EditUserSettings = ({
                 username={auth.name}
               />
             ) : (
-              <h3 className="text-xl font-semibold">{inputValue}</h3>
+              <h3 className="text-neutral-800 dark:text-neutral-100 text-xl font-semibold opacity-90">
+                {inputValue}
+              </h3>
             )}
             <button
-              className="hover:bg-neutral-800 p-1 rounded"
+              className="hover:bg-neutral-300 dark:hover:bg-[#333] p-1 rounded"
               onClick={() => {
                 setEditName(!editName);
               }}
@@ -121,8 +120,12 @@ export const EditUserSettings = ({
             </button>
           </div>
           <div className="flex flex-col justify-between text-neutral-200">
-            <p className="text-sm opacity-70">User email</p>
-            <p className="font-semibold opacity-90">{auth.email}</p>
+            <p className="text-sm text-neutral-800 dark:text-neutral-100 opacity-80 dark:opacity-70">
+              User email
+            </p>
+            <p className="text-neutral-800 dark:text-neutral-100 font-semibold opacity-90">
+              {auth.email}
+            </p>
           </div>
           <button
             className="w-max h-min bg-fuchsia-700 text-fuchsia-50 px-8 py-1.5 rounded-md shadow-[0_2px_2px_rgba(0,0,0,0.15)] hover:shadow-[0_2px_2px_rgba(0,0,0,0.15)_inset]"
