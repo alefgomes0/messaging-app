@@ -1,6 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/user");
-const Message = require("../models/message");
 const Conversation = require("../models/conversations");
 
 exports.get = asyncHandler(async (req, res, next) => {
@@ -11,10 +9,10 @@ exports.get = asyncHandler(async (req, res, next) => {
     Conversation.find({
       participants: { $elemMatch: { $eq: req.params.userId } },
     })
+      .slice("messages", -1)
       .populate({
         path: "messages",
         select: "message date time",
-        options: { sort: { date: -1 }, limit: 30 },
       })
       .populate("participants", "name profilePicture")
       .select({ participants: { $elemMatch: { $ne: req.params.userId } } })

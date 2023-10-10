@@ -57,7 +57,10 @@ export const MessengerPage = () => {
     window.addEventListener("beforeunload", showUserOffline);
 
     return () => window.removeEventListener("beforeunload", showUserOffline);
+
   }, [socket, userId]);
+
+
 
   return (
     <>
@@ -67,7 +70,7 @@ export const MessengerPage = () => {
         <main className="grid grid-rows-[48px_1fr] grid-cols-[48px_250px_1fr]">
           <AppHeader />
           <Navbar id={auth.id} setSearchUser={setSearchUser} />
-          <div className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[350px_1fr] bg-neutral-900">
+          <div className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[350px_1fr] bg-zinc-200 dark:bg-neutral-900">
             {searchUser ? <SearchUser /> : <MessagesInfo id={auth.id} />}
             <Outlet />
           </div>

@@ -5,3 +5,48 @@
 8 de outubro de 2023 às 21:23:13 BRT	13a8e7c7-4e61-4058-94a3-3a249f810410	StrictPopulateError: Cannot populate path `mmessages` because it is not in your schema. Set the `strictPopulate` option to false to override.
 8 de outubro de 2023 às 21:23:13 BRT	5f8cd775-d757-4117-a7f4-27bbd554fd6c	StrictPopulateError: Cannot populate path `mmessages` because it is not in your schema. Set the `strictPopulate` option to false to override.
 10 de outubro de 2023 às 10:35:26 BRT	e8224739-106f-44b9-8ac7-ec0484688816	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+10 de outubro de 2023 às 19:50:28 BRT	39e7dc1b-cc94-481e-bb30-637c30098119	TypeError: Conversation.findAll is not a function
+10 de outubro de 2023 às 19:50:28 BRT	17b9b5ab-a1eb-472a-9fbe-b2a077dd882e	TypeError: Conversation.findAll is not a function
+10 de outubro de 2023 às 19:50:28 BRT	336eabc4-8e38-4135-b46b-03bb156bcb10	TypeError: Conversation.findAll is not a function
+10 de outubro de 2023 às 19:50:55 BRT	3e330bf8-5644-4b84-bea8-250cf1a0a616	CastError: Cast to ObjectId failed for value "{
+  participants: { '$elemMatch': { '$eq': '6519a22bbe69f88f7b0cb0fd' } }
+}" (type Object) at path "_id" for model "Conversations"
+10 de outubro de 2023 às 19:50:55 BRT	f762f034-a2af-4a46-b5dc-e84a300570f1	CastError: Cast to ObjectId failed for value "{
+  participants: { '$elemMatch': { '$eq': '6519a22bbe69f88f7b0cb0fd' } }
+}" (type Object) at path "_id" for model "Conversations"
+10 de outubro de 2023 às 19:50:55 BRT	55df0f99-73cc-4734-b956-7b4e7a2538f9	CastError: Cast to ObjectId failed for value "{
+  participants: { '$elemMatch': { '$eq': '6519a22bbe69f88f7b0cb0fd' } }
+}" (type Object) at path "_id" for model "Conversations"
+10 de outubro de 2023 às 20:01:40 BRT	6c37b2fe-3d1a-4f74-9900-1ac8f3708576	ReferenceError: mongoose is not defined
+10 de outubro de 2023 às 20:01:40 BRT	8f943488-1745-4844-be93-d49541ab19b2	ReferenceError: mongoose is not defined
+10 de outubro de 2023 às 20:01:40 BRT	b9be3578-5168-463c-a4f4-079de35b4646	ReferenceError: mongoose is not defined
+10 de outubro de 2023 às 20:02:41 BRT	23d0d184-e154-4c4a-993c-f94d54dc1db2	TypeError: Class constructor ObjectId cannot be invoked without 'new'
+10 de outubro de 2023 às 20:02:41 BRT	8e13f942-e983-4fff-97e1-a1a8de87d310	TypeError: Class constructor ObjectId cannot be invoked without 'new'
+10 de outubro de 2023 às 20:02:41 BRT	37c34f56-b747-4d8f-a789-99fd08ea3d1d	TypeError: Class constructor ObjectId cannot be invoked without 'new'
+10 de outubro de 2023 às 20:03:20 BRT	4b4f4d35-bec0-46a8-a03b-7c2f32c22f66	ReferenceError: userdId is not defined
+10 de outubro de 2023 às 20:03:20 BRT	7e02a0f4-2f98-42d7-8a91-d735601e67a9	ReferenceError: userdId is not defined
+10 de outubro de 2023 às 20:03:20 BRT	e0530066-b25f-4add-9b4d-2a7aa199af99	ReferenceError: userdId is not defined
+10 de outubro de 2023 às 20:09:29 BRT	8473d095-d13d-469c-84cb-ee41003ba624	Error: Arguments must be aggregate pipeline operators
+10 de outubro de 2023 às 20:09:29 BRT	b1bf3710-4039-4b13-924a-31750c952910	Error: Arguments must be aggregate pipeline operators
+10 de outubro de 2023 às 20:09:29 BRT	8d3f911b-af96-432b-b02f-69dbb88f126e	Error: Arguments must be aggregate pipeline operators
+10 de outubro de 2023 às 20:09:33 BRT	361b8ad6-c202-4a3f-babf-16e5ce599ba0	Error: Arguments must be aggregate pipeline operators
+10 de outubro de 2023 às 20:09:33 BRT	9e65a956-3e9b-4f37-8659-5189e4f291ec	Error: Arguments must be aggregate pipeline operators
+10 de outubro de 2023 às 20:09:33 BRT	5dfc65c2-10e5-4c8c-8ea4-91ef34d6d801	Error: Arguments must be aggregate pipeline operators
+10 de outubro de 2023 às 20:09:54 BRT	de5550a5-23f6-4770-978c-a5e38e604378	MongooseError: Aggregate has empty pipeline
+10 de outubro de 2023 às 20:09:54 BRT	9bc39be2-bfdb-4db6-a446-ca6cd9fc39d8	MongooseError: Aggregate has empty pipeline
+10 de outubro de 2023 às 20:09:54 BRT	0aec4597-e403-42e6-8df4-9899259d79a4	MongooseError: Aggregate has empty pipeline
+10 de outubro de 2023 às 20:14:47 BRT	4b407978-9d63-4177-af04-59a9089c8f0a	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:14:47 BRT	601a4408-0ad6-487e-8dbc-17421d0921a6	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:14:47 BRT	617be34a-27ad-4018-be94-51f1506a3287	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:15:16 BRT	9d9eb5a2-9979-4281-811d-98755e9d4be3	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:15:17 BRT	1d12a81c-de18-4fa3-84d6-55aa2683d325	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:15:17 BRT	8764c2d6-c584-47da-965d-6edfe67a8fa5	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:15:43 BRT	72b3dfc8-f23c-4c50-807d-34bfb52a8e61	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:15:43 BRT	d0ca8670-51fe-4e29-a759-18f02afaf59a	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:15:43 BRT	b7310e90-05c1-4bbd-b2e2-7f70e0cfb6b3	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:21:26 BRT	99983d0c-267f-4b70-9f8d-090955bd1327	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:21:26 BRT	89b54e46-2d1f-4959-9fec-da8bf0c89ca1	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:21:26 BRT	7fe69114-a291-4b2a-a5ef-1d7fcefa89a9	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:21:40 BRT	6aeec34c-28f6-4b40-a93c-4737020d2146	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:21:40 BRT	b65f19ea-491c-49b4-a0df-63c5ce7c4366	MongoServerError: Query should contain either operator or collector
+10 de outubro de 2023 às 20:21:40 BRT	e90afa62-5146-4533-82a8-f75a27a13a4e	MongoServerError: Query should contain either operator or collector

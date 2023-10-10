@@ -4,7 +4,6 @@ import { Sun } from "../svg/Sun";
 
 export const NightMode = () => {
   const { theme, setTheme } = useUserContext();
-  console.log(theme);
 
   return (
     <div
@@ -18,6 +17,4 @@ export const NightMode = () => {
   );
 };
 
-/* className={`bg-neutral-400 dark:bg-neutral-100 ${
-  theme === "light" ? "opacity-100" : "opacity-50"
-} transition-opacity transition-colors duration-300`} */
+

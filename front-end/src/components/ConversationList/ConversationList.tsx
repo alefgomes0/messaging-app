@@ -14,7 +14,7 @@ export const ConversationList = ({
 
   return (
     <>
-      <section className="grid grid-cols-1 grid-rows-[auto_auto_1fr] bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-neutral-300 dark:border-neutral-900 rounded-l-lg gap-4 pt-3">
+      <section className="grid grid-cols-1 grid-rows-[auto_auto_1fr] bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-zinc-400 dark:border-neutral-900 rounded-l-lg gap-4 pt-3">
         {isLoading ? (
           <div className="self-center justify-self-center">
             <Loading />

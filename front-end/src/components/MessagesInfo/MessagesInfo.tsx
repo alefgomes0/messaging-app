@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { ErrorMessage } from "../../types/ErrorMessage";
-import { useState } from "react";
 import { ConversationList } from "../ConversationList/ConversationList";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
@@ -24,35 +23,36 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { socket } = useSocket();
-  const [newMessage, setNewMessage] = useState(false)
+
+  const fetchContactsData = async () => {
+    try {
+      const response = await axiosPrivate.get(`/conversation/${id}`);
+      if (response.status === 204) {
+        console.log(response.data);
+        setConversationListInfo(null);
+      } else if (response.status >= 200 && response.status <= 305) {
+        console.log(response.data);
+        setConversationListInfo(response.data);
+      }
+      setIsLoading(false);
+    } catch (err) {
+      setError(err as ErrorMessage);
+      setIsLoading(false);
+      navigate("/", { state: { from: location }, replace: true });
+    }
+  };
 
   useEffect(() => {
-    const fetchContactsData = async () => {
-      try {
-        const response = await axiosPrivate.get(`/conversation/${id}`);
-        if (response.status === 204) {
-          console.log(response.data)
-          setConversationListInfo(null);
-        } else if (response.status >= 200 && response.status <= 305) {
-          console.log(response.data)
-          setConversationListInfo(response.data);
-        }
-        setIsLoading(false);
-      } catch (err) {
-        setError(err as ErrorMessage);
-        setIsLoading(false);
-        navigate("/", { state: { from: location }, replace: true });
-      }
-    };
-
-    socket?.on("new message", (data) => {
-      console.log("AAAAAAAAAAAAAAAAA")
-    } )
-
     fetchContactsData();
-  }, [setNewMessage, newMessage]);
 
+    socket?.on("teste", async () => {
+      fetchContactsData();
+    });
 
+    return () => {
+      socket?.removeListener("teste");
+    };
+  }, [socket]);
 
   return (
     <>

@@ -63,28 +63,28 @@ io.use((socket, next) => {
 
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
-  console.log(socket.id)
+  console.log(socket.id);
   socket.on("setup", (userId) => {
     socket.join(userId);
     if (!connectedUsers.includes(userId)) {
       connectedUsers.push(userId);
     }
-    socket.emit("set-online-users", (connectedUsers))
+    socket.emit("set-online-users", connectedUsers);
   });
 
-  socket.emit("online-users", connectedUsers)
+  socket.emit("online-users", connectedUsers);
 
   socket.on("get-online-users", (data) => {
     console.log(data);
-    console.log(connectedUsers)
-    socket.emit("set-online-users", (connectedUsers))
-  })
+    console.log(connectedUsers);
+    socket.emit("set-online-users", connectedUsers);
+  });
 
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
-    console.log("AAAAAAAAAAAAAAAAAAAAA")
-    console.log(connectedUsers)
-    socket.emit("set-online-users", (connectedUsers))
+    console.log("AAAAAAAAAAAAAAAAAAAAA");
+    console.log(connectedUsers);
+    socket.emit("set-online-users", connectedUsers);
   });
 
   socket.on("join chat", (room) => {
@@ -93,11 +93,13 @@ io.on("connection", (socket) => {
   });
 
   socket.on("new message", (newMessageSent) => {
-    socket.emit("teste", "a")
     console.log(newMessageSent.participants.receiver);
     socket
       .in(newMessageSent.participants.receiver)
       .emit("message received", newMessageSent);
+    socket.broadcast.emit("teste", "iodjfe");
+    socket.emit("teste");
+
   });
 
   socket.off("setup", () => {
