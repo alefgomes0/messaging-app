@@ -19,7 +19,6 @@ export const MessageBody = ({
 }: MessageBodyProps) => {
   const messageRef = useRef<null | HTMLSpanElement>(null);
 
-
   useEffect(() => {
     if (messageRef.current) {
       messageRef.current.scrollIntoView({ behavior: "instant" });
@@ -34,7 +33,7 @@ export const MessageBody = ({
         contactId={contactId}
         key={contactId}
       />
-      <div className="overflow-y-auto bg-neutral-800">
+      <div className="overflow-y-auto bg-zinc-100 dark:bg-neutral-800">
         {allMessages ? (
           <>
             {allMessages.map((message) => {
@@ -42,9 +41,9 @@ export const MessageBody = ({
                 <span
                   ref={messageRef}
                   key={message._id}
-                  className={`grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-max max-w-[50%] h-max text-sm text-neutral-200 rounded-md mb-2 ${
+                  className={`grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-max max-w-[50%] h-max text-sm text-neutral-700 dark:text-neutral-200 rounded-md mb-2 ${
                     message.participants.sender === contactId
-                      ? "bg-neutral-700 justify-self-start ml-8"
+                      ? "bg-neutral-500 dark:bg-neutral-700 opacity-90 dark:opacity-100 justify-self-start ml-8"
                       : "bg-fuchsia-900 ml-auto mr-8"
                   }`}
                 >
@@ -52,7 +51,9 @@ export const MessageBody = ({
                     {message.message}
                   </p>
                   <span className="self-end ml-4 mt-4 mr-2 mb-.5">
-                    <p className="text-[9px] opacity-70">{message.time}</p>
+                    <p className="text-white dark:text-neutral-400 text-[9px] opacity-70">
+                      {message.time}
+                    </p>
                   </span>
                 </span>
               );

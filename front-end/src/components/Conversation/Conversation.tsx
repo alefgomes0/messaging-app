@@ -86,7 +86,7 @@ export const Conversation = () => {
 
 
   return (
-    <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-neutral-800">
+    <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-zinc-100 dark:bg-neutral-800">
       {isLoading ? (
         <div className="row-start-2 row-end-3 self-center justify-self-center">
           <Loading />

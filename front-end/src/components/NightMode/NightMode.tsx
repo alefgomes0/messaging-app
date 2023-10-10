@@ -8,7 +8,7 @@ export const NightMode = () => {
 
   return (
     <div
-      className="w-min flex items-center gap-1 cursor-pointer"
+      className="w-min flex items-center gap-1 cursor-pointer mr-4"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       <Sun />
