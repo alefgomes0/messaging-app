@@ -44,7 +44,7 @@ export const Navbar = ({ id, setSearchUser }: NavbarProps) => {
   };
 
   return (
-    <aside className="w-12 h-[calc(100dvh-48px)] grid grid-rows-2 grid-cols-1 bg-neutral-800 col-start-1 col-end-2 row-start-2 row-end-3">
+    <aside className="w-12 h-[calc(100dvh-48px)] grid grid-rows-2 grid-cols-1 bg-zinc-200 dark:bg-neutral-800 col-start-1 col-end-2 row-start-2 row-end-3">
       <nav className="w-full h-[calc(100dvh-48px)] grid">
         <div className="w-full mt-2">
           <ul className="flex flex-col items-center justify-center gap-0.5">

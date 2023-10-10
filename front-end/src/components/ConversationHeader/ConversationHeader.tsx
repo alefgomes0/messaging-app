@@ -23,9 +23,10 @@ export const ConversationHeader = ({
     };
 
     if (!socket) return;
-    socket.emit("get-online-users", "wake");
 
-    socket.on("set-online-users", (listOfOnlineUsers) => {
+    socket?.emit("get-online-users", "wake");
+
+    socket?.on("set-online-users", (listOfOnlineUsers) => {
       checkIfUserOnline(listOfOnlineUsers);
       console.log(listOfOnlineUsers);
     });
@@ -33,8 +34,8 @@ export const ConversationHeader = ({
     return () => {
       socket.off("get-online-users");
       socket.off("set-online-users");
-    };
-  }, [socket, contactId]);
+    }
+  }, [contactId, socket]);
 
   return (
     <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 gap-x-2 gap-y-1 bg-[#1e1e1e] px-3 mb-8">

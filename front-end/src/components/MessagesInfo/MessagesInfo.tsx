@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { ErrorMessage } from "../../types/ErrorMessage";
+import { useState } from "react";
 import { ConversationList } from "../ConversationList/ConversationList";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSocket } from "../../context/useSocket";
 
 type MessagesInfoProps = {
   id: string;
@@ -21,6 +23,8 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
+  const { socket } = useSocket();
+  const [newMessage, setNewMessage] = useState(false)
 
   useEffect(() => {
     const fetchContactsData = async () => {
@@ -41,8 +45,14 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
       }
     };
 
+    socket?.on("new message", (data) => {
+      console.log("AAAAAAAAAAAAAAAAA")
+    } )
+
     fetchContactsData();
-  }, []);
+  }, [setNewMessage, newMessage]);
+
+
 
   return (
     <>

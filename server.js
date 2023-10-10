@@ -69,7 +69,7 @@ io.on("connection", (socket) => {
     if (!connectedUsers.includes(userId)) {
       connectedUsers.push(userId);
     }
-    socket.emit("gozada", (connectedUsers))
+    socket.emit("set-online-users", (connectedUsers))
   });
 
   socket.emit("online-users", connectedUsers)
@@ -82,7 +82,9 @@ io.on("connection", (socket) => {
 
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
-    socket.broadcast.emit("users-online", connectedUsers);
+    console.log("AAAAAAAAAAAAAAAAAAAAA")
+    console.log(connectedUsers)
+    socket.emit("set-online-users", (connectedUsers))
   });
 
   socket.on("join chat", (room) => {
@@ -91,6 +93,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("new message", (newMessageSent) => {
+    socket.emit("teste", "a")
     console.log(newMessageSent.participants.receiver);
     socket
       .in(newMessageSent.participants.receiver)

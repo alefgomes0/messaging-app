@@ -17,7 +17,6 @@ export const MessengerPage = () => {
   const [searchUser, setSearchUser] = useState(false);
   const axiosPrivate = useAxiosPrivate();
 
-
   useEffect(() => {
     if (!socket) return;
     socket.emit("setup", userId);
@@ -48,6 +47,16 @@ export const MessengerPage = () => {
       socket.off("setup");
       socket.emit("user-disconnect", userId);
     };
+  }, [socket, userId]);
+
+  useEffect(() => {
+    const showUserOffline = () => {
+      socket?.emit("user-disconnect", userId);
+    };
+
+    window.addEventListener("beforeunload", showUserOffline);
+
+    return () => window.removeEventListener("beforeunload", showUserOffline);
   }, [socket, userId]);
 
   return (

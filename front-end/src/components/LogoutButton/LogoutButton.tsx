@@ -25,7 +25,7 @@ export const LogoutButton = () => {
     <button
       onClick={logoutUser}
       type="button"
-      className="border-none outline-none bg-neutral-700 hover:bg-neutral-600 transition-colors text-neutral-200 w-min h-min px-6 py-1 rounded-full"
+      className="border-none outline-none dark:bg-neutral-300 dark:hover:bg-neutral-100 bg-neutral-700 hover:bg-neutral-500 transition-colors text-xs text-neutral-200 dark:text-neutral-900 w-min h-min px-4 py-1 rounded-full"
     >
       Logout
     </button>

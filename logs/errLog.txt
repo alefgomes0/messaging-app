@@ -4,3 +4,4 @@
 8 de outubro de 2023 às 21:18:56 BRT	973cbed4-ce63-4604-8986-8f7d3af1524e	StrictPopulateError: Cannot populate path `lastMessages` because it is not in your schema. Set the `strictPopulate` option to false to override.
 8 de outubro de 2023 às 21:23:13 BRT	13a8e7c7-4e61-4058-94a3-3a249f810410	StrictPopulateError: Cannot populate path `mmessages` because it is not in your schema. Set the `strictPopulate` option to false to override.
 8 de outubro de 2023 às 21:23:13 BRT	5f8cd775-d757-4117-a7f4-27bbd554fd6c	StrictPopulateError: Cannot populate path `mmessages` because it is not in your schema. Set the `strictPopulate` option to false to override.
+10 de outubro de 2023 às 10:35:26 BRT	e8224739-106f-44b9-8ac7-ec0484688816	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
