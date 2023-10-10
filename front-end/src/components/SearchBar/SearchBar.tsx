@@ -40,7 +40,7 @@ export const SearchBar = ({
           className={`w-full text-zinc-800 dark:text-zinc-200 text-xs h-[27px] pl-1 border-none rounded outline-none placeholder:text-xs placeholder:text-zinc-800 dark:placeholder:text-zinc-200 placeholder:opacity-[75%] bg-neutral-100 dark:bg-[#333] rounded shadow-[0_2px_2px_0_rgba(0,0,0,0.3)_inset]`}
         />
         <button
-          className="flex items-center justify-center cursor-auto hover:bg-[#494949] w-6 h-6 rounded my-0.5 mx-1"
+          className="flex items-center justify-center cursor-auto bg-neutral-100 dark:bg-[#333] hover:bg-neutral-200 dark:hover:bg-[#494949] w-6 h-6 rounded my-0.5 mx-1"
           onClick={() => {
             if (!searchValue) return;
             handleOnChange("");

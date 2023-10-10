@@ -64,7 +64,7 @@ export const SearchUser = () => {
   };
 
   return (
-    <section className="grid grid-cols-1 auto-rows-min bg-[#1e1e1e] border-r-2 border-neutral-900 rounded-l-lg gap-4 pt-3">
+    <section className="grid grid-cols-1 auto-rows-min bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-neutral-900 rounded-l-lg gap-4 pt-3">
       <SearchBar
         inputPlaceholder="Search for a user name or email"
         searchValue={searchValue}

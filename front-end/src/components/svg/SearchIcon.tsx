@@ -1,6 +1,11 @@
 import { IconeProps } from "../../types/IconeProps";
+import { useUserContext } from "../../context/useUserContext";
+
 
 export const SearchIcon = ({ width, height }: IconeProps) => {
+  const { theme } = useUserContext();
+  const fillColor = theme === "light" ? "#0e020d" : "#e4e4e4";
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +17,7 @@ export const SearchIcon = ({ width, height }: IconeProps) => {
         <g
           fill="none"
           fillRule="evenodd"
-          stroke="#e5e5e5"
+          stroke={fillColor}
           strokeLinecap="round"
           strokeLinejoin="round"
         >

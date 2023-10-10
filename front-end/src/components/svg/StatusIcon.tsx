@@ -1,4 +1,5 @@
 import { IconeProps } from "../../types/IconeProps";
+import { useUserContext } from "../../context/useUserContext";
 
 export const StatusIcon = ({
   width,
@@ -6,16 +7,20 @@ export const StatusIcon = ({
   selectIcon,
   setSelectIcon,
 }: IconeProps) => {
+  const { theme } = useUserContext();
+  const fillColor = theme === "light" ? "#0e020d" : "#e4e4e4";
 
   return (
     <li
-    className={`relative rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer hover:bg-neutral-700 ${
-      selectIcon === 2 ? "bg-neutral-700 opacity-70" : "bg-neutral-800"
-    }  transition-colors duration-100 ease-in-out`}
+      className={`relative rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-700 ${
+        selectIcon === 2
+          ? "bg-zinc-400 dark:bg-neutral-700 opacity-70"
+          : "bg-zinc-200 dark:bg-neutral-800"
+      }  transition-colors duration-100 ease-in-out`}
       onClick={() => setSelectIcon(2)}
     >
       <div
-        className={`w-4 h-[16px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-500 ${
+        className={`w-4 h-[16px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-700 dark:border-l-fuchsia-500 ${
           selectIcon === 2
             ? "animate-[borderIn_3s_ease-in-out]"
             : "animate-[borderOut_1s_ease-in-out] opacity-0"
@@ -29,7 +34,7 @@ export const StatusIcon = ({
         viewBox="0 0 24 24"
       >
         <path
-          fill="#e5e5e5"
+          fill={fillColor}
           fillRule="evenodd"
           d="M12 2C6.477 2 2 6.477 2 12a9.97 9.97 0 0 0 1.3 4.935l-1.249 3.749a1 1 0 0 0 1.265 1.265l3.749-1.25A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 6c-.902 0-1.731.297-2.4.8a1 1 0 1 1-1.2-1.6a6 6 0 0 1 8.4 8.4a1 1 0 0 1-1.598-1.2A4 4 0 0 0 12 8zm-5 3a1 1 0 0 1 1 1a4 4 0 0 0 4 4a1 1 0 1 1 0 2a6 6 0 0 1-6-6a1 1 0 0 1 1-1zm5-1a2 2 0 1 0 0 4a2 2 0 0 0 0-4z"
           clipRule="evenodd"
