@@ -9,7 +9,6 @@ const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
 const credentials = require("./config/credentials");
 const verifyJWT = require("./middleware/verifyJWT");
-const verifyRoles = require("./middleware/verifyRoles");
 const connectDB = require("./config/dbConn");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
@@ -62,8 +61,6 @@ io.use((socket, next) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("connected to socket.io");
-  console.log(socket.id);
   socket.on("setup", (userId) => {
     socket.join(userId);
     if (!connectedUsers.includes(userId)) {
@@ -75,14 +72,12 @@ io.on("connection", (socket) => {
   socket.emit("online-users", connectedUsers);
 
   socket.on("get-online-users", (data) => {
-    console.log(data);
     console.log(connectedUsers);
     socket.emit("set-online-users", connectedUsers);
   });
 
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
-    console.log("AAAAAAAAAAAAAAAAAAAAA");
     console.log(connectedUsers);
     socket.emit("set-online-users", connectedUsers);
   });
@@ -92,8 +87,11 @@ io.on("connection", (socket) => {
     console.log(`A user joined room: ${room}`);
   });
 
+  socket.on("typing", (room) => {
+    socket.in(room).emit("typing")
+  })
+
   socket.on("new message", (newMessageSent) => {
-    console.log(newMessageSent.participants.receiver);
     socket
       .in(newMessageSent.participants.receiver)
       .emit("message received", newMessageSent);
@@ -103,7 +101,6 @@ io.on("connection", (socket) => {
   });
 
   socket.off("setup", () => {
-    console.log("USER DISCONNECTED");
     socket.disconnect(true);
   });
 });

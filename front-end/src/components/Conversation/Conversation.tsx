@@ -41,7 +41,7 @@ export const Conversation = () => {
         );
       }
       setIsLoading(false);
-      setError(null)
+      setError(null);
     } catch (err) {
       setAllMessages(null);
       setIsLoading(false);
@@ -61,7 +61,7 @@ export const Conversation = () => {
 
     return () => {
       socket.off("message received");
-      socket.off("join chat");
+      socket.off("join chat", conversationId);
     };
   }, [contactId, conversationId, socket]);
 
@@ -83,7 +83,6 @@ export const Conversation = () => {
       setError(err as ErrorMessage);
     }
   };
-
 
   return (
     <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-zinc-100 dark:bg-neutral-800">
@@ -112,6 +111,7 @@ export const Conversation = () => {
                 contactId={contactId as string}
                 handleMessageSent={() => fetchNewMessage()}
                 setError={setError}
+                conversationId={conversationId}
               />
             </>
           )}

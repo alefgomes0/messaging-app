@@ -2,22 +2,22 @@ import { useState, useEffect, useRef } from "react";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { ErrorMessage } from "../../types/ErrorMessage";
+import { useSocket } from "../../context/useSocket";
 
 type MessageTextProps = {
   contactId: string;
   handleMessageSent: () => void;
   setError: React.Dispatch<React.SetStateAction<null | ErrorMessage>>;
+  conversationId: string;
 };
 
 export const MessageText = ({
   contactId,
   handleMessageSent,
   setError,
+  conversationId,
 }: MessageTextProps) => {
   const [message, setMessage] = useState("");
-  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
-  };
 
   const [isTextareaFocused, setIsTextareaFocused] = useState(false);
   const { auth } = useAuthContext();
@@ -25,6 +25,12 @@ export const MessageText = ({
   const axiosPrivate = useAxiosPrivate();
   const textareaRef = useRef<null | HTMLTextAreaElement>(null);
   const submitButtonRef = useRef<null | HTMLButtonElement>(null);
+  const { socket } = useSocket();
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    socket?.emit("typing", conversationId);
+    setMessage(e.target.value);
+  };
 
   useEffect(() => {
     const handleTextareaFocus = () => {
@@ -54,6 +60,10 @@ export const MessageText = ({
       document.removeEventListener("keydown", sendMessageWithEnter);
     };
   }, [isTextareaFocused, message]);
+
+  useEffect(() => {
+    setMessage("");
+  }, [conversationId]);
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

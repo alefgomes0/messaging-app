@@ -50,3 +50,6 @@
 10 de outubro de 2023 às 20:21:40 BRT	6aeec34c-28f6-4b40-a93c-4737020d2146	MongoServerError: Query should contain either operator or collector
 10 de outubro de 2023 às 20:21:40 BRT	b65f19ea-491c-49b4-a0df-63c5ce7c4366	MongoServerError: Query should contain either operator or collector
 10 de outubro de 2023 às 20:21:40 BRT	e90afa62-5146-4533-82a8-f75a27a13a4e	MongoServerError: Query should contain either operator or collector
+11 de outubro de 2023 às 11:12:43 BRT	136326d7-0e25-464b-8118-dbe5190f1629	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
+11 de outubro de 2023 às 11:12:43 BRT	fc2f4c82-bd62-472f-8175-36c9b7b92bb3	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+11 de outubro de 2023 às 11:12:43 BRT	ddcc0ae1-16e6-43b9-a709-43e3d5e42dbc	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "User"
