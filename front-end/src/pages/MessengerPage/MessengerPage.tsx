@@ -57,10 +57,7 @@ export const MessengerPage = () => {
     window.addEventListener("beforeunload", showUserOffline);
 
     return () => window.removeEventListener("beforeunload", showUserOffline);
-
   }, [socket, userId]);
-
-
 
   return (
     <>

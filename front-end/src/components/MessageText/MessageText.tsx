@@ -19,6 +19,8 @@ export const MessageText = ({
 }: MessageTextProps) => {
   const [message, setMessage] = useState("");
 
+  console.log(conversationId)
+
   const [isTextareaFocused, setIsTextareaFocused] = useState(false);
   const { auth } = useAuthContext();
   const userId = auth.id;
@@ -42,11 +44,13 @@ export const MessageText = ({
     window.addEventListener("focusin", handleTextareaFocus);
     window.addEventListener("focusout", handleTextareaFocus);
 
+    setMessage("");
+
     return () => {
       window.removeEventListener("focusin", handleTextareaFocus);
       window.removeEventListener("focusout", handleTextareaFocus);
     };
-  }, []);
+  }, [contactId]);
 
   useEffect(() => {
     const sendMessageWithEnter = (event: KeyboardEvent) => {
@@ -60,10 +64,6 @@ export const MessageText = ({
       document.removeEventListener("keydown", sendMessageWithEnter);
     };
   }, [isTextareaFocused, message]);
-
-  useEffect(() => {
-    setMessage("");
-  }, [conversationId]);
 
   const handleOnSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

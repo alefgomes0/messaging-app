@@ -22,7 +22,7 @@ export const Conversation = () => {
   const { userId } = useParams();
   const { contactId } = useParams();
   const { state } = useLocation();
-  const { contactName, conversationId } = state;
+  const { conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
   const { socket } = useSocket();
 
@@ -101,7 +101,6 @@ export const Conversation = () => {
           ) : (
             <>
               <MessageBody
-                contactName={contactName}
                 contactId={contactId as string}
                 allMessages={allMessages}
                 profilePicture={profilePicture}

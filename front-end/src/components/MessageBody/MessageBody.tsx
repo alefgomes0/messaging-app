@@ -3,7 +3,6 @@ import { ConversationProps } from "../../types/ConversationProps";
 import { ConversationHeader } from "../ConversationHeader/ConversationHeader";
 
 type MessageBodyProps = {
-  contactName: string;
   contactId: string;
   allMessages: ConversationProps[] | null;
   profilePicture: null | string;
@@ -11,7 +10,6 @@ type MessageBodyProps = {
 };
 
 export const MessageBody = ({
-  contactName,
   contactId,
   allMessages,
   profilePicture,
@@ -29,7 +27,6 @@ export const MessageBody = ({
     <>
       <ConversationHeader
         profilePicture={profilePicture}
-        contactName={contactName}
         contactId={contactId}
         key={contactId}
       />

@@ -56,9 +56,6 @@ const io = require("socket.io")(server, {
 });
 
 let connectedUsers = [];
-io.use((socket, next) => {
-  next();
-});
 
 io.on("connection", (socket) => {
   socket.on("setup", (userId) => {
@@ -85,11 +82,12 @@ io.on("connection", (socket) => {
   socket.on("join chat", (room) => {
     socket.join(room);
     console.log(`A user joined room: ${room}`);
-  });
 
-  socket.on("typing", (room) => {
-    socket.in(room).emit("typing")
-  })
+    socket.on("typing", (room) => {
+      console.log(`Typing in room ${room}`)
+      socket.in(room).emit("typing", room);
+    });
+  });
 
   socket.on("new message", (newMessageSent) => {
     socket
@@ -97,7 +95,6 @@ io.on("connection", (socket) => {
       .emit("message received", newMessageSent);
     socket.broadcast.emit("teste", "iodjfe");
     socket.emit("teste");
-
   });
 
   socket.off("setup", () => {

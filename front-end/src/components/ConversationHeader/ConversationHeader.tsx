@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { useSocket } from "../../context/useSocket";
+import { useLocation } from "react-router-dom";
 
 type ConversationHeaderProps = {
   profilePicture: string | null;
-  contactName: string;
   contactId: string;
 };
 
 export const ConversationHeader = ({
   profilePicture,
-  contactName,
   contactId,
 }: ConversationHeaderProps) => {
+  const { state } = useLocation();
+  const { contactName, conversationId } = state;
   const { socket } = useSocket();
   const [isUserOnline, setIsUserOnline] = useState(false);
   const [isUserTyping, setIsUserTyping] = useState(false);
@@ -37,16 +38,27 @@ export const ConversationHeader = ({
     };
   }, [contactId, socket]);
 
+  let typingTimer: NodeJS.Timeout;
+
   useEffect(() => {
-    socket?.on("typing", (ewr) => {
-      setIsUserTyping(true);
-      console.log("AAAAAAAAAAAAFDSF");
+    socket?.on("typing", (room) => {
+      console.log(room, conversationId);
+      if (room === conversationId) {
+        setIsUserTyping(true);
+
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+          setIsUserTyping(false);
+        }, 3000);
+      }
     });
 
     return () => {
-      socket?.off("typing");
+      socket?.off("typing", () => {
+        setIsUserTyping(false);
+      });
     };
-  }, [socket]);
+  }, [socket, conversationId]);
 
   return (
     <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 gap-x-2 gap-y-1 bg-zinc-50 dark:bg-[#1e1e1e] px-3 mb-8">
