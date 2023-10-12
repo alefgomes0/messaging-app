@@ -1,21 +1,35 @@
 const asyncHandler = require("express-async-handler");
 const Conversation = require("../models/conversations");
 
-exports.get = asyncHandler(async (req, res, next) => {
-  const userId = "6508695537fe843f89aa8444";
-
-  const allMessages = await Conversation.find({
-    participants: {
-      $elemMatch: { $eq: userId },
-      $elemMatch: { $eq: req.params.contactId },
+exports.put = asyncHandler(async (req, res, next) => {
+  const allMessages = await Conversation.findOneAndUpdate(
+    {
+      participants: {
+        $elemMatch: { $eq: req.body.userId },
+        $elemMatch: { $eq: req.params.contactId },
+      },
     },
-  })
+    {
+      $set: {
+        newMessage: {
+          receiver: req.params.contactId,
+          sender: req.body.userId,
+          read: false,
+        },
+      },
+    },
+    {
+      returnDocument: "after",
+    }
+  )
+    .slice("messages", -1)
     .populate({
       path: "messages",
-      options: { sort: { date: -1 }, limit: 1 },
       select: "message participants date time",
     })
     .exec();
+
+  console.log(allMessages);
 
   res.json(allMessages);
 });

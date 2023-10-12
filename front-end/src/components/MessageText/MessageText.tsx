@@ -19,8 +19,6 @@ export const MessageText = ({
 }: MessageTextProps) => {
   const [message, setMessage] = useState("");
 
-  console.log(conversationId)
-
   const [isTextareaFocused, setIsTextareaFocused] = useState(false);
   const { auth } = useAuthContext();
   const userId = auth.id;

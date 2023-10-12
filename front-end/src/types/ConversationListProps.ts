@@ -16,6 +16,11 @@ export type LastMessageWithContact = {
       profilePicture?: string;
     }
   ];
+  newMessage?: {
+    read: boolean;
+    sender: string;
+    receiver: string;
+  }
   _id: string;
 };
 

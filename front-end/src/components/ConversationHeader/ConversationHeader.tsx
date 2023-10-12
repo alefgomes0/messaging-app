@@ -42,7 +42,6 @@ export const ConversationHeader = ({
 
   useEffect(() => {
     socket?.on("typing", (room) => {
-      console.log(room, conversationId);
       if (room === conversationId) {
         setIsUserTyping(true);
 

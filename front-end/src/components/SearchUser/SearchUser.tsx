@@ -98,7 +98,7 @@ export const SearchUser = () => {
                       >
                         <ContactCard
                           key={user._id}
-                          contactId={user._id}
+                          id={user._id}
                           contactName={user.name}
                           conversationId={conversationId}
                           profilePicture={user.profilePicture}

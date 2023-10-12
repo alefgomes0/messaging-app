@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../types/ErrorMessage";
 import { ConversationList } from "../ConversationList/ConversationList";
 import { useUserContext } from "../../context/useUserContext";
@@ -19,6 +19,7 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
     isLoading,
     setIsLoading,
   } = useUserContext();
+  const [notification, setNotification] = useState(false);
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,11 +53,12 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
     return () => {
       socket?.removeListener("teste");
     };
-  }, [socket]);
+  }, [socket, notification]);
 
   return (
     <>
       <ConversationList
+        handleNotification={() => setNotification(!notification)}
         isLoading={isLoading}
         error={error}
         conversationListInfo={conversationListInfo}

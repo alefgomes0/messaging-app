@@ -16,6 +16,8 @@ export const Conversation = () => {
   );
   //Limpar essa parte do código depois
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
+  const [notification, setNotification] = useState(false);
+
   const { error, setError, isLoading, setIsLoading } = useUserContext();
   const [newMessageSent, setNewMessageSent] =
     useState<null | ConversationProps>(null);
@@ -67,16 +69,18 @@ export const Conversation = () => {
 
   const fetchNewMessage = async () => {
     try {
-      const response = await axiosPrivate.get(
-        `http://localhost:3000/new-message/${contactId}`
+      const response = await axiosPrivate.put(
+        `http://localhost:3000/new-message/${contactId}`, {
+          userId
+        }
       );
       if (response.status >= 200 && response.status <= 305) {
         setAllMessages((prevMessages) =>
-          (prevMessages ?? []).concat(response.data[0].messages[0])
+          (prevMessages ?? []).concat(response.data.messages[0])
         );
         setIsLoading(false);
-        setNewMessageSent(response.data[0].messages[0]);
-        socket?.emit("new message", response.data[0].messages[0], userId);
+        setNewMessageSent(response.data.messages[0]);
+        socket?.emit("new message", response.data.messages[0], userId);
       }
     } catch (err) {
       setIsLoading(false);

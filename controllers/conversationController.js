@@ -59,10 +59,10 @@ exports.put = async (req, res, next) => {
   try {
     await Conversation.findOneAndUpdate(
       {
-        participants: {
-          $elemMatch: { $eq: senderId },
-          $elemMatch: { $eq: receiverId },
-        },
+        $and: [
+          { participants: req.body.userId },
+          { participants: req.body.contactId },
+        ],
       },
       {
         $addToSet: { messages: { $each: [req.body.messageId] } },

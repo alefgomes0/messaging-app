@@ -32,6 +32,7 @@ app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
 app.use("/new-message", require("./routes/newMessage"));
+app.use("/mark-message", require("./routes/markMessageAsRead"));
 app.use("/profile-picture", require("./routes/profilePicture"));
 app.use("/search-user", require("./routes/searchUser"));
 app.use("/user", require("./routes/user"));
@@ -84,7 +85,7 @@ io.on("connection", (socket) => {
     console.log(`A user joined room: ${room}`);
 
     socket.on("typing", (room) => {
-      console.log(`Typing in room ${room}`)
+      console.log(`Typing in room ${room}`);
       socket.in(room).emit("typing", room);
     });
   });
@@ -93,7 +94,12 @@ io.on("connection", (socket) => {
     socket
       .in(newMessageSent.participants.receiver)
       .emit("message received", newMessageSent);
-    socket.broadcast.emit("teste", "iodjfe");
+    socket.broadcast.emit(
+      "teste",
+      newMessageSent.participants.sender,
+      newMessageSent.participants.receiver,
+      newMessageSent
+    );
     socket.emit("teste");
   });
 

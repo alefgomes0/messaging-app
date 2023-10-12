@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Loading } from "../Loading/Loading";
-import { ConversationListProps } from "../../types/ConversationListProps";
+import { LastMessageWithContact } from "../../types/ConversationListProps";
+import { ErrorMessage } from "../../types/ErrorMessage";
 import { List } from "../List/List";
 import { AddUserIcon } from "../svg/AddUserIcon";
 
 export const ConversationList = ({
+  handleNotification,
   isLoading,
   error,
   conversationListInfo,
-}: ConversationListProps) => {
+}: {
+  handleNotification: () => void;
+  isLoading: boolean;
+  error: ErrorMessage | null;
+  conversationListInfo: LastMessageWithContact[] | null;
+}) => {
   const [searchValue, setSearchValue] = useState("");
+  const [notification, setNotification] = useState(false);
 
   return (
     <>
@@ -41,6 +49,7 @@ export const ConversationList = ({
                   <List
                     conversationListInfo={conversationListInfo}
                     query={searchValue}
+                    handleNotification={handleNotification}
                   />
                 ) : (
                   <div className="flex flex-col items-center text-center text-neutral-200 opacity-80">
