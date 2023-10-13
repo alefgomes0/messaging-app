@@ -16,8 +16,6 @@ export const Conversation = () => {
   );
   //Limpar essa parte do código depois
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
-  const [notification, setNotification] = useState(false);
-
   const { error, setError, isLoading, setIsLoading } = useUserContext();
   const [newMessageSent, setNewMessageSent] =
     useState<null | ConversationProps>(null);

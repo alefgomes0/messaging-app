@@ -40,6 +40,7 @@ type LoginFormProps = {
 
 export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
+  const [isSubmittingDemo, setIsSubmitting] = useState(false);
   const axiosPrivate = useAxiosPrivate();
   const LOGIN_URL = "/login";
   const navigate = useNavigate();
@@ -73,6 +74,11 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
       }
       setSubmitting(false);
     }
+  };
+
+  const loginWithDemoAcc = (accEmail: string, accPassword: string) => {
+    const formValues = { email: accEmail, password: accPassword };
+    handleOnSubmit(formValues, setIsSubmitting);
   };
 
   const togglePersist = () => {
@@ -148,7 +154,7 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
             className="w-72 h-min flex items-center justify-center py-1 mt-4 rounded-sm bg-fuchsia-800 hover:bg-fuchsia-700 transition-colors text-fuchsia-50 border-none  
             shadow-[0_2px_2px_0_rgba(0,0,0,0.25)] hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.25)_inset]"
           >
-            {isSubmitting ? (
+            {isSubmitting || isSubmittingDemo ? (
               <>
                 <p className="pr-4">Processing...</p>
                 <LoadingSpinner width={15} height={15} />
@@ -166,6 +172,16 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               className="w[14px] h-[14px] rounded-lg"
             />
             <label htmlFor="persist">Keep me logged in</label>
+          </div>
+          <div className="flex flex-col mt-6 gap-1 text-sm">
+            <p className="text-sm">Login with our demo account to use the app right now</p>
+            <p className="text-xs">Use both accounts at the same time to test its functionalities</p>
+            <a target="_blank" rel="noreferrer"  className=" underline decoration-blue-400 cursor-pointer" onClick={() => loginWithDemoAcc("123@email.com", "12345")}>
+              Account #1
+            </a>
+            <p className="underline decoration-blue-400 cursor-pointer" onClick={() => loginWithDemoAcc("alice@email.com", "54321")}>
+              Account #2
+            </p>
           </div>
         </Form>
       )}

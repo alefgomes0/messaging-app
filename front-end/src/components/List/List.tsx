@@ -16,6 +16,7 @@ export const List = ({
 }: ListProps) => {
   const axiosPrivate = useAxiosPrivate();
   const { userId, contactId } = useParams();
+  console.log(contactId);
   const filteredContactConversation = conversationListInfo?.filter(
     (conversation) =>
       conversation.participants[0].name
@@ -31,7 +32,7 @@ export const List = ({
 
   const markMessageAsRead = async (conversationId: string) => {
     try {
-      const response = await axiosPrivate.put("/mark-message", {
+      await axiosPrivate.put("/mark-message", {
         conversationId,
       });
       return "ok";
@@ -52,12 +53,9 @@ export const List = ({
                 className="relative"
                 key={conversation.participants[0]._id}
                 onClick={() => {
-                  console.log("111111111");
                   markMessageAsRead(conversation._id)
                     .then(() => {
-                      console.log("22222222");
-
-                      handleNotification();
+                      if (!conversation.newMessage?.read) handleNotification();
                     })
                     .catch(() => console.log("error"));
                 }}
