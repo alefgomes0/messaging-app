@@ -169,19 +169,33 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               id="persist"
               onChange={togglePersist}
               checked={persist ? true : false}
-              className="w[14px] h-[14px] rounded-lg"
+              className="w[14px] h-[14px] rounded-lg disabled"
             />
             <label htmlFor="persist">Keep me logged in</label>
           </div>
-          <div className="flex flex-col mt-6 gap-1 text-sm">
-            <p className="text-sm">Login with our demo account to use the app right now</p>
-            <p className="text-xs">Use both accounts at the same time to test its functionalities</p>
-            <a target="_blank" rel="noreferrer"  className=" underline decoration-blue-400 cursor-pointer" onClick={() => loginWithDemoAcc("123@email.com", "12345")}>
+          <div className="flex flex-col pt-4 gap-1 text-sm">
+            <p className="text-sm">
+              Login with our demo account to use the app right now
+            </p>
+            <p className="text-xs">
+              Use both accounts at the same time to test its functionalities
+            </p>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              className=" underline decoration-blue-400 underline-offset-4 cursor-pointer"
+              onClick={() => loginWithDemoAcc("123@email.com", "12345")}
+            >
               Account #1
             </a>
-            <p className="underline decoration-blue-400 cursor-pointer" onClick={() => loginWithDemoAcc("alice@email.com", "54321")}>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-blue-400 underline-offset-4 cursor-pointer"
+              onClick={() => loginWithDemoAcc("alice@email.com", "54321")}
+            >
               Account #2
-            </p>
+            </a>
           </div>
         </Form>
       )}

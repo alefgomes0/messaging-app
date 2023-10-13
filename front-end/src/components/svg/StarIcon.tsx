@@ -12,7 +12,7 @@ export const StarIcon = ({
 
   return (
     <li
-      className={`relative rounded-lg w-[40px] h-[40px] flex items-center justify-center cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-700 ${
+      className={`pointer-events-none relative rounded-lg w-[40px] h-[40px] flex items-center justify-center hover:bg-neutral-300 dark:hover:bg-neutral-700 ${
         selectIcon === 3
           ? "bg-zinc-400 dark:bg-neutral-700 opacity-70"
           : "bg-zinc-200 dark:bg-neutral-800"
