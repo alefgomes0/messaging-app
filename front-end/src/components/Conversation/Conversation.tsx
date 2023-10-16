@@ -93,7 +93,7 @@ export const Conversation = () => {
   return (
     <section
       className={`grid grid-cols-1 grid-rows-[auto_1fr_auto] ${
-        isMobile && "fixed z-[50] h-[100dvh] w-[100vw] top-50 bottom-50 left-0"
+        isMobile && "fixed z-[50] h-[calc(100dvh-48px)] w-[100vw] top-50 bottom-50 left-0"
       } bg-zinc-100 dark:bg-neutral-800`}
     >
       {isLoading ? (

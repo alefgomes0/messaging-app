@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ConversationProps } from "../../types/ConversationProps";
 import { ConversationHeader } from "../ConversationHeader/ConversationHeader";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 type MessageBodyProps = {
   contactId: string;
@@ -16,6 +17,8 @@ export const MessageBody = ({
   newMessageSent,
 }: MessageBodyProps) => {
   const messageRef = useRef<null | HTMLSpanElement>(null);
+  const windowSize = useWindowSize();
+  const isMobile = windowSize < 768;
 
   useEffect(() => {
     if (messageRef.current) {
@@ -40,8 +43,8 @@ export const MessageBody = ({
                   key={message._id}
                   className={`grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-max max-w-[50%] h-max text-sm text-neutral-700 dark:text-neutral-200 rounded-md mb-2 ${
                     message.participants.sender === contactId
-                      ? "bg-neutral-500 dark:bg-neutral-700 opacity-90 dark:opacity-100 justify-self-start ml-8"
-                      : "bg-fuchsia-900 ml-auto mr-8"
+                      ? "bg-neutral-500 dark:bg-neutral-700 opacity-90 dark:opacity-100 justify-self-start ml-3"
+                      : "bg-fuchsia-900 ml-auto mr-3"
                   }`}
                 >
                   <p className="text-neutral-200 self-center pl-4 pb-1">

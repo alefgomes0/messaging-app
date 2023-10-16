@@ -70,26 +70,25 @@ export const MessengerPage = () => {
         <></>
       ) : (
         <>
-          {isMobile ? (
-            <main className="relative grid grid-rows-[48px] grid-cols-[48px_1fr]">
-              <AppHeader />
-              <Navbar id={auth.id} setSearchUser={setSearchUser} />
-              <section className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[48px_1fr] bg-zinc-200 dark:bg-neutral-900">
-                {searchUser ? <SearchUser /> : <MessagesInfo id={auth.id} />}
-                <Outlet />
 
-              </section>
-            </main>
-          ) : (
-            <main className="grid grid-rows-[48px_1fr] grid-cols-[48px_250px_1fr]">
+            <main
+              className={`relative grid ${
+                isMobile
+                  ? "grid grid-rows-[48px] grid-cols-[48px_1fr]"
+                  : "grid-rows-[48px_1fr] grid-cols-[48px_250px_1fr]"
+              } `}
+            >
               <AppHeader />
               <Navbar id={auth.id} setSearchUser={setSearchUser} />
-              <section className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[350px_1fr] bg-zinc-200 dark:bg-neutral-900">
+              <section
+                className={`h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 ${
+                  isMobile ? "grid-cols-[1px_1fr]" : "grid-cols-[350px_1fr]"
+                }  bg-zinc-200 dark:bg-neutral-900`}
+              >
                 {searchUser ? <SearchUser /> : <MessagesInfo id={auth.id} />}
                 <Outlet />
               </section>
             </main>
-          )}
         </>
       )}
     </>

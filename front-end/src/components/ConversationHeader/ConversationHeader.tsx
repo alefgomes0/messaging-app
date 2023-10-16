@@ -68,12 +68,12 @@ export const ConversationHeader = ({
   return (
     <div
       className={`min-h-[70px] grid ${
-        isMobile ? "grid-cols-[30px_65px_1fr]" : "grid-cols-[65px_1fr]"
-      } grid-rows-2 gap-x-2 gap-y-1 bg-zinc-50 dark:bg-[#1e1e1e] px-3 mb-8`}
+        isMobile ? "grid-cols-[30px_65px_1fr] mb-3" : "grid-cols-[65px_1fr] mb-8"
+      } grid-rows-2 gap-x-2 gap-y-1 bg-zinc-50 dark:bg-[#1e1e1e] px-3 `}
     >
       {isMobile && (
         <div
-          className="col-start-1 col-end-2 row-span-full self-center pl-2"
+          className="cursor-pointer col-start-1 col-end-2 row-span-full self-center pl-[6.5px]"
           onClick={() => navigate(`/${userId}`)}
         >
           <BackIcon />
