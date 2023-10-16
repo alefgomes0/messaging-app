@@ -5,6 +5,7 @@ import { LastMessageWithContact } from "../../types/ConversationListProps";
 import { ErrorMessage } from "../../types/ErrorMessage";
 import { List } from "../List/List";
 import { AddUserIcon } from "../svg/AddUserIcon";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 export const ConversationList = ({
   handleNotification,
@@ -18,11 +19,16 @@ export const ConversationList = ({
   conversationListInfo: LastMessageWithContact[] | null;
 }) => {
   const [searchValue, setSearchValue] = useState("");
-  const [notification, setNotification] = useState(false);
+  const windowSize = useWindowSize();
+  const isMobile = windowSize < 768;
 
   return (
     <>
-      <section className="grid grid-cols-1 grid-rows-[auto_auto_1fr] bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-zinc-400 dark:border-neutral-900 rounded-l-lg gap-4 pt-3">
+      <section
+        className={`grid grid-cols-1 ${
+          isMobile && "col-start-2 col-end-3"
+        } grid-rows-[auto_auto_1fr] bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-zinc-400 dark:border-neutral-900 rounded-l-lg gap-4 pt-3`}
+      >
         {isLoading ? (
           <div className="self-center justify-self-center">
             <Loading />

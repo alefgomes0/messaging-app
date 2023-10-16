@@ -163,7 +163,7 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               "Login"
             )}
           </button>
-          <div className="flex items-center mt-4 gap-1">
+          <div className="flex items-center mt-4 gap-1 text-sm">
             <input
               type="checkbox"
               id="persist"
@@ -178,7 +178,7 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               Login with our demo account to use the app right now
             </p>
             <p className="text-xs">
-              Use both accounts at the same time to test its functionalities
+              <span className="text-fuchsia-600">*{" "}</span>Use both accounts at the same time to test its functionalities
             </p>
             <a
               target="_blank"

@@ -9,6 +9,7 @@ import { ConversationProps } from "../../types/ConversationProps";
 import { useUserContext } from "../../context/useUserContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useSocket } from "../../context/useSocket";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 export const Conversation = () => {
   const [allMessages, setAllMessages] = useState<null | ConversationProps[]>(
@@ -25,6 +26,8 @@ export const Conversation = () => {
   const { conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
   const { socket } = useSocket();
+  const windowSize = useWindowSize();
+  const isMobile = windowSize < 768;
 
   const fetchConversationData = async () => {
     try {
@@ -87,7 +90,7 @@ export const Conversation = () => {
   };
 
   return (
-    <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] bg-zinc-100 dark:bg-neutral-800">
+    <section className={`grid grid-cols-1 grid-rows-[auto_1fr_auto] ${isMobile && "fixed z-[50] h-[100dvh] w-[100vw] top-50 bottom-50"} bg-zinc-100 dark:bg-neutral-800`}>
       {isLoading ? (
         <div className="row-start-2 row-end-3 self-center justify-self-center">
           <Loading />

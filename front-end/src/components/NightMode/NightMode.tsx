@@ -11,7 +11,7 @@ export const NightMode = () => {
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       <Sun />
-      <span className="text-neutral-500">|</span>
+      <span className="text-neutral-500">/</span>
       <Moon />
     </div>
   );

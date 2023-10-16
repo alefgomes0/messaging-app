@@ -5,6 +5,7 @@ import { ErrorMessage } from "../../types/ErrorMessage";
 import { Loading } from "../Loading/Loading";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { ContactCard } from "../ContactCard/ContactCard";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 type SearchedUserInfo = {
   _id: string;
@@ -23,6 +24,8 @@ export const SearchUser = () => {
   const [error, setError] = useState<null | ErrorMessage>(null);
   const { userId } = useParams();
   const axiosPrivate = useAxiosPrivate();
+  const windowSize = useWindowSize();
+  const isMobile = windowSize < 768;
 
   useEffect(() => {
     setIsLoading(true);
@@ -64,7 +67,11 @@ export const SearchUser = () => {
   };
 
   return (
-    <section className="grid grid-cols-1 auto-rows-min bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-neutral-900 rounded-l-lg gap-4 pt-3">
+    <article
+      className={`grid grid-cols-1 ${
+        isMobile && "col-start-2 col-end-3"
+      } auto-rows-min bg-zinc-50 dark:bg-[#1e1e1e] border-r-2 border-neutral-900 rounded-l-lg gap-4 pt-3`}
+    >
       <SearchBar
         inputPlaceholder="Search for a user name or email"
         searchValue={searchValue}
@@ -98,7 +105,6 @@ export const SearchUser = () => {
                       >
                         <ContactCard
                           key={user._id}
-                          id={user._id}
                           contactName={user.name}
                           conversationId={conversationId}
                           profilePicture={user.profilePicture}
@@ -114,6 +120,6 @@ export const SearchUser = () => {
           )}
         </>
       )}
-    </section>
+    </article>
   );
 };

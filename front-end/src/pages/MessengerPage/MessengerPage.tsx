@@ -7,6 +7,8 @@ import { MessagesInfo } from "../../components/MessagesInfo/MessagesInfo";
 import { useSocket } from "../../context/useSocket";
 import { SearchUser } from "../../components/SearchUser/SearchUser";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { ConversationList } from "../../components/ConversationList/ConversationList";
 
 export const MessengerPage = () => {
   const { auth, setAuth } = useAuthContext();
@@ -16,6 +18,9 @@ export const MessengerPage = () => {
   const [suspiciousActivity, setSuspiciousActivity] = useState(false);
   const [searchUser, setSearchUser] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const windowSize = useWindowSize();
+  const isMobile = windowSize < 768;
+  const [isConversationSelected, setIsConversationSelected] = useState(false);
 
   useEffect(() => {
     if (!socket) return;
@@ -64,14 +69,28 @@ export const MessengerPage = () => {
       {suspiciousActivity ? (
         <></>
       ) : (
-        <main className="grid grid-rows-[48px_1fr] grid-cols-[48px_250px_1fr]">
-          <AppHeader />
-          <Navbar id={auth.id} setSearchUser={setSearchUser} />
-          <div className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[350px_1fr] bg-zinc-200 dark:bg-neutral-900">
-            {searchUser ? <SearchUser /> : <MessagesInfo id={auth.id} />}
-            <Outlet />
-          </div>
-        </main>
+        <>
+          {isMobile ? (
+            <main className="relative grid grid-rows-[48px] grid-cols-[48px_1fr]">
+              <AppHeader />
+              <Navbar id={auth.id} setSearchUser={setSearchUser} />
+              <section className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[48px_1fr] bg-zinc-200 dark:bg-neutral-900">
+                {searchUser ? <SearchUser /> : <MessagesInfo id={auth.id} />}
+                <Outlet />
+
+              </section>
+            </main>
+          ) : (
+            <main className="grid grid-rows-[48px_1fr] grid-cols-[48px_250px_1fr]">
+              <AppHeader />
+              <Navbar id={auth.id} setSearchUser={setSearchUser} />
+              <section className="h-[calc(100dvh-48px)] w-[calc(100vw-48px)] grid grid-rows-1 grid-cols-[350px_1fr] bg-zinc-200 dark:bg-neutral-900">
+                {searchUser ? <SearchUser /> : <MessagesInfo id={auth.id} />}
+                <Outlet />
+              </section>
+            </main>
+          )}
+        </>
       )}
     </>
   );
