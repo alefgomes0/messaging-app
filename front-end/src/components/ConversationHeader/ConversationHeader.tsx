@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSocket } from "../../context/useSocket";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { BackIcon } from "../svg/BackIcon";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 type ConversationHeaderProps = {
   profilePicture: string | null;
@@ -16,6 +18,10 @@ export const ConversationHeader = ({
   const { socket } = useSocket();
   const [isUserOnline, setIsUserOnline] = useState(false);
   const [isUserTyping, setIsUserTyping] = useState(false);
+  const windowSize = useWindowSize();
+  const isMobile = windowSize < 768;
+  const navigate = useNavigate();
+  const { userId } = useParams();
 
   useEffect(() => {
     const checkIfUserOnline = (onlineUsers: string[]) => {
@@ -60,23 +66,51 @@ export const ConversationHeader = ({
   }, [socket, conversationId]);
 
   return (
-    <div className="min-h-[70px] grid grid-cols-[65px_1fr] grid-rows-2 gap-x-2 gap-y-1 bg-zinc-50 dark:bg-[#1e1e1e] px-3 mb-8">
+    <div
+      className={`min-h-[70px] grid ${
+        isMobile ? "grid-cols-[30px_65px_1fr]" : "grid-cols-[65px_1fr]"
+      } grid-rows-2 gap-x-2 gap-y-1 bg-zinc-50 dark:bg-[#1e1e1e] px-3 mb-8`}
+    >
+      {isMobile && (
+        <div
+          className="col-start-1 col-end-2 row-span-full self-center pl-2"
+          onClick={() => navigate(`/${userId}`)}
+        >
+          <BackIcon />
+        </div>
+      )}
       {profilePicture ? (
         <img
-          className="w-[58px] h-[58px] rounded-full col-start-1 col-end-2 row-span-full self-center"
+          className={`w-[58px] h-[58px] rounded-full ${
+            isMobile ? "col-start-2 col-end-3" : "col-start-1 col-end-2"
+          } row-span-full self-center`}
           src={profilePicture}
           alt=""
         />
       ) : (
-        <div className="w-[58px] h-[58px] rounded-full bg-blue-600 col-start-1 col-end-2 row-span-full self-center"></div>
+        <div
+          className={`w-[58px] h-[58px] rounded-full bg-blue-600 ${
+            isMobile ? "col-start-2 col-end-3" : "col-start-1 col-end-2"
+          } row-span-full self-center`}
+        ></div>
       )}
       <h3 className="text-neutral-800 dark:text-neutral-200 self-end font-bold">
         {contactName}
       </h3>
       {isUserTyping ? (
-        <p className="text-sm text-fuchsia-600 opacity-90">...is typing</p>
+        <p
+          className={`text-sm text-fuchsia-600 opacity-90 row-start-2  row-end-3 ${
+            isMobile ? "col-start-3 col-end-4" : "col-start-2 col-end-3"
+          }`}
+        >
+          ...is typing
+        </p>
       ) : (
-        <p className="text-sm text-neutral-800 dark:text-neutral-200 opacity-80">
+        <p
+          className={`text-sm text-neutral-800 dark:text-neutral-200 opacity-80 ${
+            isMobile ? "col-start-3 col-end-4" : "col-start-2 col-end-3"
+          }`}
+        >
           {isUserOnline ? "Online" : "Offline"}
         </p>
       )}
