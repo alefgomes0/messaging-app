@@ -54,7 +54,7 @@ export const ConversationHeader = ({
         clearTimeout(typingTimer);
         typingTimer = setTimeout(() => {
           setIsUserTyping(false);
-        }, 3000);
+        }, 2000);
       }
     });
 
