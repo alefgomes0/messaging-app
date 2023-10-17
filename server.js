@@ -74,6 +74,10 @@ io.on("connection", (socket) => {
     socket.emit("set-online-users", connectedUsers);
   });
 
+  const checkConnectedUsers = setInterval(() => {
+    socket.emit("set-online-users", connectedUsers);
+  }, 10000);
+
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
     console.log(connectedUsers);
@@ -105,5 +109,6 @@ io.on("connection", (socket) => {
 
   socket.off("setup", () => {
     socket.disconnect(true);
+    if (connectedUsers.length === 0) clearTimeout(checkConnectedUsers);
   });
 });

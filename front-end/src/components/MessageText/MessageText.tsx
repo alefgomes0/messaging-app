@@ -3,9 +3,6 @@ import { useAuthContext } from "../../context/useAuthContext";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { ErrorMessage } from "../../types/ErrorMessage";
 import { useSocket } from "../../context/useSocket";
-import data from "@emoji-mart/data";
-import Picker from "@emoji-mart/react";
-import { EmojiIcon } from "../svg/EmojiIcon";
 import { Emoji } from "../Emoji/Emoji";
 
 type MessageTextProps = {
@@ -22,7 +19,6 @@ export const MessageText = ({
   conversationId,
 }: MessageTextProps) => {
   const [message, setMessage] = useState("");
-
   const [isTextareaFocused, setIsTextareaFocused] = useState(false);
   const { auth } = useAuthContext();
   const userId = auth.id;
@@ -90,7 +86,7 @@ export const MessageText = ({
 
   return (
     <form method="POST" action="" onSubmit={handleOnSubmit} className="flex">
-      <Emoji />
+      <Emoji handleOnChange={setMessage}/>
       <textarea
         name="message"
         onChange={handleOnChange}
