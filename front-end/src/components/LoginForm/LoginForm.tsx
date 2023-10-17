@@ -174,11 +174,9 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
             <label htmlFor="persist">Keep me logged in</label>
           </div>
           <div className="flex flex-col pt-4 gap-1 text-sm">
-            <p className="text-sm">
-              Login with our demo account to use the app right now
-            </p>
-            <p className="text-xs">
-              <span className="text-fuchsia-600">*{" "}</span>Use both accounts at the same time to test its functionalities
+
+            <p>
+              Try both of our demo accounts to the test the app right now
             </p>
             <a
               target="_blank"

@@ -47,9 +47,10 @@ export const MessageBody = ({
                       : "bg-fuchsia-900 ml-auto mr-3"
                   }`}
                 >
-                  <p className="text-neutral-200 self-center pl-4 pb-1">
+                  <p className="text-neutral-200 self-center pl-4 pb-1 whitespace-pre-line">
                     {message.message}
                   </p>
+
                   <span className="self-end ml-4 mt-4 mr-2 mb-.5">
                     <p className="text-white dark:text-neutral-400 text-[9px] opacity-70">
                       {message.time}

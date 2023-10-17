@@ -39,7 +39,7 @@ exports.get = async (req, res, next) => {
 };
 
 exports.post = [
-  body("message").escape(),
+  body("message").escape().trim(),
 
   asyncHandler(async (req, res, next) => {
     const userId = req.body.userId;
