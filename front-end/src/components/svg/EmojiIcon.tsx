@@ -1,10 +1,6 @@
 import { useUserContext } from "../../context/useUserContext";
 
-type EmojiIconProps = {
-  children: React.ReactNode;
-};
-
-export const EmojiIcon = ({ children }: EmojiIconProps) => {
+export const EmojiIcon = () => {
   const { theme } = useUserContext();
   const fillColor = theme === "light" ? "#0e020d" : "#e4e4e4";
 
@@ -14,6 +10,7 @@ export const EmojiIcon = ({ children }: EmojiIconProps) => {
       width="18"
       height="18"
       viewBox="0 0 24 24"
+      className="relative"
     >
       <g
         fill="none"
@@ -29,7 +26,6 @@ export const EmojiIcon = ({ children }: EmojiIconProps) => {
           d="M15.5 9a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1Zm-7 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1Z"
         />
       </g>
-      {children}
     </svg>
   );
 };
