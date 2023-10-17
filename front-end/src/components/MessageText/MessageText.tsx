@@ -5,6 +5,8 @@ import { ErrorMessage } from "../../types/ErrorMessage";
 import { useSocket } from "../../context/useSocket";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import { EmojiIcon } from "../svg/EmojiIcon";
+import { Emoji } from "../Emoji/Emoji";
 
 type MessageTextProps = {
   contactId: string;
@@ -88,6 +90,7 @@ export const MessageText = ({
 
   return (
     <form method="POST" action="" onSubmit={handleOnSubmit} className="flex">
+      <Emoji />
       <textarea
         name="message"
         onChange={handleOnChange}
