@@ -16119,3 +16119,5 @@
 17 de outubro de 2023 às 13:50:08 BRT	fa503ba7-7dd6-4653-b449-e773a946b5eb	GET	http://localhost:5173	/messages/651b372778e4360884093edc/6519a22bbe69f88f7b0cb0fd
 17 de outubro de 2023 às 13:50:22 BRT	5dfaa383-ca41-4915-9ab9-00f7663d619f	OPTIONS	http://localhost:5173	/logout
 17 de outubro de 2023 às 13:50:22 BRT	cffba0c8-f482-46b8-8264-e432222c2ca8	GET	http://localhost:5173	/logout
+17 de outubro de 2023 às 13:57:27 BRT	d7e3d561-cae8-4ac9-b447-dbeb6d9ffccc	OPTIONS	http://localhost:5173	/messages/6519a22bbe69f88f7b0cb0fd/651b372778e4360884093edc
+17 de outubro de 2023 às 13:57:27 BRT	624de9bf-88a9-4e59-9451-553c0a0071bc	GET	http://localhost:5173	/messages/6519a22bbe69f88f7b0cb0fd/651b372778e4360884093edc
