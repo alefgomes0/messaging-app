@@ -44,7 +44,7 @@ export const List = ({
       {conversationListInfo ? (
         <>
           {conversationInfo?.map((conversation) => {
-            if (conversation.messages.length === 0) return;
+            if (conversation.messages.length <= 0) return;
             return (
               <div
                 className="relative"

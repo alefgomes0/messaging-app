@@ -17,7 +17,9 @@ export const StatusIcon = ({
           ? "bg-zinc-400 dark:bg-neutral-700 opacity-70"
           : "bg-zinc-200 dark:bg-neutral-800"
       }  transition-colors duration-100 ease-in-out`}
-      onClick={() => setSelectIcon(2)}
+      onClick={() => {
+        if (setSelectIcon) setSelectIcon(2);
+      }}
     >
       <div
         className={`w-4 h-[16px] rounded absolute left-0 top-50 border-l-4 border-l-fuchsia-700 dark:border-l-fuchsia-500 ${

@@ -8,7 +8,6 @@ import { useSocket } from "../../context/useSocket";
 import { SearchUser } from "../../components/SearchUser/SearchUser";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useWindowSize } from "../../hooks/useWindowSize";
-import { ConversationList } from "../../components/ConversationList/ConversationList";
 
 export const MessengerPage = () => {
   const { auth, setAuth } = useAuthContext();
@@ -20,7 +19,6 @@ export const MessengerPage = () => {
   const axiosPrivate = useAxiosPrivate();
   const windowSize = useWindowSize();
   const isMobile = windowSize < 768;
-  const [isConversationSelected, setIsConversationSelected] = useState(false);
 
   useEffect(() => {
     if (!socket) return;

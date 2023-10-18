@@ -1,4 +1,4 @@
-import { useEffect, SetStateAction, createContext, useState } from "react";
+import { SetStateAction, createContext, useState } from "react";
 import { LastMessageWithContact } from "../types/ConversationListProps";
 import { ErrorMessage } from "../types/ErrorMessage";
 

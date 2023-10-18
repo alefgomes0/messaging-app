@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ConversationProps } from "../../types/ConversationProps";
 import { ConversationHeader } from "../ConversationHeader/ConversationHeader";
-import { useWindowSize } from "../../hooks/useWindowSize";
 
 type MessageBodyProps = {
   contactId: string;
@@ -17,8 +16,6 @@ export const MessageBody = ({
   newMessageSent,
 }: MessageBodyProps) => {
   const messageRef = useRef<null | HTMLSpanElement>(null);
-  const windowSize = useWindowSize();
-  const isMobile = windowSize < 768;
 
   useEffect(() => {
     if (messageRef.current) {
