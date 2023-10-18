@@ -29,7 +29,5 @@ exports.put = asyncHandler(async (req, res, next) => {
     })
     .exec();
 
-  console.log(allMessages);
-
   res.json(allMessages);
 });

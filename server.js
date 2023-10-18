@@ -70,7 +70,6 @@ io.on("connection", (socket) => {
   socket.emit("online-users", connectedUsers);
 
   socket.on("get-online-users", (data) => {
-    console.log(connectedUsers);
     socket.emit("set-online-users", connectedUsers);
   });
 
@@ -80,16 +79,13 @@ io.on("connection", (socket) => {
 
   socket.on("user-disconnect", (userId) => {
     connectedUsers = connectedUsers.filter((id) => id !== userId);
-    console.log(connectedUsers);
     socket.emit("set-online-users", connectedUsers);
   });
 
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log(`A user joined room: ${room}`);
 
     socket.on("typing", (room) => {
-      console.log(`Typing in room ${room}`);
       socket.in(room).emit("typing", room);
     });
   });
@@ -104,7 +100,7 @@ io.on("connection", (socket) => {
       newMessageSent.participants.receiver,
       newMessageSent
     );
-    socket.emit("teste");
+    socket.emit("teste", senderId, receiverId);
   });
 
   socket.off("setup", () => {

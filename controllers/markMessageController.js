@@ -13,7 +13,6 @@ exports.put = async (req, res, next) => {
       }
     );
     
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     res.json("end");
   } catch (err) {
     res.status(500).json({

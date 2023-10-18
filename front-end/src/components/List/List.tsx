@@ -16,7 +16,6 @@ export const List = ({
 }: ListProps) => {
   const axiosPrivate = useAxiosPrivate();
   const { userId, contactId } = useParams();
-  console.log(contactId);
   const filteredContactConversation = conversationListInfo?.filter(
     (conversation) =>
       conversation.participants[0].name
@@ -69,13 +68,11 @@ export const List = ({
                   time={conversation.messages[0].time}
                   message={conversation.messages[0].message}
                 />
-                {!conversation.newMessage?.read &&
-                  conversation.newMessage?.receiver === userId &&
-                  conversation.newMessage?.sender !== contactId && (
-                    <div className="absolute bottom-0 right-0 bg-fuchsia-700 px-3 py-.5 rounded-sm">
-                      <p className="text-xs text-fuchsia-50 ">NEW</p>
-                    </div>
-                  )}
+                {!conversation.newMessage?.read && (
+                  <div className="absolute bottom-0 right-0 bg-fuchsia-700 px-3 py-.5 rounded-sm">
+                    <p className="text-xs text-fuchsia-50 ">NEW</p>
+                  </div>
+                )}
               </div>
             );
           })}

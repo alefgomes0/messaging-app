@@ -3,5 +3,5 @@ export type ConversationProps = {
   date: string;
   message: string;
   time: string;
-  participants: { sender: string };
+  participants: { sender: string; receiver?: string };
 };

@@ -169,15 +169,12 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               id="persist"
               onChange={togglePersist}
               checked={persist ? true : false}
-              className="w[14px] h-[14px] rounded-lg disabled"
+              className="w-[14px] h-[14px] rounded-sm disabled bg-red-700 shadow-[0_2px_2px_0_rgba(0,0,0,0.15)_inset]"
             />
             <label htmlFor="persist">Keep me logged in</label>
           </div>
           <div className="flex flex-col pt-4 gap-1 text-sm">
-
-            <p>
-              Try both of our demo accounts to the test the app right now
-            </p>
+            <p>Try both of our demo accounts at the same time to the test the app right now</p>
             <a
               target="_blank"
               rel="noreferrer"

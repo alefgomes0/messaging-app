@@ -20,8 +20,7 @@ export const Conversation = () => {
   const { error, setError, isLoading, setIsLoading } = useUserContext();
   const [newMessageSent, setNewMessageSent] =
     useState<null | ConversationProps>(null);
-  const { userId } = useParams();
-  const { contactId } = useParams();
+  const { userId, contactId } = useParams();
   const { state } = useLocation();
   const { conversationId } = state;
   const axiosPrivate = useAxiosPrivate();
@@ -56,10 +55,23 @@ export const Conversation = () => {
     fetchConversationData();
     if (!socket) return;
     socket.emit("join chat", conversationId);
-    socket.on("message received", (newMessageReceived: ConversationProps) => {
+    socket.on("message received", async (newMessageReceived: ConversationProps) => {
       setAllMessages((prevMessages) =>
         (prevMessages ?? []).concat(newMessageReceived)
       );
+
+    if (newMessageReceived.participants.receiver === userId && newMessageReceived.participants.sender === contactId) {
+      try {
+        await axiosPrivate.put("/mark-message", {
+          conversationId,
+        });
+        return "ok";
+      } catch (err) {
+        console.log(err);
+        return "fail";
+      }
+  
+    }
     });
 
     return () => {

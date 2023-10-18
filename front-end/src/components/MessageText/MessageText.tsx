@@ -43,6 +43,7 @@ export const MessageText = ({
     window.addEventListener("focusout", handleTextareaFocus);
 
     setMessage("");
+    textareaRef.current?.focus();
 
     return () => {
       window.removeEventListener("focusin", handleTextareaFocus);
@@ -86,7 +87,7 @@ export const MessageText = ({
 
   return (
     <form method="POST" action="" onSubmit={handleOnSubmit} className="flex">
-      <Emoji handleOnChange={setMessage}/>
+      <Emoji handleOnChange={setMessage} />
       <textarea
         name="message"
         onChange={handleOnChange}
