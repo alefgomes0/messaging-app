@@ -30,7 +30,7 @@ app.use("/refresh", require("./routes/refresh"));
 app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
-//app.use("/new-message", require("./routes/newMessage.js"));
+app.use("/new-message", require("./routes/messageNew"));
 app.use("/mark-message", require("./routes/markMessageAsRead"));
 app.use("/profile-picture", require("./routes/profilePicture"));
 app.use("/search-user", require("./routes/searchUser"));
@@ -45,7 +45,12 @@ const server = app.listen(PORT, () =>
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://messaging-app-git-main-alefgomes0.vercel.app/",
+      "https://messaging-jzn3qrum8-alefgomes0.vercel.app/",
+      "http://127.0.0.1:3000",
+    ],
     withCredentials: true,
   },
 });
