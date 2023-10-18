@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { LastMessageWithContact } from "../../types/ConversationListProps";
 import { ContactCard } from "../ContactCard/ContactCard";
@@ -15,7 +14,6 @@ export const List = ({
   handleNotification,
 }: ListProps) => {
   const axiosPrivate = useAxiosPrivate();
-  const { userId, contactId } = useParams();
   const filteredContactConversation = conversationListInfo?.filter(
     (conversation) =>
       conversation.participants[0].name
