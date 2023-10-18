@@ -11,7 +11,6 @@ const credentials = require("./config/credentials");
 const verifyJWT = require("./middleware/verifyJWT");
 const connectDB = require("./config/dbConn");
 const PORT = process.env.PORT || 3000;
-const mongoose = require("mongoose");
 
 connectDB();
 
@@ -38,11 +37,6 @@ app.use("/search-user", require("./routes/searchUser"));
 app.use("/user", require("./routes/user"));
 
 app.use(errorHandler);
-
-/* const server = mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDB");
-  app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
-}); */
 
 const server = app.listen(PORT, () =>
   console.log(`Server started at port ${PORT}`)
