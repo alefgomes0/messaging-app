@@ -4,7 +4,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { BackIcon } from "../svg/BackIcon";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
-
 type ConversationHeaderProps = {
   profilePicture: string | null;
   contactId: string;
@@ -44,7 +43,7 @@ export const ConversationHeader = ({
     };
   }, [contactId, socket]);
 
-  let typingTimer: NodeJS.Timeout;
+  let typingTimer: number;
 
   useEffect(() => {
     socket?.on("typing", (room) => {
@@ -52,7 +51,7 @@ export const ConversationHeader = ({
         setIsUserTyping(true);
 
         clearTimeout(typingTimer);
-        typingTimer = setTimeout(() => {
+        typingTimer = window.setTimeout(() => {
           setIsUserTyping(false);
         }, 2000);
       }
