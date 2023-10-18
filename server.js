@@ -30,7 +30,7 @@ app.use("/refresh", require("./routes/refresh"));
 app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
 app.use("/messages", require("./routes/message"));
-app.use("/new-message", require("./routes/newMessage.js"));
+//app.use("/new-message", require("./routes/newMessage.js"));
 app.use("/mark-message", require("./routes/markMessageAsRead"));
 app.use("/profile-picture", require("./routes/profilePicture"));
 app.use("/search-user", require("./routes/searchUser"));
