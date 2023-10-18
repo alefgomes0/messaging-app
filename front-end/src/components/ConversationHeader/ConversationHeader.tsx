@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { BackIcon } from "../svg/BackIcon";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
+
 type ConversationHeaderProps = {
   profilePicture: string | null;
   contactId: string;
