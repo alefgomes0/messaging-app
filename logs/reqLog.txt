@@ -15416,3 +15416,5 @@
 19 de outubro de 2023 às 16:22:05 BRT	39d18e9c-56ea-43b7-805a-c3b5270fd87c	PUT	http://localhost:5173	/new-message/6531773c551e6dcdbb5ff686
 19 de outubro de 2023 às 16:22:24 BRT	838df9e9-3e06-47ff-ba69-6a00dd9c8dfe	OPTIONS	http://localhost:5173	/new-message/6531773c551e6dcdbb5ff686
 19 de outubro de 2023 às 16:22:24 BRT	74abbc29-d801-4d14-a814-f95d3e959f9f	PUT	http://localhost:5173	/new-message/6531773c551e6dcdbb5ff686
+19 de outubro de 2023 às 16:27:32 BRT	c15977bb-31a8-4a40-9a12-a7c6ca723f93	OPTIONS	https://messaging-app-peach-psi.vercel.app	/new-message/65317756551e6dcdbb5ff689
+19 de outubro de 2023 às 16:27:32 BRT	d18bb8a3-4ae3-4255-a32a-bfccff465512	PUT	https://messaging-app-peach-psi.vercel.app	/new-message/65317756551e6dcdbb5ff689

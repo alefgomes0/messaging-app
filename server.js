@@ -47,8 +47,9 @@ const io = require("socket.io")(server, {
   cors: {
     origin: [
       "http://localhost:5173",
-      "https://messaging-app-git-main-alefgomes0.vercel.app/",
-      "https://messaging-jzn3qrum8-alefgomes0.vercel.app/",
+      "https://messaging-app-peach-psi.vercel.app",
+      "https://messaging-app-git-main-alefgomes0.vercel.app",
+      "https://messaging-mvpuxbcxy-alefgomes0.vercel.app",
       "http://127.0.0.1:3000",
     ],
     withCredentials: true,
