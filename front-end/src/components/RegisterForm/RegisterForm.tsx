@@ -9,6 +9,7 @@ type Values = {
   name: string;
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
 type RegisterError = {
@@ -32,6 +33,11 @@ const RegisterSchema = Yup.object().shape({
   password: Yup.string()
     .min(5, "Password must have at least 5 characters")
     .max(30, "Password must have at most 30 characters")
+    .required("Required"),
+  confirmPassword: Yup.string()
+    .test("passwords-match", "Passwords must match", function (value) {
+      return this.parent.password === value;
+    })
     .required("Required"),
 });
 
@@ -87,6 +93,7 @@ export const RegisterForm = ({
         name: "",
         email: "",
         password: "",
+        confirmPassword: "",
       }}
       onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
         handleOnSubmit(values, setSubmitting);
@@ -150,6 +157,25 @@ export const RegisterForm = ({
           />
           <ErrorMessage
             name="password"
+            component="div"
+            className="text-red-500 text-sm mt-[-9px]"
+          />
+
+          <label htmlFor="confirmPassword" className="mb-1">
+            Confirm Password
+          </label>
+          <Field
+            type="password"
+            name="confirmPassword"
+            className={`mb-3 text-sm placeholder:text-sm pl-1 h-[26px] rounded-sm border-none outline-none focus:ring-2 ${
+              errors.confirmPassword && touched.confirmPassword
+                ? "focus:ring-red-400"
+                : "focus:ring-fuchsia-400"
+            }
+            }`}
+          />
+          <ErrorMessage
+            name="confirmPassword"
             component="div"
             className="text-red-500 text-sm mt-[-9px]"
           />

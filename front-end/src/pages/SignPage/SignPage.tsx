@@ -27,6 +27,12 @@ export const SignPage = () => {
               ? "Fill the form bellow to register"
               : "Already have an account? Login bellow"}
           </p>
+          {newAccountCreated && !showRegisterForm && (
+            <p className="opacity-90 text-green-600 pt-[-4px] pb-4">
+              New account created successfully! Enter the same credentials to
+              login
+            </p>
+          )}
           {showRegisterForm ? (
             <RegisterForm
               setNewAccountCreated={setNewAccountCreated}
@@ -39,12 +45,7 @@ export const SignPage = () => {
               setPersist={setPersist}
             />
           )}
-          {newAccountCreated && (
-            <p className="opacity-90 text-green-600 pt-4">
-              New account created successfully! Enter the same credentials to
-              login
-            </p>
-          )}
+
           <div className="text-sm">
             {!showRegisterForm && <p className="font-semibold opacity-[85%] pt-4">OR</p>}
             <p
