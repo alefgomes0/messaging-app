@@ -58,9 +58,9 @@ export const ConversationList = ({
                     handleNotification={handleNotification}
                   />
                 ) : (
-                  <div className="flex flex-col items-center text-center text-neutral-200 opacity-80">
+                  <div className="flex flex-col items-center text-center text-neutral-800 dark:text-neutral-200 opacity-80">
                     <p>You don't have any active conversation.</p>
-                    <p>Click on this icon </p>
+                    <p>Click on the icon </p>
                     <span className="pointer-events-none">
                       <AddUserIcon width={12} height={12} />
                     </span>

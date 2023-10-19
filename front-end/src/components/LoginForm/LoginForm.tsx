@@ -179,7 +179,7 @@ export const LoginForm = ({ setAuth, persist, setPersist }: LoginFormProps) => {
               target="_blank"
               rel="noreferrer"
               className=" underline decoration-blue-400 underline-offset-4 cursor-pointer"
-              onClick={() => loginWithDemoAcc("123@email.com", "12345")}
+              onClick={() => loginWithDemoAcc("joao@email.com", "12345")}
             >
               Account #1
             </a>

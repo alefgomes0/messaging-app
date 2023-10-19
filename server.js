@@ -99,7 +99,7 @@ io.on("connection", (socket) => {
       newMessageSent.participants.receiver,
       newMessageSent
     );
-    socket.emit("teste", senderId, receiverId);
+    socket.emit("teste");
   });
 
   socket.off("setup", () => {
