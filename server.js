@@ -45,19 +45,10 @@ const server = app.listen(PORT, () =>
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: [
-      "https://messaging-app-peach-psi.vercel.app",
-      "https://messaging-app-git-main-alefgomes0.vercel.app",
-      "https:/messaging-e0tpbkzva-alefgomes0.vercel.app",
-      "http://localhost:5173",
-      "https://messaging-e0tpbkzva-alefgomes0.vercel.app",
-      "https://messaging-app-peach-psi.vercel.app",
-      "https://messaging-app-git-main-alefgomes0.vercel.app",
-      "https:/messaging-e0tpbkzva-alefgomes0.vercel.app",
-      "http://127.0.0.1:3000",
-    ],
+    origin: "https://messaging-app-5mr7.onrender.com",
     withCredentials: true,
   },
+  withCredentials: true
 });
 
 let connectedUsers = [];
