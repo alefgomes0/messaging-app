@@ -83,7 +83,7 @@ export const Conversation = () => {
   const fetchNewMessage = async () => {
     try {
       const response = await axiosPrivate.put(
-        `http://localhost:3000/new-message/${contactId}`,
+        `/new-message/${contactId}`,
         {
           userId,
         }

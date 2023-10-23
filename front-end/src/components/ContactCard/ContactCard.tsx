@@ -42,7 +42,7 @@ export const ContactCard = ({
       )}
       <div className="w-full self-end flex justify-between col-start-2 col-end-3 row-start-1 row-end-2">
         <h4 className="font-bold text-neutral-800 dark:text-neutral-100">{contactName}</h4>
-        {!searchedUser && <h6 className="text-xs opacity-60">{time}</h6>}
+        {!searchedUser && <h6 className="text-xs opacity-60 pt-1">{time}</h6>}
       </div>
       <p className="truncate text-sm self-start col-start-2 col-end-3 row-start-2 row-end-3 opacity-70">
         {searchedUser ? email : message}
