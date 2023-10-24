@@ -27,8 +27,6 @@ export const List = ({
     ? filteredContactConversation
     : conversationListInfo;
 
-  console.log(conversationListInfo);
-
   const markMessageAsRead = async (conversationId: string) => {
     try {
       await axiosPrivate.put("/mark-message", {

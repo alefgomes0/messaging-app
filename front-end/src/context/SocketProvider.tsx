@@ -16,9 +16,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
   const [socket, setSocket] = useState<Socket | null>(null)
   
   useEffect(() => {
-    const newSocket = io("https://messaging-app-5mr7.onrender.com", {
-      withCredentials: true,
-    })
+    const newSocket = io("https://messaging-app-5mr7.onrender.com")
     setSocket(newSocket)
 
     return () => {

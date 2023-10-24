@@ -55,24 +55,29 @@ export const Conversation = () => {
     fetchConversationData();
     if (!socket) return;
     socket.emit("join chat", conversationId);
-    socket.on("message received", async (newMessageReceived: ConversationProps) => {
-      setAllMessages((prevMessages) =>
-        (prevMessages ?? []).concat(newMessageReceived)
-      );
+    socket.on(
+      "message received",
+      async (newMessageReceived: ConversationProps) => {
+        setAllMessages((prevMessages) =>
+          (prevMessages ?? []).concat(newMessageReceived)
+        );
 
-    if (newMessageReceived.participants.receiver === userId && newMessageReceived.participants.sender === contactId) {
-      try {
-        await axiosPrivate.put("/mark-message", {
-          conversationId,
-        });
-        return "ok";
-      } catch (err) {
-        console.log(err);
-        return "fail";
+        if (
+          newMessageReceived.participants.receiver === userId &&
+          newMessageReceived.participants.sender === contactId
+        ) {
+          try {
+            await axiosPrivate.put("/mark-message", {
+              conversationId,
+            });
+            return "ok";
+          } catch (err) {
+            console.log(err);
+            return "fail";
+          }
+        }
       }
-  
-    }
-    });
+    );
 
     return () => {
       socket.off("message received");
@@ -82,12 +87,9 @@ export const Conversation = () => {
 
   const fetchNewMessage = async () => {
     try {
-      const response = await axiosPrivate.put(
-        `/new-message/${contactId}`,
-        {
-          userId,
-        }
-      );
+      const response = await axiosPrivate.put(`/new-message/${contactId}`, {
+        userId,
+      });
       if (response.status >= 200 && response.status <= 305) {
         setAllMessages((prevMessages) =>
           (prevMessages ?? []).concat(response.data.messages[0])
