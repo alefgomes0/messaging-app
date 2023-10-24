@@ -7,7 +7,7 @@ exports.put = async (req, res, next) => {
       {
         $and: [
           { participants: req.body.userId },
-          { participants: req.body.contactId },
+          { participants: req.params.contactId },
         ],
       },
       {
