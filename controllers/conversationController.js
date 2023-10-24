@@ -1,30 +1,38 @@
 const asyncHandler = require("express-async-handler");
 const Conversation = require("../models/conversations");
 
-exports.get = asyncHandler(async (req, res, next) => {
-  const [contacts, populatedContacts] = await Promise.all([
-    Conversation.find({
-      participants: { $elemMatch: { $eq: req.params.userId } },
-    }).exec(),
-    Conversation.find({
-      participants: { $elemMatch: { $eq: req.params.userId } },
-    })
-      .slice("messages", -1)
-      .populate({
-        path: "messages",
-        select: "message date time",
+exports.get = async (req, res, next) => {
+  try {
+    const [contacts, populatedContacts] = await Promise.all([
+      Conversation.find({
+        participants: { $elemMatch: { $eq: req.params.userId } },
+      }).exec(),
+      Conversation.find({
+        participants: { $elemMatch: { $eq: req.params.userId } },
       })
-      .populate("participants", "name profilePicture")
-      .select({ participants: { $elemMatch: { $ne: req.params.userId } } })
-      .exec(),
-  ]);
+        .slice("messages", -1)
+        .populate({
+          path: "messages",
+          select: "message date time",
+        })
+        .populate("participants", "name profilePicture")
+        .select({ participants: { $elemMatch: { $ne: req.params.userId } } })
+        .exec(),
+    ]);
 
-  if (contacts.length === 0) {
-    return res.status(204).json({ message: "No contacts found" });
+    if (contacts.length === 0) {
+      return res.status(204).json({ message: "No contacts found" });
+    }
+    res.json({
+      success: true,
+      populatedContacts,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+    });
   }
-
-  res.json(populatedContacts);
-});
+};
 
 exports.post = async (req, res, next) => {
   try {

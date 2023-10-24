@@ -30,8 +30,8 @@ export const MessagesInfo = ({ id }: MessagesInfoProps) => {
       const response = await axiosPrivate.get(`/conversation/${id}`);
       if (response.status === 204) {
         setConversationListInfo(null);
-      } else if (response.status >= 200 && response.status <= 305) {
-        setConversationListInfo(response.data);
+      } else if (response.data.success) {
+        setConversationListInfo(response.data.populatedContacts);
       }
       setIsLoading(false);
     } catch (err) {
