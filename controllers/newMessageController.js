@@ -5,7 +5,10 @@ exports.put = async (req, res, next) => {
   try {
     const allMessages = await Conversation.findOneAndUpdate(
       {
-        participants: [req.body.userId, req.params.contactId],
+        $and: [
+          { participants: req.body.userId },
+          { participants: req.body.contactId },
+        ],
       },
       {
         $set: {
