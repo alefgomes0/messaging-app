@@ -57,3 +57,5 @@
 16 de outubro de 2023 às 10:52:57 BRT	f7eab8e0-c222-470f-bd19-f2f64e19813f	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
 16 de outubro de 2023 às 10:53:15 BRT	8f10f3ea-c2b9-422d-a76f-b493c4de7b6b	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
 16 de outubro de 2023 às 10:53:15 BRT	c1ef1adf-d233-4e4c-a223-6bdf9ef04fcf	CastError: Cast to ObjectId failed for value "undefined" (type string) at path "participants" for model "Conversations"
+24 de outubro de 2023 às 16:13:25 BRT	e408ab61-6c24-4b26-a8cf-6fae9c94a1ea	ReferenceError: z is not defined
+24 de outubro de 2023 às 16:14:18 BRT	b09d6808-0cbd-49bb-8677-b6b1661a1508	ReferenceError: z is not defined

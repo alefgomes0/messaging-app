@@ -90,13 +90,14 @@ export const Conversation = () => {
       const response = await axiosPrivate.put(`/new-message/${contactId}`, {
         userId,
       });
-      if (response.status >= 200 && response.status <= 305) {
+      console.log(response.data)
+      if (response.data.success) {
         setAllMessages((prevMessages) =>
-          (prevMessages ?? []).concat(response.data.messages[0])
+          (prevMessages ?? []).concat(response.data.allMessages.messages[0])
         );
         setIsLoading(false);
-        setNewMessageSent(response.data.messages[0]);
-        socket?.emit("new message", response.data.messages[0], userId);
+        setNewMessageSent(response.data.allMessages.messages[0]);
+        socket?.emit("new message", response.data.allMessages.messages[0], userId);
       }
     } catch (err) {
       setIsLoading(false);

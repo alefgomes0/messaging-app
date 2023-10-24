@@ -47,10 +47,12 @@ const io = require("socket.io")(server, {
   cors: {
     origin: [
       "http://localhost:5173",
+      "http://127.0.0.1:3000",
       "https://messaging-app-peach-psi.vercel.app",
       "https://messaging-app-git-main-alefgomes0.vercel.app",
       "https:/messaging-e0tpbkzva-alefgomes0.vercel.app",
     ],
+    credentials: true,
   },
   withCredentials: true,
 });

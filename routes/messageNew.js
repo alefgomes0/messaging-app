@@ -4,6 +4,4 @@ const newMessage = require("../controllers/newMessageController");
 
 router.put("/:contactId", newMessage.put);
 
-
 module.exports = router;
-
