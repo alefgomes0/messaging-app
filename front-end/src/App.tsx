@@ -17,7 +17,7 @@ const App = () => {
             <Route path="/" element={<SignPage />} />
             <Route element={<PersistLogin />}>
               <Route
-                path="/:userId"
+                path=":userId"
                 element={
                   <SocketProvider>
                     <UserContextProvider>
