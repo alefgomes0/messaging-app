@@ -29,10 +29,7 @@ exports.get = asyncHandler(async (req, res, next) => {
 exports.post = async (req, res, next) => {
   try {
     const conversation = await Conversation.find({
-      $and: [
-        { participants: req.body.userId },
-        { participants: req.body.contactId },
-      ],
+      participants: [req.body.userId, req.body.contactId],
     }).exec();
 
     if (conversation.length === 0) {
