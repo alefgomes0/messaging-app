@@ -18,13 +18,13 @@ exports.get = async (req, res, next) => {
       .populate("participants", "profilePicture")
       .select({ participants: { $elemMatch: { $eq: contactId } } })
       .exec();
-    
+
     if (allMessages.length === 0) {
       return res.status(204).json({
         success: true,
-        allMessages
+        allMessages,
       });
-    }  
+    }
 
     return res.status(200).json({
       success: true,
