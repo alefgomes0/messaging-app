@@ -5,4 +5,4 @@ const { mensagemGet, mensagemPost } =  require("../controllers/mensagemControlle
 router.get("/", mensagemGet)
 router.post("/", mensagemPost);
 
-export default router
+module.exports = router
