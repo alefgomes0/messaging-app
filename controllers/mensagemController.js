@@ -1,5 +1,5 @@
-import { body } from "express-validator";
-import Mensagem from "../models/mensagem";
+const { body } = require("express-validator")
+const Mensagem = require("../models/mensagem")
 
 async function mensagemGet(req, res, next) {
   try {

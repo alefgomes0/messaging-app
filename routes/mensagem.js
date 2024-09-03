@@ -1,6 +1,6 @@
-import express from "express"
+require("express")
 const router = express.Router();
-import { mensagemGet, mensagemPost } from "../controllers/mensagemController";
+const { mensagemGet, mensagemPost } =  require("../controllers/mensagemController");
 
 router.get("/", mensagemGet)
 router.post("/", mensagemPost);

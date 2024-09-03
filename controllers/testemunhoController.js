@@ -1,4 +1,4 @@
-import Mensagem from "../models/mensagem";
+const Mensagem = require("../models/mensagem")
 
 export async function testemunhoGet(req, res, next) {
   try {
