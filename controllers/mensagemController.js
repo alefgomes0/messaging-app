@@ -1,7 +1,7 @@
-const { body } = require("express-validator")
-const Mensagem = require("../models/mensagem")
+const { body } = require("express-validator");
+const Mensagem = require("../models/mensagem");
 
-async function mensagemGet(req, res, next) {
+exports.get = async function (req, res, next) {
   try {
     const mensagens = await Mensagem.find({});
     return res.status(200).json({
@@ -15,9 +15,9 @@ async function mensagemGet(req, res, next) {
       erro: err.message,
     });
   }
-}
+};
 
-const mensagemPost = [
+exports.post = [
   body("mensagem").escape().trim(),
   async (req, res, next) => {
     const novaMensagem = new Mensagem({
@@ -41,5 +41,3 @@ const mensagemPost = [
     });
   },
 ];
-
-export { mensagemGet, mensagemPost };

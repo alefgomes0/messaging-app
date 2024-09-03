@@ -1,6 +1,6 @@
 const Mensagem = require("../models/mensagem")
 
-export async function testemunhoGet(req, res, next) {
+exports.get = async function(req, res, next) {
   try {
     const testemunhos = await Mensagem.find({ visivel: true });
     return res.status(200).json({
