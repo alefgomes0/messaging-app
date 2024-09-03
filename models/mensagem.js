@@ -1,5 +1,5 @@
 //import { DateTime } from "luxon"
-import mongoose from "mongoose";
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 const opts = { toJSON: { virtuals: true } };
 
@@ -19,4 +19,4 @@ const MensagemSchema = new Schema(
 //   )}`;
 // });
 
-export default mongoose.model("Mensagem", MensagemSchema);
+module.exports = mongoose.model("Mensagem", MensagemSchema);
