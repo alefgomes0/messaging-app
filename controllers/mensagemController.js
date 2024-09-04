@@ -41,3 +41,17 @@ exports.post = [
     });
   },
 ];
+
+exports.delete = async function (req, res, next) {
+  try {
+    const messageId = req.body.messageId;
+    await Mensagem.findByIdAndDelete(messageId);
+    res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+    });
+  }
+};
