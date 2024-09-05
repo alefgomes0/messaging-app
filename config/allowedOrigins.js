@@ -4,6 +4,7 @@ const allowedOrigins = [
   "https://messaging-e0tpbkzva-alefgomes0.vercel.app",
   "https://messaging-app-peach-psi.vercel.app",
   "https://messaging-app-git-main-alefgomes0.vercel.app",
+  "https://sp-fe-jet.vercel.app/"
 ];
 
 module.exports = allowedOrigins;
