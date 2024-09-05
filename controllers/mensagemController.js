@@ -45,6 +45,7 @@ exports.post = [
 exports.delete = async function (req, res, next) {
   try {
     const messageId = req.body.messageId;
+    console.log(messageId)
     await Mensagem.findByIdAndDelete(messageId);
     res.status(200).json({
       success: true,
