@@ -22,15 +22,13 @@ app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
-
-app.use("/api/mensagens", require("./routes/mensagem"))
-app.use("/api/testemunhos", require("./routes/testemunho"))
+app.use("/api/mensagens", require("./routes/mensagem"));
+app.use("/api/testemunhos", require("./routes/testemunho"));
+app.use("/api/interesses", require("./routes/interesse"));
 app.use("/login", require("./routes/auth"));
 app.use("/register", require("./routes/register"));
 app.use("/logout", require("./routes/logout"));
 app.use("/refresh", require("./routes/refresh"));
-
 
 app.use(verifyJWT);
 app.use("/conversation", require("./routes/conversation"));
