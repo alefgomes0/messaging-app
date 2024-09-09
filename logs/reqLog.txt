@@ -16755,3 +16755,16 @@ September 9, 2024 at 4:04:20 PM GMT-3	d0c231ab-cb03-4075-a475-0f49ef222e83	GET	h
 September 9, 2024 at 4:04:24 PM GMT-3	e3bbc345-b385-438f-b0e1-b76e9d060e26	GET	http://localhost:5173	/api/mensagens
 September 9, 2024 at 4:05:23 PM GMT-3	4534c309-342a-48ec-921a-a077a7ae3022	GET	http://localhost:5173	/api/mensagens
 September 9, 2024 at 4:06:06 PM GMT-3	262556fc-62dc-4e7a-b0b0-6e68f01bfe74	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:08:25 PM GMT-3	740956cc-d500-4ea7-a397-b572f6800387	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:10:27 PM GMT-3	c74ec002-3031-450d-9756-82641932e4a6	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:10:57 PM GMT-3	7ab8d825-95f8-49c9-821f-3d1c7c59e183	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:11:01 PM GMT-3	b89ead5b-c76e-4de8-bcf5-d9c4bb16692f	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:11:24 PM GMT-3	c569ad41-446a-47a8-8aeb-72ef41e31f26	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:11:40 PM GMT-3	2de7715d-e3e4-472f-9c72-873c42176a1e	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:11:42 PM GMT-3	0a5d8d24-4359-48a0-a4c3-9c17003aea45	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:11:49 PM GMT-3	44878ba8-3253-471e-b394-38d248e00c43	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:14:33 PM GMT-3	547e4c50-47f4-46a8-8972-3c7cbf1840ff	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:14:34 PM GMT-3	ec8ac15f-a4db-47b1-9221-4d24af6090d6	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:14:38 PM GMT-3	a82f5eb8-ab15-4770-9d63-5fa4e7b47b54	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:14:40 PM GMT-3	b5bd7162-9895-444e-894b-e05fb37adee5	GET	http://localhost:5173	/api/mensagens
+September 9, 2024 at 4:15:18 PM GMT-3	0ec9be26-b0d5-4d01-97a4-863904f162ca	GET	http://localhost:5173	/api/mensagens

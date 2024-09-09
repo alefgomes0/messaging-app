@@ -10,7 +10,7 @@ const allowedOrigins = [
   "https://sp-duyhwr2pz-alefgomes0s-projects.vercel.app",
   "priscipsi.com.br",
   "www.priscipsi.com.br",
-  "https://www.priscipsi.com.br/"
+  "https://www.priscipsi.com.br"
 ];
 
 module.exports = allowedOrigins;
