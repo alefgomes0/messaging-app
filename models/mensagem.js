@@ -8,7 +8,7 @@ const MensagemSchema = new Schema(
     iniciais_nome: { type: String, required: true },
     mensagem: { type: String, required: true },
     data: { type: String, required: true },
-    visivel: { type: Boolean },
+    visivel: { type: Boolean, required: true },
   },
   { collection: "mensagens", opts }
 );

@@ -1,7 +1,23 @@
 const { body } = require("express-validator");
 const Mensagem = require("../models/mensagem");
 
-exports.get = async function (req, res, next) {
+exports.todos = async function (req, res, next) {
+  try {
+    const mensagens = await Mensagem.find({});
+    return res.status(200).json({
+      sucesso: true,
+      mensagens: mensagens,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      sucesso: false,
+      mensagem: "Não foi possível acessar suas mensagens.",
+      erro: err.message,
+    });
+  }
+};
+
+exports.visivel = async function (req, res, next) {
   try {
     const mensagens = await Mensagem.find({ visivel: true });
     return res.status(200).json({
@@ -24,6 +40,7 @@ exports.post = [
       iniciais_nome: req.body.nome,
       mensagem: req.body.mensagem,
       data: req.body.data,
+      visivel: false,
     });
 
     try {
@@ -42,17 +59,34 @@ exports.post = [
   },
 ];
 
-exports.delete = async function (req, res, next) {
+exports.put = async function (req, res, next) {
+  console.log(req.body)
+  const messageId = req.body.data.messageId;
+  const visibilidade = req.body.data.visibilidade;
+  console.log(messageId, visibilidade)
+
   try {
-    const messageId = req.body.messageId;
-    console.log(messageId)
-    await Mensagem.findByIdAndDelete(messageId);
-    res.status(200).json({
-      success: true,
+    await Mensagem.findByIdAndUpdate(messageId, { visivel: !visibilidade });
+    return res.status(200).json({
+      sucesso: true,
     });
   } catch (err) {
     res.status(500).json({
-      success: false,
+      sucesso: false,
+    });
+  }
+};
+
+exports.delete = async function (req, res, next) {
+  try {
+    const messageId = req.body.messageId;
+    await Mensagem.findByIdAndDelete(messageId);
+    res.status(200).json({
+      successo: true,
+    });
+  } catch (err) {
+    res.status(500).json({
+      successo: false,
     });
   }
 };

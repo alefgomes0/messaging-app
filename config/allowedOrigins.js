@@ -7,7 +7,10 @@ const allowedOrigins = [
   "https://sp-fe-jet.vercel.app",
   "https://sp-fe-git-main-alefgomes0s-projects.vercel.app",
   "https://sp-co9uz7dt9-alefgomes0s-projects.vercel.app",
-  "https://sp-duyhwr2pz-alefgomes0s-projects.vercel.app"
+  "https://sp-duyhwr2pz-alefgomes0s-projects.vercel.app",
+  "priscipsi.com.br",
+  "www.priscipsi.com.br",
+  "https://www.priscipsi.com.br/"
 ];
 
 module.exports = allowedOrigins;
