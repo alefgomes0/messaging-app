@@ -52,4 +52,21 @@ exports.post = [
       });
     }
   },
+
+
+
+  exports.delete = async function (req, res, next) {
+    try {
+      const messageId = req.body.messageId;
+      await Interesse.findByIdAndDelete(messageId);
+      res.status(200).json({
+        successo: true,
+      });
+    } catch (err) {
+      res.status(500).json({
+        successo: false,
+      });
+    }
+  };
+
 ];
