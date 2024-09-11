@@ -11,7 +11,7 @@ const allowedOrigins = [
   "priscipsi.com.br",
   "www.priscipsi.com.br",
   "https://www.priscipsi.com.br",
-  "sp-ad.vercel.app"
+  "https://sp-ad.vercel.app"
 ];
 
 module.exports = allowedOrigins;
