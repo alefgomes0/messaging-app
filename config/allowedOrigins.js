@@ -1,3 +1,3 @@
-const allowedOrigins = process.env.ORIGENS.trim().split(",");
+const allowedOrigins = process.env.ORIGENS.split(", ");
 
 module.exports = allowedOrigins;
