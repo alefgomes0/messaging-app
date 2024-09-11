@@ -67,6 +67,5 @@ exports.post = [
         successo: false,
       });
     }
-  };
-
+  }
 ];
