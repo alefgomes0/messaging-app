@@ -60,10 +60,8 @@ exports.post = [
 ];
 
 exports.put = async function (req, res, next) {
-  console.log(req.body)
   const messageId = req.body.data.messageId;
   const visibilidade = req.body.data.visibilidade;
-  console.log(messageId, visibilidade)
 
   try {
     await Mensagem.findByIdAndUpdate(messageId, { visivel: !visibilidade });

@@ -5,7 +5,7 @@ exports.get = async function (req, res, next) {
     const testemunhos = await Mensagem.find({ visivel: true });
     return res.status(200).json({
       sucesso: true,
-      testemunhos,
+      mensagens: testemunhos,
     });
   } catch (err) {
     return res.status(500).json({
@@ -15,15 +15,4 @@ exports.get = async function (req, res, next) {
   }
 };
 
-exports.post = async function (req, res, next) {
-  try {
-    return res.status(200).json({
-      sucesso: true,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      sucesso: false,
-      erro: err.message,
-    });
-  }
-};
+
