@@ -1,4 +1,6 @@
 const Mensagem = require("../models/mensagem");
+const { body } = require("express-validator");
+
 
 exports.get = async function (req, res, next) {
   try {
