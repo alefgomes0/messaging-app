@@ -1,5 +1,5 @@
-const Interesse = require("../models/interesse");
 const { body } = require("express-validator");
+const Interesse = require("../models/interesse");
 
 exports.get = async function (req, res, next) {
   try {
@@ -45,17 +45,15 @@ exports.post = [
         novoInteresse,
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       return res.status(500).json({
         sucesso: false,
-        mensamge: err.message
+        mensamge: err.message,
       });
     }
   },
 
-
-
-  exports.delete = async function (req, res, next) {
+  (exports.delete = async function (req, res, next) {
     try {
       const messageId = req.body.messageId;
       await Interesse.findByIdAndDelete(messageId);
@@ -67,5 +65,5 @@ exports.post = [
         successo: false,
       });
     }
-  }
+  }),
 ];

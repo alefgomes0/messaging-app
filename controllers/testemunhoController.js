@@ -1,6 +1,6 @@
-const Mensagem = require("../models/mensagem");
 const { body } = require("express-validator");
-
+const ajustarPontos = require("../lib/ajustarPontos");
+const Mensagem = require("../models/mensagem");
 
 exports.get = async function (req, res, next) {
   try {
@@ -21,7 +21,7 @@ exports.post = [
   body("mensagem").escape().trim(),
   async (req, res, next) => {
     const novaMensagem = new Mensagem({
-      iniciais_nome: req.body.nome,
+      iniciais_nome: ajustarPontos(req.body.nome),
       mensagem: req.body.mensagem,
       data: req.body.data,
       visivel: false,
