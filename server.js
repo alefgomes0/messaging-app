@@ -27,6 +27,8 @@ app.use("/register", require("./routes/register"));
 app.use("/logout", require("./routes/logout"));
 app.use("/refresh", require("./routes/refresh"));
 app.use("/api/testemunhos", require("./routes/testemunho"));
+app.use("/api/interessePost", require("./routes/interessePost"))
+
 
 app.use(verifyJWT);
 app.use("/api/interesses", require("./routes/interesse"));
