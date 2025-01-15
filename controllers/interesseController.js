@@ -4,6 +4,7 @@ const Interesse = require("../models/interesse");
 exports.get = async function (req, res, next) {
   try {
     const interesses = await Interesse.find({});
+    console.log(interesses)
     return res.status(200).json({
       sucesso: true,
       interesses,
@@ -23,7 +24,7 @@ exports.post = [
       cpf: req.body.cpf,
       nascimento: req.body.nascimento,
       email: req.body.email,
-      telefone: req.body.email,
+      telefone: req.body.telefone,
       endereço: req.body.endereço,
       cidade: req.body.cidade,
       estado: req.body.estado,
