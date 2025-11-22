@@ -72,7 +72,6 @@ export const Conversation = () => {
             });
             return "ok";
           } catch (err) {
-            console.log(err);
             return "fail";
           }
         }
@@ -90,7 +89,6 @@ export const Conversation = () => {
       const response = await axiosPrivate.put(`/new-message/${contactId}`, {
         userId,
       });
-      console.log(response.data)
       if (response.data.success) {
         setAllMessages((prevMessages) =>
           (prevMessages ?? []).concat(response.data.allMessages.messages[0])
